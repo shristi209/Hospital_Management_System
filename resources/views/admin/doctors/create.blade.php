@@ -20,6 +20,13 @@
                     <div class="card-body">
                         <div class="form-row mb-3">
                             <div class="col">
+                                {!! Form::label('photo', 'Photo') !!}
+                                {!! Form::file('photo', ['class' => 'form-control-file']) !!}
+                                @error('photo')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col">
                                 {!! Form::label('first_name', 'First Name') !!}
                                 {!! Form::text('first_name', null, [
                                     'id' => 'first_name',
@@ -63,19 +70,22 @@
                                     'class' => 'form-select',
                                     'placeholder' => 'Select Gender',
                                 ]) !!}
-                                <span id="error_gender" class="text-danger" style="display: none;">Please select your gender</span>
+                                <span id="error_gender" class="text-danger" style="display: none;">Please select your
+                                    gender</span>
                             </div>
                             <div class="col">
                                 {!! Form::label('date_of_birth_BS', 'Date of Birth (BS)') !!}
                                 <input type="text" id="date_of_birth_BS" name="date_of_birth_BS"
                                     placeholder="Select Nepali Date" class="form-control" />
-                                    <span id="error_dob_bs" class="text-danger" style="display: none;">Please enter your date of birth(bs)</span>
+                                <span id="error_dob_bs" class="text-danger" style="display: none;">Please enter your date of
+                                    birth(bs)</span>
                             </div>
                             <div class="col">
                                 {!! Form::label('date_of_birth_AD', 'Date of Birth (AD)') !!}
                                 <input type="text" id="date_of_birth_AD" name="date_of_birth_AD"
                                     placeholder="English Date" class="form-control" disabled />
-                                    <span id="error_dob_ad" class="text-danger" style="display: none;">Please enter your date of birth(ad)</span>
+                                <span id="error_dob_ad" class="text-danger" style="display: none;">Please enter your date of
+                                    birth(ad)</span>
                             </div>
                         </div>
                         <div class="form-row mb-3">
@@ -87,7 +97,8 @@
                                     'class' => 'form-select',
                                     'placeholder' => 'Select Department Name',
                                 ]) !!}
-                                <span id="error_department_name" class="text-danger" style="display: none;">Please select your department Name.</span>
+                                <span id="error_department_name" class="text-danger" style="display: none;">Please select
+                                    your department Name.</span>
                             </div>
                             <div class="col">
                                 {!! Form::label('licenceno', 'Licence Number') !!}
@@ -97,7 +108,8 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Enter your Licence Number',
                                 ]) !!}
-                                <span id="error_licenceno" class="text-danger" style="display: none;">Please enter your licence number.</span>
+                                <span id="error_licenceno" class="text-danger" style="display: none;">Please enter your
+                                    licence number.</span>
                             </div>
                             <div class="col">
                                 {!! Form::label('phoneno', 'Phone Number') !!}
@@ -107,7 +119,8 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Enter your Phone Number',
                                 ]) !!}
-                                <span id="error_phoneno" class="text-danger" style="display: none;">Please enter your phone number</span>
+                                <span id="error_phoneno" class="text-danger" style="display: none;">Please enter your phone
+                                    number</span>
                             </div>
                         </div>
                         <div class="row">
@@ -210,12 +223,22 @@
                 <div id="page3" style="display: none">
                     <div class="card-header d-flex justify-content-between">
                         <h5 class="card-title">Education</h5>
-
-
                     </div>
                     <div class="card-body">
                         <div id="educationAdd">
                             <div class="form-row mb-3">
+                                {{-- <div class="card-header d-flex justify-content-center">
+                                    {!! Form::button('<i class="fa-solid fa-trash"></i>', [
+                                        'type' => 'button',
+                                        'id' => 'educationbtn_remove',
+                                        'name' => 'action',
+                                        'value' => 'remove',
+                                        'class' => 'btn btn-sm btn-danger',
+                                        'data-toggle' => 'tooltip',
+                                        ' data-placement' => 'top',
+                                        'title' => 'Delete',
+                                    ]) !!}
+                                </div> --}}
                                 <div class="col ">
                                     {!! Form::label('institute_name', 'Institute Name') !!}
                                     {!! Form::text('institute_name', null, ['class' => 'form-control', 'placeholder' => 'Institute name']) !!}
@@ -259,16 +282,7 @@
                             {{-- <div class="removeBtn">
 
                             </div> --}}
-                            {!! Form::button('<i class="fa-solid fa-trash"></i>', [
-                                'type' => 'button',
-                                'id' => 'educationbtn_remove',
-                                'name' => 'action',
-                                'value' => 'remove',
-                                'class' => 'btn btn-sm btn-danger',
-                                'data-toggle' => 'tooltip',
-                                ' data-placement' => 'top',
-                                'title' => 'Delete',
-                            ]) !!}
+
                         </div>
                         <div class="row justify-content-between">
                             <div class="col-auto">
@@ -303,6 +317,18 @@
                     <div class="card-body">
                         <div id="experienceAdd">
                             <div class="form-row mb-3">
+                                <div class="card-header d-flex justify-content-center">
+                                    {!! Form::button('<i class="fa-solid fa-trash"></i>', [
+                                        'type' => 'button',
+                                        'id' => 'experiencebtn_remove',
+                                        'name' => 'action',
+                                        'value' => 'remove',
+                                        'class' => 'btn btn-sm btn-danger',
+                                        'data-toggle' => 'tooltip',
+                                        ' data-placement' => 'top',
+                                        'title' => 'Delete',
+                                    ]) !!}
+                                </div>
                                 <div class="col ">
                                     {!! Form::label('org_name', 'Organization Name') !!}
                                     {!! Form::text('org_name', null, ['class' => 'form-control', 'placeholder' => 'Organization Name']) !!}
@@ -349,16 +375,7 @@
                                 ' data-placement' => 'top',
                                 'title' => 'Add',
                             ]) !!}
-                            {!! Form::button('<i class="fa-solid fa-trash"></i>', [
-                                'type' => 'button',
-                                'id' => 'experiencebtn_remove',
-                                'name' => 'action',
-                                'value' => 'remove',
-                                'class' => 'btn btn-sm btn-danger',
-                                'data-toggle' => 'tooltip',
-                                ' data-placement' => 'top',
-                                'title' => 'Delete',
-                            ]) !!}
+
                         </div>
                         <div class="row justify-content-between">
                             <div class="col-auto">
