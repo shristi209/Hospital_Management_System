@@ -4,10 +4,12 @@ $(document).ready(function() {
 
     $("#nextPage1").click(function() {
         var isValidBasicDetails = basicDetailsValidation();
-        // if (isValidBasicDetails==false) {
-        //     alert("Please fill all the necessary credentials");
-        //     return; // Prevents proceeding to the next page
-        // }
+        console.log(isValidBasicDetails);
+
+        if (isValidBasicDetails==false) {
+            alert("Please fill all the necessary credentials");
+            return;
+        }
         $("#page1").hide();
         $("#page2").show();
     });
@@ -31,4 +33,8 @@ $(document).ready(function() {
         $("#page4").hide();
         $("#page3").show();
     });
+    // $("#addressbtn").click(function(){
+    //     $("addressAdd").show();
+
+    // })
 });

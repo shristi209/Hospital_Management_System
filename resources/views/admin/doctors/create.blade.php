@@ -39,6 +39,8 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Middle name',
                                 ]) !!}
+                                {{-- <span id="error_middle_name" class="text-danger" style="display: none;">Please enter your
+                                    first name.</span> --}}
                             </div>
                             <div class="col">
                                 {!! Form::label('last_name', 'Last Name') !!}
@@ -48,6 +50,8 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Last name',
                                 ]) !!}
+                                <span id="error_last_name" class="text-danger" style="display: none;">Please enter your
+                                    last name.</span>
                             </div>
                         </div>
                         <div class="form-row mb-3">
@@ -59,16 +63,19 @@
                                     'class' => 'form-select',
                                     'placeholder' => 'Select Gender',
                                 ]) !!}
+                                <span id="error_gender" class="text-danger" style="display: none;">Please select your gender</span>
                             </div>
                             <div class="col">
                                 {!! Form::label('date_of_birth_BS', 'Date of Birth (BS)') !!}
                                 <input type="text" id="date_of_birth_BS" name="date_of_birth_BS"
                                     placeholder="Select Nepali Date" class="form-control" />
+                                    <span id="error_dob_bs" class="text-danger" style="display: none;">Please enter your date of birth(bs)</span>
                             </div>
                             <div class="col">
                                 {!! Form::label('date_of_birth_AD', 'Date of Birth (AD)') !!}
                                 <input type="text" id="date_of_birth_AD" name="date_of_birth_AD"
                                     placeholder="English Date" class="form-control" disabled />
+                                    <span id="error_dob_ad" class="text-danger" style="display: none;">Please enter your date of birth(ad)</span>
                             </div>
                         </div>
                         <div class="form-row mb-3">
@@ -80,6 +87,7 @@
                                     'class' => 'form-select',
                                     'placeholder' => 'Select Department Name',
                                 ]) !!}
+                                <span id="error_department_name" class="text-danger" style="display: none;">Please select your department Name.</span>
                             </div>
                             <div class="col">
                                 {!! Form::label('licenceno', 'Licence Number') !!}
@@ -89,6 +97,7 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Enter your Licence Number',
                                 ]) !!}
+                                <span id="error_licenceno" class="text-danger" style="display: none;">Please enter your licence number.</span>
                             </div>
                             <div class="col">
                                 {!! Form::label('phoneno', 'Phone Number') !!}
@@ -98,6 +107,7 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Enter your Phone Number',
                                 ]) !!}
+                                <span id="error_phoneno" class="text-danger" style="display: none;">Please enter your phone number</span>
                             </div>
                         </div>
                         <div class="row">
@@ -120,40 +130,57 @@
                         <h5 class="card-title">Address</h5>
                     </div>
                     <div class="card-body">
-                        <div class="form-row mb-3">
-                            <div class="col ">
-                                {!! Form::label('country', 'Country', ['class' => 'form-label']) !!}
-                                {!! Form::select('country_id', $country_helper->dropdown(), null, [
-                                    'class' => 'form-select',
-                                    'id' => 'country_id',
+                        <div id="addressAdd">
+                            <div class="form-row mb-3">
+                                <div class="col ">
+                                    {!! Form::label('country', 'Country', ['class' => 'form-label']) !!}
+                                    {!! Form::select('country_id', $country_helper->dropdown(), null, [
+                                        'class' => 'form-select',
+                                        'id' => 'country_id',
+                                    ]) !!}
+                                </div>
+
+                                <div class="col ">
+                                    {!! Form::label('province', 'Province', ['class' => 'form-label']) !!}
+                                    {!! Form::select('province_id', $province_helper->dropdown(), null, [
+                                        'class' => 'form-select',
+                                        'id' => 'province_id',
+                                        'placeholder' => 'Select Province',
+                                    ]) !!}
+                                </div>
+                                <div class="col ">
+                                    {!! Form::label('district', 'District', ['class' => 'form-label']) !!}
+                                    <select id="district_id" class="form-select"></select>
+                                    {{-- {!! Form::select('district_id','placeholder'->'Select District' , null, ['class' => 'form-control', 'id' => 'district_id']) !!} --}}
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col">
+                                    {!! Form::label('municipality', 'Municipality', ['class' => 'form-label']) !!}
+                                    <select id="municipality_id" class="form-select"></select>
+                                </div>
+                                <div class="col">
+                                    {!! Form::label('street', 'Street') !!}
+                                    {!! Form::text('street', null, ['class' => 'form-control', 'placeholder' => 'Enter your district']) !!}
+                                </div>
+                            </div>
+                            <div class="card-header d-flex justify-content-center">
+                                {!! Form::button('<i class="fa-solid fa-plus"></i>', [
+                                    'type' => 'button',
+                                    'id' => 'addressbtn',
+                                    'name' => 'action',
+                                    'value' => 'add',
+                                    'class' => 'btn btn-sm btn-primary mr-1',
+                                    'data-toggle' => 'tooltip',
+                                    ' data-placement' => 'top',
+                                    'title' => 'Add',
                                 ]) !!}
                             </div>
-
-                            <div class="col ">
-                                {!! Form::label('province', 'Province', ['class' => 'form-label']) !!}
-                                {!! Form::select('province_id', $province_helper->dropdown(), null, [
-                                    'class' => 'form-select',
-                                    'id' => 'province_id',
-                                    'placeholder' => 'Select Province',
-                                ]) !!}
-                            </div>
-                            <div class="col ">
-                                {!! Form::label('district', 'District', ['class' => 'form-label']) !!}
-                                <select id="district_id" class="form-select"></select>
-                                {{-- {!! Form::select('district_id','placeholder'->'Select District' , null, ['class' => 'form-control', 'id' => 'district_id']) !!} --}}
-                            </div>
                         </div>
-                        <div class="form-row mb-3">
-                            <div class="col">
-                                {!! Form::label('municipality', 'Municipality', ['class' => 'form-label']) !!}
-                                <select id="municipality_id" class="form-select"></select>
-                            </div>
-                            <div class="col">
-                                {!! Form::label('street', 'Street') !!}
-                                {!! Form::text('street', null, ['class' => 'form-control', 'placeholder' => 'Enter your district']) !!}
-                            </div>
-
+                        <div id="addressContainer">
+                            {{-- --cloned address --}}
                         </div>
+
                         <div class="row align-items-center justify-content-between">
                             <div class="col-auto">
                                 {!! Form::button('Previous', [
@@ -176,6 +203,8 @@
                         </div>
 
                     </div>
+
+
                 </div>
                 {{-- Doctors education --}}
                 <div id="page3" style="display: none">
@@ -223,7 +252,9 @@
                                 'name' => 'action',
                                 'value' => 'add',
                                 'class' => 'btn btn-sm btn-primary mr-1',
-                                "data-toggle"=>"tooltip"," data-placement"=>"top", "title"=>"Add"
+                                'data-toggle' => 'tooltip',
+                                ' data-placement' => 'top',
+                                'title' => 'Add',
                             ]) !!}
                             {{-- <div class="removeBtn">
 
@@ -234,7 +265,9 @@
                                 'name' => 'action',
                                 'value' => 'remove',
                                 'class' => 'btn btn-sm btn-danger',
-                                "data-toggle"=>"tooltip"," data-placement"=>"top", "title"=>"Delete"
+                                'data-toggle' => 'tooltip',
+                                ' data-placement' => 'top',
+                                'title' => 'Delete',
                             ]) !!}
                         </div>
                         <div class="row justify-content-between">
@@ -268,27 +301,64 @@
                         <h5 class="card-title">Experience</h5>
                     </div>
                     <div class="card-body">
-                        <div class="form-row mb-3">
-                            <div class="col ">
-                                {!! Form::label('org_name', 'Organization Name') !!}
-                                {!! Form::text('org_name', null, ['class' => 'form-control', 'placeholder' => 'Organization Name']) !!}
+                        <div id="experienceAdd">
+                            <div class="form-row mb-3">
+                                <div class="col ">
+                                    {!! Form::label('org_name', 'Organization Name') !!}
+                                    {!! Form::text('org_name', null, ['class' => 'form-control', 'placeholder' => 'Organization Name']) !!}
+                                </div>
+                                <div class="col">
+                                    {!! Form::label('org_start_bs', 'Start Date(BS)') !!}
+                                    <input type="text" id="org_start_bs" placeholder="Select start Date"
+                                        class="form-control" />
+                                </div>
+                                <div class="col">
+                                    {!! Form::label('org_start_ad', 'Start Date(AD)') !!}
+                                    <input type="text" id="org_start_ad" placeholder="Select end Date"
+                                        class="form-control" />
+                                </div>
+                                <div class="col">
+                                    {!! Form::label('org_end_bs', 'End Date(BS)') !!}
+                                    <input type="text" id="org_end_bs" placeholder="Select end Date"
+                                        class="form-control" />
+                                </div>
+                                <div class="col">
+                                    {!! Form::label('org_end_ad', 'End Date(AD)') !!}
+                                    <input type="text" id="org_end_ad" placeholder="Select end Date"
+                                        class="form-control" />
+                                </div>
                             </div>
-                            <div class="col">
-                                {!! Form::label('org_start_bs', 'Start Date(BS)') !!}
-                                <input type="text" id="org_start_bs" placeholder="Select start Date"
-                                    class="form-control" />
-                            </div>
-                            <div class="col">
-                                {!! Form::label('org_start_ad', 'Start Date(AD)') !!}
-                                <input type="text" id="org_start_ad" placeholder="Select end Date"
-                                    class="form-control" />
+                            <div class="form-row mb-3">
+                                <div class="col ">
+                                    {!! Form::label('description', ' Description') !!}
+                                    {!! Form::text('description', null, ['class' => 'form-control', 'id' => 'editor']) !!}
+                                </div>
                             </div>
                         </div>
-                        <div class="form-row mb-3">
-                            <div class="col ">
-                                {!! Form::label('description', ' Description') !!}
-                                {!! Form::text('description', null, ['class' => 'form-control', 'id' => 'editor']) !!}
-                            </div>
+                        <div id="experienceContainer">
+                            {{-- cloned experience --}}
+                        </div>
+                        <div class="card-header d-flex justify-content-center">
+                            {!! Form::button('<i class="fa-solid fa-plus"></i>', [
+                                'type' => 'button',
+                                'id' => 'experiencebtn',
+                                'name' => 'action',
+                                'value' => 'add',
+                                'class' => 'btn btn-sm btn-primary mr-1',
+                                'data-toggle' => 'tooltip',
+                                ' data-placement' => 'top',
+                                'title' => 'Add',
+                            ]) !!}
+                            {!! Form::button('<i class="fa-solid fa-trash"></i>', [
+                                'type' => 'button',
+                                'id' => 'experiencebtn_remove',
+                                'name' => 'action',
+                                'value' => 'remove',
+                                'class' => 'btn btn-sm btn-danger',
+                                'data-toggle' => 'tooltip',
+                                ' data-placement' => 'top',
+                                'title' => 'Delete',
+                            ]) !!}
                         </div>
                         <div class="row justify-content-between">
                             <div class="col-auto">

@@ -11,6 +11,7 @@ window.onload = function() {
     mainInput.nepaliDatePicker();
 };
 
+
 $('#date_of_birth_BS').nepaliDatePicker({
     onChange: function() {
         var nepaliDate = $('#date_of_birth_BS').val();
@@ -27,31 +28,23 @@ $('#graduation_year_start_bs').nepaliDatePicker({
         $('#graduation_year_start_ad').val(englishDate);
     }
 });
-// $('#org_start_bs').nepaliDatePicker({
-//     onChange: function() {
-//         var nepali = $('#org_start_bs').val();
-//         console.log(nepali);
-//         var english = NepaliFunctions.BS2AD(nepali);
-//         $('#org_start_ad').val(english);
-//     }
-// });
-// $(document).ready(function(){
-//     alert('hi');
-//     $('#org_start_bs').click(function(){
-//         var nepali = $(this).val();
-
-//                 var english = NepaliFunctions.BS2AD(nepali);
-//                 alert(nepali);
-//                 $('#org_start_ad').val(english);
-//     });
-// });
 
 function dateconversion(){
     var nepali = $('#org_start_bs').val();
             var english = NepaliFunctions.BS2AD(nepali);
             $('#org_start_ad').val(english);
 }
-
 setInterval(() => {
     dateconversion();
 }, 1000);
+
+$('#org_end_bs').nepaliDatePicker({
+    onChange:function(){
+        var nepali=$('#org_end_bs').val();
+        console.log(nepali);
+
+        var english=NepaliFunctions.BS2AD(nepali);
+        console.log(english);
+        $('#org_end_ad').val(english);
+    }
+})

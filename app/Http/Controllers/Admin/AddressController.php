@@ -22,4 +22,16 @@ class AddressController extends Controller
         $data=Municipality::where('district_id',$id)->get();
         return response()->json($data);
     }
+
+    public function addfetchDistrict(Request $request, $id)
+    {
+        $data=District::where('province_id', $id)->get();
+        return response()->json($data);
+    }
+
+    public function addfetchMunicipality(Request $request, $id)
+    {
+        $data=Municipality::where('district_id',$id)->get();
+        return response()->json($data);
+    }
 }

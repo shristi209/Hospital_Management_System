@@ -31,12 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/usertrashdelete/{id}', [TrashUserController::class, 'deleteuser'])->name('trashdeleteuser');
 
     Route::resource('/user', UserController::class);
-
     Route::resource('/doctor', DoctorController::class);
 
     Route::get('/fetchdistrict/{provinceId}', [AddressController::class, 'fetchDistrict'])->name('fetchdistrict');
-
     Route::get('/fetchmunicipality/{districtId}', [AddressController::class, 'fetchMunicipality'])->name('fetchmunicipality');
+
+    Route::get('/addfetchdistrict/{provinceId}', [AddressController::class, 'addfetchDistrict'])->name('addfetchdistrict');
+    Route::get('/addfetchmunicipality/{districtId}', [AddressController::class, 'addfetchMunicipality'])->name('addfetchmunicipality');
 
 });
 

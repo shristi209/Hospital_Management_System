@@ -12,11 +12,13 @@
  <script src="backend/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
  {{-- hideshowjs --}}
- <script src={{asset("backend/js/hideshow.js")}}></script>
- <script src={{asset("backend/js/clientsidevalidation.js")}}></script>
+ <script src={{asset("backend/js/hideshowWidzard.js")}}></script>
+ <script src={{asset("backend/js/clientsideValidation.js")}}></script>
  {{-- nepalidate picker --}}
- <script src={{asset("backend/js/nepalidatepicker.js")}}></script>
- <script src={{asset("backend/js/educationrepeater.js")}}></script>
+ <script src={{asset("backend/js/nepalidatePicker.js")}}></script>
+ <script src={{asset("backend/js/educationRepeater.js")}}></script>
+ <script src={{asset("backend/js/addressRepeater.js")}}></script>
+ <script src={{asset("backend/js/experienceRepeater.js")}}></script>
 
  {{-- englishdate picker --}}
  <script src={{asset("backend/js/englishdatepicker.js")}}></script>
