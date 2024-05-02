@@ -28,8 +28,6 @@ document.getElementById('addressbtn').addEventListener('click', function () {
         municipalityId.id = newMunicipalityId;
         console.log(newMunicipalityId);
         document.getElementById("addressContainer").appendChild(clonedAddress);
-
-
     }
 
     $('#' + newProvinceId).change(function () {
@@ -84,6 +82,7 @@ document.getElementById('addressbtn').addEventListener('click', function () {
         }
     });
 
+    
 });
 
 
