@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,7 +9,7 @@ class DoctorExperience extends Model
 {
     use SoftDeletes;
     protected $table='doctor_experiences';
-    protected $fillable=['department_id','first_name','middle_name', 'last_name', 'country_id', 'provice_id', 'district_id', 'municipality_id', 'street', 'gender', 'phone_num', 'dob_ad', 'dob_bs'];
+    protected $fillable=['doctor_id','organization_name','org_start_bs', 'org_start_ad', 'org_end_bs', 'org_end_ad', 'description'];
 
     public function doctor(){
         return $this->belongsTo(Doctor::class, 'doctor_id', 'id');

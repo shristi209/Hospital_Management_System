@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('organization_name');
             $table->date('org_start_bs');
             $table->date('org_end_bs');
-            $table->date('description');
+            $table->string('description');
             $table->timestamps();
             $table->softDeletes();
 

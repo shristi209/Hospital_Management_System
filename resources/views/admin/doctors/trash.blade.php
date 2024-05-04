@@ -1,15 +1,9 @@
 @extends('admin.layouts.index')
 @section('title', 'Doctor')
+@section('title_link', route('doctor.index'))
+@section('action', 'Trash')
 @section('content')
-@include('admin.breadcrumb')
-
-    <div class="d-flex justify-content-end mb-3 align-items-center">
-        <form action="{{ route('doctor.create') }}">
-            <button type="submit" class="btn btn-sm btn-primary mr-2"><i class="fa-solid fa-plus"></i> Add </button>
-        </form>
-        <a href="{{ route('doctortrash') }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Trash</a>
-    </div>
-
+    @include('admin.breadcrumb')
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -38,15 +32,22 @@
                                     <td>{{ $doctor->licence_no}}</td>
                                     <td>{{ $doctor->phone_num}}</td>
                                     <td class="d-flex">
-                                        <a href="{{ route('doctor.show', $doctor->id) }}" class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top" title="View"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>
-                                        <form action="{{ route('doctor.destroy', $doctor->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger mr-1"
-                                                onclick="return confirm('Are you sure you want to delete this user?')" data-toggle="tooltip" data-placement="top"
-                                                title="Delete"><i class="fa-solid fa-trash"></i></button>
-                                        </form>
+                                        <div class="d-flex justify-content-end mr-3">
+                                            <form action="{{ route('trashdoctor', $doctor->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-sm btn-primary mr-3" data-toggle="tooltip" data-placement="top" title="Restore"><i
+                                                        class="fa-solid fa-trash-arrow-up "></i></button>
+                                            </form>
+                                            <form action="{{ route('trashdeletedoctor', $doctor->id) }}" method="POST">
+                                                @csrf
+                                                @method('Delete')
+                                                <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"
+                                                    onclick="return confirm('Are you sure you want to delete this department?')"><i
+                                                        class="fa-solid fa-trash"></i></button>
+                                            </form>
+
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -56,7 +57,7 @@
             </div>
         </div>
     </div>
+
+
 @endsection
-
-
 

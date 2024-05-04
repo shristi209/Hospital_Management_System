@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('country_code');
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

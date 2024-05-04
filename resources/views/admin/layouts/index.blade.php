@@ -14,10 +14,11 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+            @include('admin.layouts.partials.heading')
             <div id="content">
                 <div class="container-fluid">
-                    @yield('content')
 
+                    @yield('content')
                 </div>
             </div>
             <!-- Main Content -->

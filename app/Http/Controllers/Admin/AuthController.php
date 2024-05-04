@@ -16,6 +16,7 @@ class AuthController extends Controller
     {
         return view('admin.auth.login');
     }
+
     public function loginUser(LoginValidationRequest $request)
     {
         $credential = $request->validated();
@@ -28,6 +29,7 @@ class AuthController extends Controller
             return redirect('login');
         }
     }
+    
     public function logoutUser()
     {
         Auth::logout();

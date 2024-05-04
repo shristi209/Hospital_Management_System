@@ -9,7 +9,7 @@ class Doctor extends Model
 {
     use SoftDeletes;
     protected $table='doctors';
-    protected $fillable=['department_id','first_name','middle_name', 'last_name', 'licence_no','country_id', 'provice_id', 'district_id', 'municipality_id', 'street', 'gender', 'phone_num', 'dob_ad', 'dob_bs', 'deleted_at'];
+    protected $fillable=['department_id','photo', 'first_name','middle_name', 'last_name', 'licence_no','country_id', 'province_id', 'district_id', 'municipality_id', 'street', 'gender', 'phone_num', 'dob_ad', 'dob_bs', 'deleted_at','temp_country_id', 'temp_province_id', 'temp_district_id', 'temp_municipality_id', 'temp_street' ];
 
     public function education()
     {

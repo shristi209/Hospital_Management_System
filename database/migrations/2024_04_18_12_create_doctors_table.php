@@ -6,15 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('department_id')->constrained('departments');
-            
+
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
@@ -34,7 +32,7 @@ return new class extends Migration
         });
     }
 
-    
+
     public function down(): void
     {
         Schema::dropIfExists('doctors');

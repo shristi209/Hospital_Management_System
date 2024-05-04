@@ -8,7 +8,7 @@ $(document).ready(function() {
 
         if (isValidBasicDetails==false) {
             alert("Please fill all the necessary credentials");
-            return;
+            return ;
         }
         $("#page1").hide();
         $("#page2").show();
@@ -33,8 +33,4 @@ $(document).ready(function() {
         $("#page4").hide();
         $("#page3").show();
     });
-    // $("#addressbtn").click(function(){
-    //     $("addressAdd").show();
-
-    // })
 });

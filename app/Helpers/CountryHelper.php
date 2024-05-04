@@ -9,8 +9,7 @@ class CountryHelper
         $this->country=$country;
     }
     public function dropdown(){
-        $country=$this->country->orderBy('id', 'desc') -> pluck('country_name', 'id')->toArray();
-        $country = ['Nepal' => 'Nepal'] + $country;
-        return $country;
+        $countries = $this->country->orderBy('id', 'desc')->pluck('country_name', 'id')->toArray();
+        return $countries;
     }
 }

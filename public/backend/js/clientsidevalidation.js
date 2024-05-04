@@ -1,7 +1,7 @@
 function basicDetailsValidation() {
+
     var isValid = true;
     $("#error_first_name").hide();
-    // $("#error_middle_name").hide();
     $("#error_last_name").hide();
     $("#error_gender").hide();
     $("#error_dob_bs").hide();
@@ -13,11 +13,6 @@ function basicDetailsValidation() {
         isValid = false;
         $("#error_first_name").show();
     }
-
-    // if (document.getElementById('middle_name').value.trim() == "") {
-    //     isValid = false;
-    //     $("#error_middle_name").show();
-    // }
 
     if (document.getElementById('last_name').value.trim() == "") {
         isValid = false;

@@ -12,8 +12,8 @@
  <script src="backend/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
  {{-- hideshowjs --}}
- <script src={{asset("backend/js/hideshowWidzard.js")}}></script>
  <script src={{asset("backend/js/clientsideValidation.js")}}></script>
+ <script src={{asset("backend/js/hideshowWidzard.js")}}></script>
  {{-- nepalidate picker --}}
  <script src={{asset("backend/js/nepalidatePicker.js")}}></script>
  <script src={{asset("backend/js/educationRepeater.js")}}></script>

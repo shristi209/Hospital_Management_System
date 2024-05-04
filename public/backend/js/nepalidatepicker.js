@@ -18,8 +18,12 @@ $('#date_of_birth_BS').nepaliDatePicker({
         console.log(nepaliDate);
         var englishDate = NepaliFunctions.BS2AD(nepaliDate);
         $('#date_of_birth_AD').val(englishDate);
+        console.log($('#date_of_birth_AD').val());
     }
 });
+
+
+
 $('#graduation_year_start_bs').nepaliDatePicker({
     onChange: function() {
         var nepaliDate = $('#graduation_year_start_bs').val();
