@@ -10,9 +10,16 @@ use App\Http\Requests\DepartmentValidationRequest;
 
 class DepartmentController extends Controller
 {
+    protected $department;
+
+    public function __construct(Department $department)
+    {
+        $this->department = $department;
+    }
+
     public function index()
     {
-        $departments=Department::all();
+        $departments=$this->department->all();
         return view('admin.departments.index', compact('departments'));
     }
 
@@ -23,25 +30,25 @@ class DepartmentController extends Controller
 
     public function store(DepartmentValidationRequest $request)
     {
-        Department::create($request->validated());
+        $this->department->create($request->validated());
         return redirect()->route('department.index');
     }
 
     public function show($id)
     {
-        $departments=Department::findOrFail($id);
+        $departments=$this->department->findOrFail($id);
       	return view('admin.departments.show', compact('departments'));
     }
 
     public function edit($id)
     {
-        $department=Department::findOrFail($id);
+        $department=$this->department->findOrFail($id);
         return view('admin.departments.edit', compact('department'));
     }
 
     public function update( DepartmentValidationRequest $request,  $id)
     {
-        $department=Department::findOrFail($id);
+        $department=$this->department->findOrFail($id);
         $department->update($request->validated());
 
         return redirect()->route('department.index');
@@ -49,7 +56,7 @@ class DepartmentController extends Controller
 
     public function destroy( $id)
     {
-        $department=Department::findOrFail($id);
+        $department=$this->department->findOrFail($id);
         $department->delete();
 
         return redirect()->route('department.index');

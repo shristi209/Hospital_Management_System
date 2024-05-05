@@ -15,10 +15,12 @@ class TrashDoctorController extends Controller
     {
         $this->doctor=$doctor;
     }
+
     public function index(){
         $doctors=$this->doctor->onlyTrashed()->get();
         return view('admin.doctors.trash', compact('doctors'));
     }
+    
     public function restore($id)
     {
         $doctor=$this->doctor->where('id', $id);

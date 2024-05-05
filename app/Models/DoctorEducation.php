@@ -9,7 +9,7 @@ class DoctorEducation extends Model
 {
     use SoftDeletes;
     protected $table='doctor_educations';
-    protected $fillable=['doctor_id', 'institute_name', 'specialization', 'graduation_year_start_bs', 'graduation_year_start_ad', 'graduation_year_end_bs', 'graduation_year_end_ad'];
+    protected $fillable=['doctor_id', 'institute_name', 'specialization', 'graduation_year_start_bs', 'graduation_year_start_ad', 'graduation_year_end_bs', 'graduation_year_end_ad', 'education_level'];
 
     public function doctor(){
         return $this->belongsTo(Doctor::class, 'doctor_id', 'id');

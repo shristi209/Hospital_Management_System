@@ -40,6 +40,10 @@
             <i class="fa-solid fa-user-doctor"></i>
             <span>Doctor</span>
         </a>
+        <a class="nav-link" href="{{ route('schedule.index') }}" onclick="handleLinkClick(event)">
+            <i class="fa-solid fa-user-doctor"></i>
+            <span>Schedule</span>
+        </a>
 
         {{-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">

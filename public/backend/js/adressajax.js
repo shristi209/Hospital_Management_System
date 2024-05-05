@@ -9,8 +9,6 @@ $(document).ready(function () {
                 method: 'get',
                 dataType: 'json',
                 success: function (response) {
-
-                    // console.log('Response:', response);
                     var district = $('#district_id');
                     district.empty().append(
                         '<option value="">Select District</option>');
@@ -18,13 +16,6 @@ $(document).ready(function () {
                         district.append('<option value=" ' + val.id + ' "> ' +
                             val.eng_district_name + ' </option>');
                     });
-                    // $.each(response, function(index, val) {
-                    //     var option = $('<option value="' + val.id + '">' + val.eng_district_name + '</option>');
-                    //     if (val.id == '{{ $doctor->district_id }}') {
-                    //         option.attr('selected', 'selected');
-                    //     }
-                    //     district.append(option);
-                    // });
                 },
                 error: function () {
                     alert('Error Fetching District !!!');

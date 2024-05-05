@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/user', UserController::class);
     Route::resource('/doctor', DoctorController::class);
+    Route::resource('/schedule', DoctorController::class);
 
     Route::get('/fetchdistrict/{provinceId}', [AddressController::class, 'fetchDistrict'])->name('fetchdistrict');
     Route::get('/fetchmunicipality/{districtId}', [AddressController::class, 'fetchMunicipality'])->name('fetchmunicipality');

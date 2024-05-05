@@ -77,7 +77,6 @@ function addExperienceSection() {
     var experienceContainer=document.getElementById("experienceContainer")
     exp_removeBtn.onclick = function(){
         experienceCounter--;
-        // const mainDiv = document.getElementById('experienceAdd');
         experienceContainer.removeChild(experienceDiv);
         experienceContainer.removeChild(clonedElement);
     }

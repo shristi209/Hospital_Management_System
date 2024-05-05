@@ -50,6 +50,7 @@ class DoctorValidationRequest extends FormRequest
             'specialization.*' => ['required'],
             'graduation_year_start_bs.*' => ['required', 'date'],
             'graduation_year_start_ad.*' => ['required', 'date'],
+            'education_level.*'=>['required'],
 
             'organization_name.*' => ['required'],
             'org_start_bs.*' => ['required', 'date'],
@@ -57,6 +58,9 @@ class DoctorValidationRequest extends FormRequest
             'org_end_bs.*' => ['required', 'date'],
             'org_end_ad.*' => ['required', 'date'],
             'description.*' => ['nullable'],
+
+            'password'=>  Request()->method == 'POST' ? 'required|string|min:4|confirmed' : 'nullable',
+            'email'=> Request()->method == 'POST' ? 'required|string|unique:users' : 'nullable',
         ];
     }
 }

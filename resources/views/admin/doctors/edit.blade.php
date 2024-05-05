@@ -197,8 +197,8 @@
                         <div id="addressAdd">
                             <div class="form-row mb-3">
                                 <div class="col ">
-                                    {!! Form::label('country', 'Country', ['class' => 'form-label']) !!}
-                                    {!! Form::select('country_id', $country_helper->dropdown(), old('country_id', $doctor->country_id), [
+                                    {!! Form::label('country', 'Country', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
+                                    {!! Form::select('country_id', $country_helper->dropdown(), $doctor->country_id, [
                                         'class' => 'form-select',
                                         'id' => 'country_id',
                                     ]) !!}
@@ -210,7 +210,7 @@
                                 </div>
 
                                 <div class="col ">
-                                    {!! Form::label('province', 'Province', ['class' => 'form-label']) !!}
+                                    {!! Form::label('province', 'Province', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
                                     {!! Form::select('province_id', $province_helper->dropdown(), $doctor->province_id, [
                                         'class' => 'form-select',
                                         'id' => 'province_id',
@@ -223,7 +223,7 @@
                                     </span>
                                 </div>
                                 <div class="col ">
-                                    {!! Form::label('district', 'District', ['class' => 'form-label']) !!}
+                                    {!! Form::label('district', 'District', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
                                     {!! Form::select('district_id', $districts->pluck('eng_district_name', 'id'), $doctor->district_id, [
                                         'class' => 'form-select',
                                         'id' => 'district_id',
@@ -239,7 +239,7 @@
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col-4">
-                                    {!! Form::label('municipality', 'Municipality', ['class' => 'form-label']) !!}
+                                    {!! Form::label('municipality', 'Municipality', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
                                     {!! Form::select('municipality_id', $municipalities->pluck('nep_municipality_name', 'id'), $doctor->municipality_id, [
                                         'class' => 'form-select',
                                         'id' => 'municipality_id',
@@ -252,7 +252,7 @@
                                     </span>
                                 </div>
                                 <div class="col-4">
-                                    {!! Form::label('street', 'Street') !!}
+                                    {!! Form::label('street', 'Street') !!}<span class="text-danger">*</span>
                                     {!! Form::text('street', $doctor->street, [
                                         'class' => 'form-control',
                                         'id' => 'street',
@@ -317,8 +317,21 @@
                         <div id="educationAdd">
                             @foreach ($educations as $education)
                                 <div class="form-row mb-3">
+                                    <div class="col">
+                                        {!! Form::label('education_level', 'Level') !!}<span class="text-danger">*</span>
+                                        {!! Form::select('education_level', config('dropdown.education_level'), $education->education_level, [
+                                            'id' => 'education_level',
+                                            'class' => 'form-select',
+                                            'placeholder' => 'Select level',
+                                        ]) !!}
+                                        <span class="text-danger">
+                                            @error('education_level')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
                                     <div class="col ">
-                                        {!! Form::label('institute_name', 'Institute Name') !!}
+                                        {!! Form::label('institute_name', 'Institute Name') !!}<span class="text-danger">*</span>
                                         {!! Form::text('institute_name[]', $education->institute_name, [
                                             'class' => 'form-control',
                                             'placeholder' => 'Institute name',
@@ -330,7 +343,7 @@
                                         </span>
                                     </div>
                                     <div class="col">
-                                        {!! Form::label('specialization', 'Specialization') !!}
+                                        {!! Form::label('specialization', 'Specialization') !!}<span class="text-danger">*</span>
                                         {!! Form::text('specialization[]', $education->specialization, [
                                             'class' => 'form-control',
                                             'placeholder' => 'Specialization',
@@ -343,8 +356,8 @@
                                     </div>
                                 </div>
                                 <div class="form-row mb-3">
-                                    <div class="col">
-                                        {!! Form::label('graduation_year_start_bs', 'Date of Graduation(BS)') !!}
+                                    <div class="col-3">
+                                        {!! Form::label('graduation_year_start_bs', 'Date of Graduation(BS)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('graduation_year_start_bs[]', $education->graduation_year_start_bs, [
                                             'id' => 'graduation_year_start_bs',
                                             'class' => 'form-control',
@@ -355,8 +368,8 @@
                                         @enderror
                                         </span>
                                     </div>
-                                    <div class="col">
-                                        {!! Form::label('graduation_year_start_ad', 'Date of Graduation(AD)') !!}
+                                    <div class="col-3">
+                                        {!! Form::label('graduation_year_start_ad', 'Date of Graduation(AD)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('graduation_year_start_ad[]', $education->graduation_year_start_ad, [
                                             'id' => 'graduation_year_start_ad',
                                             'class' => 'form-control',
@@ -426,7 +439,7 @@
                             @foreach ($experiences as $experience)
                                 <div class="form-row mb-3">
                                     <div class="col ">
-                                        {!! Form::label('organization_name', 'Organization Name') !!}
+                                        {!! Form::label('organization_name', 'Organization Name') !!}<span class="text-danger">*</span>
                                         {!! Form::text('organization_name[]', $experience->organization_name, [
                                             'class' => 'form-control',
                                             'name' => 'organization_name[]',
@@ -439,7 +452,7 @@
                                         </span>
                                     </div>
                                     <div class="col">
-                                        {!! Form::label('org_start_bs', 'Start Date(BS)') !!}
+                                        {!! Form::label('org_start_bs', 'Start Date(BS)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('org_start_bs[]', $experience->org_start_bs, [
                                             'id' => 'org_start_bs',
                                             'class' => 'form-control',
@@ -452,7 +465,7 @@
                                         </span>
                                     </div>
                                     <div class="col">
-                                        {!! Form::label('org_start_ad', 'Start Date(AD)') !!}
+                                        {!! Form::label('org_start_ad', 'Start Date(AD)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('org_start_ad[]', $experience->org_start_ad, [
                                             'id' => 'org_start_ad',
                                             'class' => 'form-control',
@@ -465,7 +478,7 @@
                                         </span>
                                     </div>
                                     <div class="col">
-                                        {!! Form::label('org_end_bs', 'End Date(BS)') !!}
+                                        {!! Form::label('org_end_bs', 'End Date(BS)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('org_end_bs[]', $experience->org_end_bs, [
                                             'id' => 'org_end_bs',
                                             'class' => 'form-control',
@@ -478,7 +491,7 @@
                                         </span>
                                     </div>
                                     <div class="col">
-                                        {!! Form::label('org_end_ad', 'End Date(AD)') !!}
+                                        {!! Form::label('org_end_ad', 'End Date(AD)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('org_end_ad[]', $experience->org_end_ad, [
                                             'id' => 'org_end_ad',
                                             'class' => 'form-control',
@@ -535,7 +548,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 {!! Form::close() !!}
             </div>
         </div>
