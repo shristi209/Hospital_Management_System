@@ -1,15 +1,16 @@
 @extends('admin.layouts.index')
-@section('title', 'Doctor')
+@section('title', 'Schedule')
 @section('content')
-    @include('admin.breadcrumb')
+@include('admin.breadcrumb')
 
     <div class="d-flex justify-content-end mb-3 align-items-center">
-        <a href="{{ route('doctor.create') }}" class="btn btn-sm btn-primary mr-2">
+        <a href="{{ route('schedule.create') }}" class="btn btn-sm btn-primary mr-2">
             <i class="fa-solid fa-plus"></i> Add
         </a>
-        <a href="{{ route('doctortrash') }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Trash</a>
+        <a href="" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Trash</a>
     </div>
 
+{{--
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -59,6 +60,5 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> --}}
 @endsection

@@ -28,20 +28,21 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('department.index') }}" onclick="handleLinkClick(event)">
-            <i class="fa-solid fa-building"></i>
-            <span>Department</span>
-        </a>
         <a class="nav-link" href="{{ route('user.index') }}" onclick="handleLinkClick(event)">
             <i class="fa-solid fa-user"></i>
             <span>User</span>
         </a>
+        <a class="nav-link" href="{{ route('department.index') }}" onclick="handleLinkClick(event)">
+            <i class="fa-solid fa-building"></i>
+            <span>Department</span>
+        </a>
+
         <a class="nav-link" href="{{ route('doctor.index') }}" onclick="handleLinkClick(event)">
             <i class="fa-solid fa-user-doctor"></i>
             <span>Doctor</span>
         </a>
         <a class="nav-link" href="{{ route('schedule.index') }}" onclick="handleLinkClick(event)">
-            <i class="fa-solid fa-user-doctor"></i>
+            <i class="fa-solid fa-calendar-days"></i>
             <span>Schedule</span>
         </a>
 

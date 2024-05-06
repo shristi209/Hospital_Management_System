@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TrashDoctorController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\AddressController;
+use App\Http\Controllers\Admin\ScheduleController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin-login');
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/user', UserController::class);
     Route::resource('/doctor', DoctorController::class);
-    Route::resource('/schedule', DoctorController::class);
+    Route::resource('/schedule', ScheduleController::class);
 
     Route::get('/fetchdistrict/{provinceId}', [AddressController::class, 'fetchDistrict'])->name('fetchdistrict');
     Route::get('/fetchmunicipality/{districtId}', [AddressController::class, 'fetchMunicipality'])->name('fetchmunicipality');

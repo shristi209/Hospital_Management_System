@@ -1,63 +1,50 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ScheduleValidationRequest;
+use App\Models\Schedule;
 
 class ScheduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(Schedule $schedule)
+    {
+        $this->schedule=$schedule;
+    }
     public function index()
     {
-        //
+        return view('admin.schedules.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.schedules.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(ScheduleValidationRequest $request)
     {
-        //
+        $schedule=$request->validated();
+        $this->schedule->create($schedule);
+        return redirect()->route('schedule.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(ScheduleController $scheduleController)
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(ScheduleController $scheduleController)
     {
-        //
+        return view('admin.schedules.edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, ScheduleController $scheduleController)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(ScheduleController $scheduleController)
     {
         //

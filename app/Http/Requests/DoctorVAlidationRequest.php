@@ -31,7 +31,7 @@ class DoctorValidationRequest extends FormRequest
             'photo' => ['nullable'],
             'dob_bs' => ['required', 'date'],
             'dob_ad' => ['nullable', 'date'],
-            'licence_no' => ['required', 'string'],
+            'licence_no' => ['required', 'string', 'unique'],
             'phone_num' => ['required'],
 
             'country_id' => ['required', 'string'],

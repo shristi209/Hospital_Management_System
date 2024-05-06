@@ -6,9 +6,9 @@
     @include('admin.breadcrumb')
 
     <div class="d-flex justify-content-end mb-3 align-items-center">
-        <form action="{{ route('department.create') }}">
-            <button type="submit" class="btn btn-sm btn-primary mr-2"><i class="fa-solid fa-plus"></i> Add </button>
-        </form>
+        <a href="{{ route('department.create') }}" class="btn btn-sm btn-primary mr-2">
+            <i class="fa-solid fa-plus"></i> Add
+        </a>
         <a href="{{ route('departmenttrash') }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Trash</a>
     </div>
     <div class="card">

@@ -33,19 +33,14 @@
                                     <td>{{ $doctor->phone_num}}</td>
                                     <td class="d-flex">
                                         <div class="d-flex justify-content-end mr-3">
-                                            <form action="{{ route('trashdoctor', $doctor->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" class="btn btn-sm btn-primary mr-3" data-toggle="tooltip" data-placement="top" title="Restore"><i
-                                                        class="fa-solid fa-trash-arrow-up "></i></button>
-                                            </form>
-                                            <form action="{{ route('trashdeletedoctor', $doctor->id) }}" method="POST">
-                                                @csrf
-                                                @method('Delete')
-                                                <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"
-                                                    onclick="return confirm('Are you sure you want to delete this department?')"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </form>
+                                            <div class="d-flex justify-content-end mr-3">
+                                                {!! Form::open(['route' => ['trashdoctor', $doctor->id], 'method' => 'PUT']) !!}
+                                                    {!! Form::button('<i class="fa-solid fa-trash-arrow-up"></i>', ['type' => 'submit', 'class' => 'btn btn-sm btn-primary mr-3', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Restore']) !!}
+                                                {!! Form::close() !!}
+                                                {!! Form::open(['route' => ['trashdeletedoctor', $doctor->id], 'method' => 'DELETE']) !!}
+                                                    {!! Form::button('<i class="fa-solid fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-sm btn-danger', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Delete', 'onclick' => "return confirm('Are you sure you want to delete this department?')"]) !!}
+                                                {!! Form::close() !!}
+                                            </div>
 
                                         </div>
                                     </td>

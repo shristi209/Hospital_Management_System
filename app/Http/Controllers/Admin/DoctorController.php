@@ -53,7 +53,7 @@ class DoctorController extends Controller
             $doctor = $this->doctor->create($data);
             $role_id=2;
             $this->user->create([
-                'username'=>$doctor->first_name,
+                'username'=>$doctor->first_name . ' ' . $doctor->middle_name . ' ' . $doctor->last_name,
                 'email'=> $request->email,
                 'password'=>Hash::make($request->password),
                 'role_id'=> $role_id,
@@ -93,8 +93,8 @@ class DoctorController extends Controller
     public function show( $id)
     {
         $doctor=$this->doctor->findOrFail($id);
-        $educations = $this->doctorEducation->findOrFail($id)->get();
-        $experiences =  $this->doctorExperience->findOrFail($id)->get();
+        $educations = $this->doctorEducation->where('doctor_id', $id)->get();
+        $experiences =  $this->doctorExperience->where('doctor_id', $id)->get();
         return view('admin.doctors.show', compact('doctor', 'educations', 'experiences'));
     }
 

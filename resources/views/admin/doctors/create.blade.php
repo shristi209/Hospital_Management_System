@@ -218,7 +218,7 @@
                                 </div>
                                 <div class="col ">
                                     {!! Form::label('district', 'District', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
-                                    <select id="district_id" name='district_id', class="form-select"></select>
+                                    <select id="district_id" name='district_id', class="form-select", placeholder = 'Select Province',></select>
                                     <span class="text-danger">
                                         @error('district_id')
                                             {{ $message }}
@@ -229,7 +229,7 @@
                             <div class="form-row mb-3">
                                 <div class="col-4">
                                     {!! Form::label('municipality', 'Municipality', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
-                                    <select id="municipality_id", name='municipality_id', class="form-select"></select>
+                                    <select id="municipality_id", name='municipality_id', class="form-select" placeholder = 'Select Province',></select>
                                     <span class="text-danger">
                                         @error('municipality_id')
                                             {{ $message }}
