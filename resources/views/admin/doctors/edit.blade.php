@@ -356,7 +356,7 @@
                                     </div>
                                 </div>
                                 <div class="form-row mb-3">
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         {!! Form::label('graduation_year_start_bs', 'Date of Graduation(BS)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('graduation_year_start_bs[]', $education->graduation_year_start_bs, [
                                             'id' => 'graduation_year_start_bs',
@@ -368,7 +368,7 @@
                                         @enderror
                                         </span>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         {!! Form::label('graduation_year_start_ad', 'Date of Graduation(AD)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('graduation_year_start_ad[]', $education->graduation_year_start_ad, [
                                             'id' => 'graduation_year_start_ad',
@@ -548,7 +548,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 {!! Form::close() !!}
             </div>
         </div>

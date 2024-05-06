@@ -36,6 +36,7 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'First name',
                                 ]) !!}
+                                <span id="first_name_error" class="text-danger"></span>
                                 <span class="text-danger">
                                     @error('first_name')
                                         {{ $message }}
@@ -63,12 +64,13 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Last name',
                                 ]) !!}
+                                <span id="last_name_error" class="basic-error text-danger"></span>
+
                                 <span class="text-danger">
                                     @error('last_name')
                                         {{ $message }}
                                     @enderror
                                 </span>
-                                {{-- <span id="error_last_name" class="text-danger">Please enter your last name</span> --}}
 
                             </div>
                         </div>
@@ -80,35 +82,38 @@
                                     'class' => 'form-select',
                                     'placeholder' => 'Select Gender',
                                 ]) !!}
+                                <span id="gender_error" class="basic-error text-danger"></span>
+
                                 <span class="text-danger">
                                     @error('gender')
                                         {{ $message }}
                                     @enderror
                                 </span>
-                                {{-- <span id="error_gender" class="text-danger">Please select gender</span> --}}
 
                             </div>
                             <div class="col">
                                 {!! Form::label('date_of_birth_BS', 'Date of Birth (BS)') !!}<span class="text-danger">*</span>
                                 <input type="text" id="date_of_birth_BS" name="dob_bs" placeholder="Select Nepali Date"
                                     class="form-control" />
+                                <span id="date_of_birth_BS_error" class="basic-error text-danger"></span>
+
                                 <span class="text-danger">
                                     @error('dob_bs')
                                         {{ $message }}
                                     @enderror
                                 </span>
-                                {{-- <span id="error_dob_bs" class="text-danger">Please enter your DOB</span> --}}
                             </div>
                             <div class="col">
                                 {!! Form::label('date_of_birth_AD', 'Date of Birth (AD)') !!}<span class="text-danger">*</span>
                                 <input type="text" id="date_of_birth_AD" name="dob_ad" placeholder="English Date"
                                     class="form-control" />
+                                <span id="date_of_birth_AD_error" class="basic-error text-danger"></span>
+
                                 <span class="text-danger">
                                     @error('dob_ad')
                                         {{ $message }}
                                     @enderror
                                 </span>
-                                {{-- <span id="error_dob_ad" class="text-danger">Please enter your DOB</span> --}}
 
                             </div>
                         </div>
@@ -120,12 +125,13 @@
                                     'class' => 'form-select',
                                     'placeholder' => 'Select Department Name',
                                 ]) !!}
+                                <span id="department_id_error" class="basic-error text-danger"></span>
+
                                 <span class="text-danger">
                                     @error('department_id')
                                         {{ $message }}
                                     @enderror
                                 </span>
-                                {{-- <span id="error_department_name" class="text-danger">Please enter your department name</span> --}}
 
                             </div>
                             <div class="col">
@@ -135,12 +141,13 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Enter your Licence Number',
                                 ]) !!}
+                                <span id="licenceno_error" class="basic-error text-danger"></span>
+
                                 <span class="text-danger">
                                     @error('licence_no')
                                         {{ $message }}
                                     @enderror
                                 </span>
-                                {{-- <span id="error_licenceno" class="text-danger">Please enter your liscence number</span> --}}
 
                             </div>
                             <div class="col">
@@ -150,6 +157,8 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Enter your Phone Number',
                                 ]) !!}
+                                <span id="phoneno_error" class="basic-error text-danger"></span>
+
                                 <span class="text-danger">
                                     @error('phone_num')
                                         {{ $message }}
@@ -196,6 +205,7 @@
                                         'class' => 'form-select',
                                         'id' => 'country_id',
                                     ]) !!}
+                                    <span id="country_id_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
                                         @error('country_id')
                                             {{ $message }}
@@ -210,6 +220,7 @@
                                         'id' => 'province_id',
                                         'placeholder' => 'Select Province',
                                     ]) !!}
+                                    <span id="province_id_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
                                         @error('province_id')
                                             {{ $message }}
@@ -218,7 +229,9 @@
                                 </div>
                                 <div class="col ">
                                     {!! Form::label('district', 'District', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
-                                    <select id="district_id" name='district_id', class="form-select", placeholder = 'Select Province',></select>
+                                    <select id="district_id" name='district_id', class="form-select",
+                                        placeholder = 'Select Province',></select>
+                                    <span id="district_id_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
                                         @error('district_id')
                                             {{ $message }}
@@ -229,7 +242,9 @@
                             <div class="form-row mb-3">
                                 <div class="col-4">
                                     {!! Form::label('municipality', 'Municipality', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
-                                    <select id="municipality_id", name='municipality_id', class="form-select" placeholder = 'Select Province',></select>
+                                    <select id="municipality_id", name='municipality_id', class="form-select"
+                                        placeholder = 'Select Province',></select>
+                                    <span id="municipality_id_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
                                         @error('municipality_id')
                                             {{ $message }}
@@ -243,6 +258,7 @@
                                         'id' => 'street',
                                         'placeholder' => 'Enter your street',
                                     ]) !!}
+                                    <span id="street_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
                                         @error('street')
                                             {{ $message }}
@@ -295,12 +311,13 @@
                         <div id="educationAdd">
                             <div class="form-row mb-3">
                                 <div class="col">
-                                    {!! Form::label('education_level', 'Level') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('education_level', 'Level') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::select('education_level[]', config('dropdown.education_level'), null, [
                                         'id' => 'education_level',
                                         'class' => 'form-select',
                                         'placeholder' => 'Select level',
                                     ]) !!}
+                                    <span class="text-danger" id="education_level_error"></span>
                                     <span class="text-danger">
                                         @error('education_level')
                                             {{ $message }}
@@ -308,11 +325,12 @@
                                     </span>
                                 </div>
                                 <div class="col ">
-                                    {!! Form::label('institute_name', 'Institute Name') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('institute_name', 'Institute Name') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('institute_name[]', null, [
                                         'class' => 'form-control',
                                         'placeholder' => 'Institute name',
                                     ]) !!}
+                                    <span class="text-danger" id="institute_name_error"></span>
                                     <span class="text-danger">
                                         @error('institute_name')
                                             {{ $message }}
@@ -320,11 +338,13 @@
                                     </span>
                                 </div>
                                 <div class="col">
-                                    {!! Form::label('specialization', 'Specialization') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('specialization', 'Specialization') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('specialization[]', null, [
                                         'class' => 'form-control',
                                         'placeholder' => 'Specialization',
                                     ]) !!}
+                                    <span class="text-danger" id="specialization_error"></span>
+
                                     <span class="text-danger">
                                         @error('specialization')
                                             {{ $message }}
@@ -334,12 +354,14 @@
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col-4">
-                                    {!! Form::label('graduation_year_start_bs', 'Date of Graduation(BS)') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('graduation_year_start_bs', 'Date of Graduation(BS)') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('graduation_year_start_bs[]', null, [
-                                            'id' => 'graduation_year_start_bs',
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Select Nepali Date',
-                                        ]) !!}
+                                        'id' => 'graduation_year_start_bs',
+                                        'class' => 'form-control',
+                                        'placeholder' => 'Select Nepali Date',
+                                    ]) !!}
+                                    <span class="text-danger" id="graduation_year_start_bs_error"></span>
+
                                     <span class="text-danger">
                                         @error('graduation_year_start_bs')
                                             {{ $message }}
@@ -347,12 +369,13 @@
                                     </span>
                                 </div>
                                 <div class="col-4">
-                                    {!! Form::label('graduation_year_start_ad', 'Date of Graduation(AD)') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('graduation_year_start_ad', 'Date of Graduation(AD)') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('graduation_year_start_ad[]', null, [
-                                            'id' => 'graduation_year_start_ad',
-                                            'class' => 'form-control',
-                                            'placeholder' => 'English date',
-                                        ]) !!}
+                                        'id' => 'graduation_year_start_ad',
+                                        'class' => 'form-control',
+                                        'placeholder' => 'English date',
+                                    ]) !!}
+                                    <span class="text-danger" id="graduation_year_start_ad_error"></span>
                                     <span class="text-danger">
                                         @error('graduation_year_start_ad')
                                             {{ $message }}
@@ -411,80 +434,56 @@
                         <div id="experienceAdd">
                             <div class="form-row mb-3">
                                 <div class="col ">
-                                    {!! Form::label('organization_name', 'Organization Name') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('organization_name', 'Organization Name') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('organization_name[]', null, [
                                         'class' => 'form-control',
                                         'name' => 'organization_name[]',
                                         'placeholder' => 'Organization Name',
                                     ]) !!}
-                                    <span class="text-danger">
-                                        @error('organization_name')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <span id="organization_name_error" class="text-danger"></span>
                                 </div>
                                 <div class="col">
-                                    {!! Form::label('org_start_bs', 'Start Date(BS)') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('org_start_bs', 'Start Date(BS)') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('org_start_bs[]', null, [
                                         'class' => 'form-control',
-                                        'id'=>'org_start_bs',
+                                        'id' => 'org_start_bs',
                                         'placeholder' => 'Select start date',
                                     ]) !!}
-                                    <span class="text-danger">
-                                        @error('org_start_bs')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <span id="org_start_bs_error" class="text-danger"></span>
                                 </div>
                                 <div class="col">
-                                    {!! Form::label('org_start_ad', 'Start Date(AD)') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('org_start_ad', 'Start Date(AD)') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('org_start_ad[]', null, [
                                         'class' => 'form-control',
-                                        'id'=>'org_start_ad',
+                                        'id' => 'org_start_ad',
                                         'placeholder' => 'English date',
                                     ]) !!}
-                                    <span class="text-danger">
-                                        @error('org_start_ad')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <span id="org_start_ad_error" class="text-danger"></span>
                                 </div>
                                 <div class="col">
-                                    {!! Form::label('org_end_bs', 'End Date(BS)') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('org_end_bs', 'End Date(BS)') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('org_end_bs[]', null, [
                                         'class' => 'form-control',
-                                        'id'=>'org_end_bs',
+                                        'id' => 'org_end_bs',
                                         'placeholder' => 'Select end date',
                                     ]) !!}
-                                    <span class="text-danger">
-                                        @error('org_end_bs')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <span id="org_end_bs_error" class="text-danger"></span>
                                 </div>
                                 <div class="col">
-                                    {!! Form::label('org_end_ad', 'End Date(AD)') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('org_end_ad', 'End Date(AD)') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('org_end_ad[]', null, [
                                         'class' => 'form-control',
-                                        'id'=>'org_end_ad',
+                                        'id' => 'org_end_ad',
                                         'placeholder' => 'English date',
                                     ]) !!}
-                                    <span class="text-danger">
-                                        @error('org_end_ad')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <span id="org_end_ad_error" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
-                                    {!! Form::label('description', ' Description') !!}<span class="text-danger">*</span>
+                                    {!! Form::label('description', ' Description') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::textarea('description[]', null, ['class' => 'form-control', 'id' => 'editor']) !!}
-                                    <span class="text-danger">
-                                        @error('description')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <span id="description_error" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -496,7 +495,7 @@
                             {!! Form::button('<i class="fa-solid fa-plus"></i>', [
                                 'type' => 'button',
                                 'id' => 'experiencebtn',
-                                'name'=>'action',
+                                'name' => 'action',
                                 'class' => 'btn btn-sm btn-primary mr-1',
                                 'data-toggle' => 'tooltip',
                                 'data-placement' => 'top',
@@ -535,7 +534,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {!! Form::label('inputEmail4', 'Email') !!}<span class="text-danger">*</span>
-                                {!! Form::email('email', null , ['class' => 'form-control', 'id' => 'inputEmail4']) !!}
+                                {!! Form::email('email', null, ['class' => 'form-control', 'id' => 'inputEmail4']) !!}
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -563,13 +562,13 @@
                                     'class' => 'btn btn-primary',
                                 ]) !!}
                             </div>
-                        <div class="col-auto">
-                            {!! Form::button('Submit', [
-                                'type' => 'submit',
-                                'id' => 'submit',
-                                'class' => 'btn btn-primary',
-                            ]) !!}
-                        </div>
+                            <div class="col-auto">
+                                {!! Form::button('Submit', [
+                                    'type' => 'submit',
+                                    'id' => 'submit',
+                                    'class' => 'btn btn-primary',
+                                ]) !!}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -577,9 +576,9 @@
         </div>
     </div>
 
-                {!! Form::close() !!}
-            </div>
-        </div>
+    {!! Form::close() !!}
+    </div>
+    </div>
     </div>
 
 @endsection

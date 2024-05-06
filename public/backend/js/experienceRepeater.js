@@ -51,7 +51,11 @@ function addExperienceSection() {
     console.log(newOrgEndIda);
 
     document.getElementById("experienceContainer").appendChild(clonedElement);
-    clonedElement.classList.add("experienceSection");
+    // clonedElement.classList.add("experienceSection");
+    var clonedInputs = clonedElement.querySelectorAll('input, select, textarea');
+    clonedInputs.forEach(function(input) {
+        input.value = '';
+    });
 
     $('#' + newOrgStartId).nepaliDatePicker({
         onChange: function () {

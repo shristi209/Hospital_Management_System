@@ -1,36 +1,46 @@
 function basicDetailsValidation() {
-
     var isValid = true;
 
-    if (document.getElementById('first_name').value.trim() == "") {
+    $('.basic-error').text('');
+
+
+    if ($('#first_name').val().trim() == "") {
+        $('#first_name_error').text('Please enter first name.');
         isValid = false;
     }
 
-    if (document.getElementById('last_name').value.trim() == "") {
+    if ($('#last_name').val().trim() == "") {
+        $('#last_name_error').text('Please enter last name.');
         isValid = false;
     }
 
-    if (document.getElementById('gender').value.trim() == "") {
+    if ($('#gender').val().trim() == "") {
+        $('#gender_error').text('Please select gender.');
         isValid = false;
     }
 
-    if (document.getElementById('date_of_birth_BS').value.trim() == "") {
+    if ($('#date_of_birth_BS').val().trim() == "") {
+        $('#date_of_birth_BS_error').text('Please enter date of birth (BS).');
         isValid = false;
     }
 
-    if (document.getElementById('date_of_birth_AD').value.trim() == "") {
+    if ($('#date_of_birth_AD').val().trim() == "") {
+        $('#date_of_birth_AD_error').text('Please enter date of birth (AD).');
         isValid = false;
     }
 
-    if (document.getElementById('department_id').value.trim() == "") {
+    if ($('#department_id').val().trim() == "") {
+        $('#department_id_error').text('Please select department name.');
         isValid = false;
     }
 
-    if (document.getElementById('licenceno').value.trim() == "") {
+    if ($('#licenceno').val().trim() == "") {
+        $('#licenceno_error').text('Please enter license number.');
         isValid = false;
     }
 
-    if (document.getElementById('phoneno').value.trim() == "") {
+    if ($('#phoneno').val().trim() == "") {
+        $('#phoneno_error').text('Please enter phone number.');
         isValid = false;
     }
 
@@ -40,64 +50,119 @@ function basicDetailsValidation() {
 function addressDetailsValidation() {
     var isValid = true;
 
-    if (document.getElementById('country_id').value.trim() == "") {
+    document.querySelectorAll('.address-error').forEach(function (span) {
+        span.textContent = '';
+    });
+
+    var countryId = document.getElementById('country_id').value.trim();
+    if (countryId == "") {
         isValid = false;
+        document.getElementById('country_id_error').textContent = 'Please select a country.';
     }
 
-    if (document.getElementById('province_id').value.trim() == "") {
+    var provinceId = document.getElementById('province_id').value.trim();
+    if (provinceId == "") {
         isValid = false;
+        document.getElementById('province_id_error').textContent = 'Please select a province.';
     }
 
-    if (document.getElementById('district_id').value.trim() == "") {
+    var districtId = document.getElementById('district_id').value.trim();
+    if (districtId == "") {
         isValid = false;
+        document.getElementById('district_id_error').textContent = 'Please select a district.';
     }
 
-    if (document.getElementById('municipality_id').value.trim() == "") {
+    var municipalityId = document.getElementById('municipality_id').value.trim();
+    if (municipalityId == "") {
         isValid = false;
+        document.getElementById('municipality_id_error').textContent = 'Please select a municipality.';
     }
 
-    if (document.getElementById('street').value.trim() == "") {
+    var street = document.getElementById('street').value.trim();
+    if (street == "") {
         isValid = false;
+        document.getElementById('street_error').textContent = 'Please enter a street name.';
     }
 
     return isValid;
 }
+
 function educationDetailsValidation() {
     var isValid = true;
 
-    var instituteNameInputs = document.querySelectorAll('[name^="institute_name[]"]');
-    instituteNameInputs.forEach(function(input) {
-        if (input.value.trim() == "") {
-            isValid = false;
-            return;
-        }
+    document.querySelectorAll('#page3 .text-danger').forEach(function (span) {
+        span.textContent = '';
     });
 
-    var specializationInputs = document.querySelectorAll('[name^="specialization[]"]');
-    specializationInputs.forEach(function(input) {
-        if (input.value.trim() == "") {
-            isValid = false;
-            return;
-        }
-    });
+    var educationLevel = document.getElementById('education_level').value.trim();
+    if (educationLevel === "") {
+        document.getElementById('education_level_error').textContent = "Please select an education level.";
+        isValid = false;
+    }
 
-    var graduationYearBSInputs = document.querySelectorAll('[name^="graduation_year_start_bs[]"]');
-    graduationYearBSInputs.forEach(function(input) {
-        if (input.value.trim() == "") {
-            isValid = false;
-            return;
-        }
-    });
+    var instituteNameInput = document.querySelector('[name^="institute_name[]"]');
+    if (instituteNameInput.value.trim() === "") {
+        document.getElementById("institute_name_error").textContent = "Please enter institute name.";
+        isValid = false;
+    }
 
-    var graduationYearADInputs = document.querySelectorAll('[name^="graduation_year_start_ad[]"]');
-    graduationYearADInputs.forEach(function(input) {
-        if (input.value.trim() == "") {
-            isValid = false;
-            return;
-        }
-    });
+    var specializationInput = document.querySelector('[name^="specialization[]"]');
+    if (specializationInput.value.trim() === "") {
+        document.getElementById("specialization_error").textContent = "Please enter specialization.";
+        isValid = false;
+    }
+
+    var graduationYearBSInput = document.querySelector('[name^="graduation_year_start_bs[]"]');
+    if (graduationYearBSInput.value.trim() === "") {
+        document.getElementById("graduation_year_start_bs_error").textContent = "Please enter graduation year (BS).";
+        isValid = false;
+    }
+
+    var graduationYearADInput = document.querySelector('[name^="graduation_year_start_ad[]"]');
+    if (graduationYearADInput.value.trim() === "") {
+        document.getElementById("graduation_year_start_ad_error").textContent = "Please enter graduation year (AD).";
+        isValid = false;
+    }
 
     return isValid;
 }
 
+function experienceDetailsValidation() {
+    var isValid = true;
 
+    document.querySelectorAll('#page4 .text-danger').forEach(function(span) {
+        span.textContent = '';
+    });
+
+    var organizationNameInput = document.querySelector('[name="organization_name[]"]');
+    if (organizationNameInput.value.trim() === "") {
+        document.getElementById("organization_name_error").textContent = "Please enter organization name.";
+        isValid = false;
+    }
+
+    var orgStartBSInput = document.querySelector('[name="org_start_bs[]"]');
+    if (orgStartBSInput.value.trim() === "") {
+        document.getElementById("org_start_bs_error").textContent = "Please enter start date (BS).";
+        isValid = false;
+    }
+
+    var orgStartADInput = document.querySelector('[name="org_start_ad[]"]');
+    if (orgStartADInput.value.trim() === "") {
+        document.getElementById("org_start_ad_error").textContent = "Please enter start date (AD).";
+        isValid = false;
+    }
+
+    var orgEndBSInput = document.querySelector('[name="org_end_bs[]"]');
+    if (orgEndBSInput.value.trim() === "") {
+        document.getElementById("org_end_bs_error").textContent = "Please enter end date (BS).";
+        isValid = false;
+    }
+
+    var orgEndADInput = document.querySelector('[name="org_end_ad[]"]');
+    if (orgEndADInput.value.trim() === "") {
+        document.getElementById("org_end_ad_error").textContent = "Please enter end date (AD).";
+        isValid = false;
+    }
+
+    return isValid;
+}

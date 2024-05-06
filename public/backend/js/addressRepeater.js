@@ -69,7 +69,10 @@ document.getElementById('addressbtn').addEventListener('click', function () {
         street.setAttribute('name', 'temp_street');
 
         document.getElementById("addressContainer").appendChild(clonedAddress);
-
+        var clonedInputs = clonedAddress.querySelectorAll('input, select, textarea');
+        clonedInputs.forEach(function(input) {
+            input.value = '';
+        });
     }
 
     $('#' + newProvinceId).change(function () {

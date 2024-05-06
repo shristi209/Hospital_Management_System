@@ -110,7 +110,6 @@ class DoctorController extends Controller
         return view('admin.doctors.edit', compact('doctor', 'educations', 'experiences', 'districts', 'municipalities'));
     }
 
-
     public function update(DoctorValidationRequest $request,  $id)
     {
         try {
@@ -139,15 +138,17 @@ class DoctorController extends Controller
                     'description' => $request->description[$key],
                 ]);
             }
+            DB::commit();
             return redirect()->route('doctor.index');
         }catch(\Exception $e){
             DB::rollback();
+            dd($e->getMessage());
             return redirect()->back();
         }
 
     }
 
-    public function destroy(string $id)
+    public function destroy( $id)
     {
         $doctor=$this->doctor->findOrFail($id);
         $doctor->delete();

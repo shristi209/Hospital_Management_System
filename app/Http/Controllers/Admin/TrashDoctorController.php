@@ -20,10 +20,10 @@ class TrashDoctorController extends Controller
         $doctors=$this->doctor->onlyTrashed()->get();
         return view('admin.doctors.trash', compact('doctors'));
     }
-    
+
     public function restore($id)
     {
-        $doctor=$this->doctor->where('id', $id);
+        $doctor=$this->doctor->withTrashed()->findOrFail($id);
         $doctor->restore();
         $doctor->education()->withTrashed()->restore();
         $doctor->experience()->withTrashed()->restore();
@@ -32,9 +32,11 @@ class TrashDoctorController extends Controller
 
         public function delete($id)
     {
-        $this->doctor->where('id', $id)->forceDelete();
+        $doctor = $this->doctor->withTrashed()->findOrFail($id);
         $doctor->education()->forceDelete();
         $doctor->experience()->forceDelete();
+        $doctor->forceDelete();
         return redirect()->route('doctortrash');
+
     }
 }

@@ -25,7 +25,7 @@
                     <div class="form-row mb-3">
                         <div class="col">
                             {!! Form::label('doctor_id', 'Doctor Name') !!}<span class="text-danger">*</span>
-                            {!! Form::select('doctor_id', $doctor_name->dropdown(), null, ['class' => 'form-control', 'id' => 'doctor_id', 'placeholder' => 'Select doctor name']) !!}
+                            {!! Form::select('doctor_id', $doctor_name->dropdown(), null, ['class' => 'form-select', 'id' => 'doctor_id', 'placeholder' => 'Select doctor name']) !!}
                             @error('doctor_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

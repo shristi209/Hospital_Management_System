@@ -1,6 +1,10 @@
 $(document).ready(function() {
     $("#page1").show();
     $("#page2").hide();
+    $("#page2").hide();
+    $("#page3").hide();
+    $("#page4").hide();
+    $("#page5").hide();
 
     $("#nextPage1").click(function() {
         var isValidBasicValidation = basicDetailsValidation();
@@ -9,7 +13,6 @@ $(document).ready(function() {
             alert("Please fill all the necessary credentials");
             return ;
         }
-
         $("#page1").hide();
         $("#page2").show();
     });
@@ -44,6 +47,12 @@ $(document).ready(function() {
         $("#page3").show();
     });
     $("#nextPage4").click(function() {
+        console.log('Hello');
+        var isValidExperienceValidation= experienceDetailsValidation();
+        if(isValidExperienceValidation==false){
+            alert("Please fill all the necessary credentials");
+            return ;
+        }
         $("#page4").hide();
         $("#page5").show();
     });
