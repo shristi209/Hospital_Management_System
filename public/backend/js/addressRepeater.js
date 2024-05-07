@@ -4,8 +4,8 @@ document.getElementById('addressbtn').addEventListener('click', function () {
     if (addressCounter === 0) {
 
         addressCounter++;
-
         $("#addressbtn").hide();
+        
         var addressDiv = document.createElement("div");
         addressDiv.className = "card-header d-flex justify-content-between";
 

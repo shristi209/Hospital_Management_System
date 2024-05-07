@@ -164,8 +164,6 @@
                                         {{ $message }}
                                     @enderror
                                 </span>
-                                {{-- <span id="error_phoneno" class="text-danger">Please enter your phone number</span> --}}
-
                             </div>
                         </div>
                         <div class="form-row">
@@ -201,7 +199,7 @@
                             <div class="form-row mb-3">
                                 <div class="col ">
                                     {!! Form::label('country', 'Country', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
-                                    {!! Form::select('country_id', $country_helper->dropdown(), 'Nepal', [
+                                    {!! Form::select('country_id', $country_helper->dropdown(), 156, [
                                         'class' => 'form-control form-select',
                                         'id' => 'country_id',
                                         'placeholder' => 'Select Country',

@@ -24,9 +24,9 @@ function addExperienceSection() {
     exp_removeBtn.setAttribute("title", "Delete");
 
     experienceDiv.appendChild(exp_removeBtn);
-
     document.getElementById("experienceContainer").appendChild(experienceDiv);
 
+    //cloned div
     var educationTemplate = document.getElementById("experienceAdd");
     var clonedElement = educationTemplate.cloneNode(true);
 
@@ -58,7 +58,7 @@ function addExperienceSection() {
     document.getElementById("experienceContainer").appendChild(clonedElement);
 
     var clonedInputs = clonedElement.querySelectorAll('input, select, textarea');
-    clonedInputs.forEach(function(input) {
+    clonedInputs.forEach(function (input) {
         input.value = '';
     });
 
@@ -83,26 +83,46 @@ function addExperienceSection() {
             $('#' + newOrgEndIda).val(english);
         }
     });
-    var experienceContainer=document.getElementById("experienceContainer")
-    exp_removeBtn.onclick = function(){
+    var experienceContainer = document.getElementById("experienceContainer")
+    exp_removeBtn.onclick = function () {
         experienceCounter--;
         experienceContainer.removeChild(experienceDiv);
         experienceContainer.removeChild(clonedElement);
     }
 
     ClassicEditor
-    .create(document.querySelector('#'+newckeditorId), {
-        data: document.querySelector('#'+newckeditorId).value
-    })
-    .then(editor => {
-        console.log('Editor initialized:', editor);
-    })
-    .catch(error => {
-        console.error('Error initializing editor:', error);
-    });
+        .create(document.querySelector('#' + newckeditorId), {
+        })
+        .then(editor => {
+            console.log('Editor initialized:', editor);
 
-document.querySelector('form').addEventListener('submit', function() {
-    document.querySelector('#'+newckeditorId).value = CKEDITOR.instances.editor.getData();
-});
+            // Get all div elements with the specified class
+            var divsWithClass = document.querySelectorAll('div.ck.ck-reset.ck-editor.ck-rounded-corners');
 
+            // Keep track of the first div's aria-labelledby attribute value
+            var firstAriaLabelledBy = null;
+
+            // Iterate over each matching div element
+            divsWithClass.forEach(function (div) {
+                // Check if it has an aria-labelledby attribute
+                if (div.hasAttribute('aria-labelledby')) {
+                    var currentAriaLabelledBy = div.getAttribute('aria-labelledby');
+                    // If it's the first div found, mark it as such and store its aria-labelledby value
+                    if (firstAriaLabelledBy === null) {
+                        firstAriaLabelledBy = currentAriaLabelledBy;
+                    } else if (currentAriaLabelledBy === firstAriaLabelledBy) {
+                        // Remove the div element from its parent if it has the same aria-labelledby attribute value
+                        div.parentNode.removeChild(div);
+                    }
+                }
+            });
+
+
+
+
+
+        })
+        .catch(error => {
+            console.error('Error initializing editor:', error);
+        });
 }

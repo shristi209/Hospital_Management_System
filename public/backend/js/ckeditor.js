@@ -10,8 +10,3 @@ ClassicEditor
         console.error('Error initializing editor:', error);
     });
 
-document.querySelector('form').addEventListener('submit', function() {
-    document.querySelector('#editor').value = CKEDITOR.instances.editor.getData();
-});
-
-

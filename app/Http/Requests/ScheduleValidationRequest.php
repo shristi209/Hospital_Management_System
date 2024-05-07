@@ -27,5 +27,6 @@ class ScheduleValidationRequest extends FormRequest
             'start_time' => ['required'],
             'end_time' => ['required', 'after:start_time'],
         ];
+
     }
 }

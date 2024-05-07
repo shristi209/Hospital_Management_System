@@ -54,7 +54,7 @@
                 <i class="fa-solid fa-user"></i>
                 <span>Profile</span>
             </a>
-            <a class="nav-link" href="{{ route('schedule.index') }}" onclick="handleLinkClick(event)">
+            <a class="nav-link" href="{{ route('doctorschedule.index') }}" onclick="handleLinkClick(event)">
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>Schedule</span>
             </a>

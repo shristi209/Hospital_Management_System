@@ -60,6 +60,8 @@ class DoctorController extends Controller
                 'role_id'=> $role_id,
                 'doctor_id'=>$doctor->id,
             ]);
+                    // dd($request);
+
                 foreach ($request->institute_name as $key => $value) {
                     $this->doctorEducation->create([
                         'doctor_id' => $doctor->id,
@@ -101,7 +103,7 @@ class DoctorController extends Controller
     }
 
 
-    public function edit( $id)
+    public function edit($id)
     {
         $doctor=$this->doctor->findOrFail($id);
         $districts=District::all();
