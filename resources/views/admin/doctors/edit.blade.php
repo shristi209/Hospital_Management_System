@@ -240,11 +240,16 @@
                             <div class="form-row mb-3">
                                 <div class="col-4">
                                     {!! Form::label('municipality', 'Municipality', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
-                                    {!! Form::select('municipality_id', $municipalities->pluck('nep_municipality_name', 'id'), $doctor->municipality_id, [
-                                        'class' => 'form-select',
-                                        'id' => 'municipality_id',
-                                        'placeholder' => 'Select municipality',
-                                    ]) !!}
+                                    {!! Form::select(
+                                        'municipality_id',
+                                        $municipalities->pluck('nep_municipality_name', 'id'),
+                                        $doctor->municipality_id,
+                                        [
+                                            'class' => 'form-select',
+                                            'id' => 'municipality_id',
+                                            'placeholder' => 'Select municipality',
+                                        ],
+                                    ) !!}
                                     <span class="text-danger">
                                         @error('municipality_id')
                                             {{ $message }}
@@ -382,53 +387,53 @@
                                         </span>
                                     </div>
                                 </div>
+                            @endforeach
                         </div>
-                        @endforeach
+                    </div>
 
-                        <div id="educationContainer">
 
-                            <!-- cloned js -->
+                    <div id="educationContainer">
 
-                        </div>
-                        <div class="card-header d-flex justify-content-center">
-                            {!! Form::button('<i class="fa-solid fa-plus"></i>', [
-                                'type' => 'button',
-                                'id' => 'educationbtn',
-                                'class' => 'btn btn-sm btn-primary mr-1',
-                                'data-toggle' => 'tooltip',
-                                ' data-placement' => 'top',
-                                'title' => 'Add',
-                            ]) !!}
-                            {{-- <div class="removeBtn">
+                        <!-- cloned js -->
+
+                    </div>
+                    <div class="card-header d-flex justify-content-center">
+                        {!! Form::button('<i class="fa-solid fa-plus"></i>', [
+                            'type' => 'button',
+                            'id' => 'educationbtn',
+                            'class' => 'btn btn-sm btn-primary mr-1',
+                            'data-toggle' => 'tooltip',
+                            ' data-placement' => 'top',
+                            'title' => 'Add',
+                        ]) !!}
+                        {{-- <div class="removeBtn">
 
                             </div> --}}
 
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                {!! Form::button('Previous', [
-                                    'type' => 'button',
-                                    'id' => 'prevPage3',
-                                    'name' => 'action',
-                                    'value' => 'previous',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                            <div class="col-auto">
-                                {!! Form::button('Next', [
-                                    'type' => 'button',
-                                    'id' => 'nextPage3',
-                                    'name' => 'action',
-                                    'value' => 'next',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                        </div>
-
-
                     </div>
-                </div>
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                            {!! Form::button('Previous', [
+                                'type' => 'button',
+                                'id' => 'prevPage3',
+                                'name' => 'action',
+                                'value' => 'previous',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
+                        </div>
+                        <div class="col-auto">
+                            {!! Form::button('Next', [
+                                'type' => 'button',
+                                'id' => 'nextPage3',
+                                'name' => 'action',
+                                'value' => 'next',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
+                        </div>
+                    </div>
 
+
+                </div>
                 {{-- Doctors Experiences --}}
                 <div id="page4" style="display: none">
                     <div class="card-header">
@@ -477,10 +482,7 @@
                                             @enderror
                                         </span>
                                     </div>
-                                </div>
-                                <div class="form-row mb-3">
-
-                                    <div class="col-4">
+                                    <div class="col">
                                         {!! Form::label('org_end_bs', 'End Date(BS)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('org_end_bs[]', $experience->org_end_bs, [
                                             'id' => 'org_end_bs',
@@ -493,7 +495,7 @@
                                             @enderror
                                         </span>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col">
                                         {!! Form::label('org_end_ad', 'End Date(AD)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('org_end_ad[]', $experience->org_end_ad, [
                                             'id' => 'org_end_ad',
@@ -518,8 +520,8 @@
                                         </span>
                                     </div>
                                 </div>
+                            @endforeach
                         </div>
-                        @endforeach
                         <div id="experienceContainer">
                             {{-- cloned experience --}}
                         </div>
@@ -551,10 +553,13 @@
                         </div>
                     </div>
                 </div>
-
-                {!! Form::close() !!}
             </div>
+
+
+
+            {!! Form::close() !!}
         </div>
     </div>
+
 
 @endsection
