@@ -22,7 +22,7 @@ class DepartmentValidationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'department_name' => ['required','alpha'],
+            'department_name' => ['required','string'],
             'description' => ['required', 'string'],
             'department_code' => ['required','alpha_num'],
         ];

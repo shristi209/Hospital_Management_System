@@ -39,7 +39,7 @@ function addEducationSection() {
     graduationIdad.id = newGraduationIdad;
     // console.log(newGraduationIdad);
     document.getElementById("educationContainer").appendChild(clonedElement);
-    // clonedElement.classList.add("educationSection");
+
     var clonedInputs = clonedElement.querySelectorAll('input, select, textarea');
     clonedInputs.forEach(function(input) {
         input.value = '';

@@ -12,7 +12,6 @@ class Schedule extends Model
     use SoftDeletes;
     protected $tables='schedules';
     protected $fillable=['doctor_id','schedule_date', 'start_time', 'end_time'];
-    // protected $dates = ['start_time', 'end_time'];
 
     public function doctor()
     {

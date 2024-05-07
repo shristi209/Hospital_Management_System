@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="form-row mb-3">
-                            <div class="col-6">
+                            <div class="col-4">
                                 <label for="role">Role</label>
                                 <select name="role_id" class="form-select">
                                     @foreach ($roles as $role)

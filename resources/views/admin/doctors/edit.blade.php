@@ -477,7 +477,10 @@
                                             @enderror
                                         </span>
                                     </div>
-                                    <div class="col">
+                                </div>
+                                <div class="form-row mb-3">
+
+                                    <div class="col-4">
                                         {!! Form::label('org_end_bs', 'End Date(BS)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('org_end_bs[]', $experience->org_end_bs, [
                                             'id' => 'org_end_bs',
@@ -490,7 +493,7 @@
                                             @enderror
                                         </span>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-4">
                                         {!! Form::label('org_end_ad', 'End Date(AD)') !!}<span class="text-danger">*</span>
                                         {!! Form::text('org_end_ad[]', $experience->org_end_ad, [
                                             'id' => 'org_end_ad',

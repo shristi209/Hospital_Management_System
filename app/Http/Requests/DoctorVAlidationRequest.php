@@ -33,7 +33,7 @@ class DoctorValidationRequest extends FormRequest
             'dob_ad' => ['nullable', 'date'],
             'licence_no'=>  Request()->method == 'POST' ? 'required|string|unique:doctors' : 'nullable',
 
-            'phone_num' => ['required'],
+            'phone_num' => ['required', 'min:10'],
 
             'country_id' => ['required', 'string'],
             'province_id' => ['required', 'string'],

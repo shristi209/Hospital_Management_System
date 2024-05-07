@@ -9,21 +9,26 @@ use Illuminate\view\view;
 
 class TrashDepartmentController extends Controller
 {
+    public function __construct(Department $department)
+    {
+        $this->department = $department;
+    }
+
     public function index(){
-        $departments=Department::onlyTrashed()->get();
+        $departments=$this->department->onlyTrashed()->get();
         return view('admin.departments.trash', compact('departments'));
     }
 
      public function restore($id)
     {
-        $department=Department::where('id', $id);
+        $department=$this->department->where('id', $id);
         $department->restore();
         return redirect()->route('department.index');
     }
 
         public function delete($id)
     {
-        Department::where('id', $id)->forceDelete();
+        $this->department->where('id', $id)->forceDelete();
         return redirect()->route('departmenttrash');
     }
 }

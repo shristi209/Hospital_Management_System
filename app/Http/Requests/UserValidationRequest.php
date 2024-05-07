@@ -24,7 +24,7 @@ class UserValidationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username'=>['alpha','required'],
+            'username'=>['string','required'],
             //'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
 
             'password'=>  Request()->method == 'POST' ? 'required|string|min:4|confirmed' : 'nullable',

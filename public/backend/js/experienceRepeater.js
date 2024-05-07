@@ -50,8 +50,13 @@ function addExperienceSection() {
     orgEndIda.id = newOrgEndIda;
     console.log(newOrgEndIda);
 
+    var ckeditorId = clonedElement.querySelector('#editor');
+    var newckeditorId = ckeditorId.id + [experienceCounter];
+    ckeditorId.id = newckeditorId;
+    console.log(newckeditorId);
+
     document.getElementById("experienceContainer").appendChild(clonedElement);
-    // clonedElement.classList.add("experienceSection");
+
     var clonedInputs = clonedElement.querySelectorAll('input, select, textarea');
     clonedInputs.forEach(function(input) {
         input.value = '';
@@ -84,4 +89,20 @@ function addExperienceSection() {
         experienceContainer.removeChild(experienceDiv);
         experienceContainer.removeChild(clonedElement);
     }
+
+    ClassicEditor
+    .create(document.querySelector('#'+newckeditorId), {
+        data: document.querySelector('#'+newckeditorId).value
+    })
+    .then(editor => {
+        console.log('Editor initialized:', editor);
+    })
+    .catch(error => {
+        console.error('Error initializing editor:', error);
+    });
+
+document.querySelector('form').addEventListener('submit', function() {
+    document.querySelector('#'+newckeditorId).value = CKEDITOR.instances.editor.getData();
+});
+
 }

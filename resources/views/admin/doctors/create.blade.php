@@ -79,7 +79,7 @@
                                 {!! Form::label('gender', 'Gender') !!}<span class="text-danger">*</span>
                                 {!! Form::select('gender', config('dropdown.gender'), null, [
                                     'id' => 'gender',
-                                    'class' => 'form-select',
+                                    'class' => 'form-control form-select',
                                     'placeholder' => 'Select Gender',
                                 ]) !!}
                                 <span id="gender_error" class="basic-error text-danger"></span>
@@ -122,7 +122,7 @@
                                 {!! Form::label('departmentname', 'Department Name') !!}<span class="text-danger">*</span>
                                 {!! Form::select('department_id', $department_helper->dropdown(), null, [
                                     'id' => 'department_id',
-                                    'class' => 'form-select',
+                                    'class' => 'form-control form-select',
                                     'placeholder' => 'Select Department Name',
                                 ]) !!}
                                 <span id="department_id_error" class="basic-error text-danger"></span>
@@ -192,7 +192,7 @@
                 </div>
 
                 {{-- Doctor Address --}}
-                <div id="page2" style="display: d-none">
+                <div id="page2" style="display:none">
                     <div class="card-header">
                         <h5 class="card-title">Permanent Address</h5>
                     </div>
@@ -202,8 +202,10 @@
                                 <div class="col ">
                                     {!! Form::label('country', 'Country', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
                                     {!! Form::select('country_id', $country_helper->dropdown(), 'Nepal', [
-                                        'class' => 'form-select',
+                                        'class' => 'form-control form-select',
                                         'id' => 'country_id',
+                                        'placeholder' => 'Select Country',
+
                                     ]) !!}
                                     <span id="country_id_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
@@ -216,7 +218,7 @@
                                 <div class="col ">
                                     {!! Form::label('province', 'Province', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
                                     {!! Form::select('province_id', $province_helper->dropdown(), null, [
-                                        'class' => 'form-select',
+                                        'class' => 'form-control form-select',
                                         'id' => 'province_id',
                                         'placeholder' => 'Select Province',
                                     ]) !!}
@@ -229,8 +231,11 @@
                                 </div>
                                 <div class="col ">
                                     {!! Form::label('district', 'District', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
-                                    <select id="district_id" name='district_id', class="form-select",
-                                        placeholder = 'Select Province',></select>
+                                    {{ Form::select('district_id', [], null, [
+                                        'placeholder' => 'Select district',
+                                        'class' => 'form-control form-select',
+                                        'id' => 'district_id',
+                                    ]) }}
                                     <span id="district_id_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
                                         @error('district_id')
@@ -242,8 +247,11 @@
                             <div class="form-row mb-3">
                                 <div class="col-4">
                                     {!! Form::label('municipality', 'Municipality', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
-                                    <select id="municipality_id", name='municipality_id', class="form-select"
-                                        placeholder = 'Select Province',></select>
+                                    {{ Form::select('municipality_id', [], null, [
+                                        'placeholder' => 'Select municipality',
+                                        'class' => 'form-control form-select',
+                                        'id' => 'municipality_id',
+                                    ]) }}
                                     <span id="municipality_id_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
                                         @error('municipality_id')
@@ -314,7 +322,7 @@
                                     {!! Form::label('education_level', 'Level') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::select('education_level[]', config('dropdown.education_level'), null, [
                                         'id' => 'education_level',
-                                        'class' => 'form-select',
+                                        'class' => 'form-control form-select',
                                         'placeholder' => 'Select level',
                                     ]) !!}
                                     <span class="text-danger" id="education_level_error"></span>
@@ -460,7 +468,9 @@
                                     ]) !!}
                                     <span id="org_start_ad_error" class="text-danger"></span>
                                 </div>
-                                <div class="col">
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col-4">
                                     {!! Form::label('org_end_bs', 'End Date(BS)') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('org_end_bs[]', null, [
                                         'class' => 'form-control',
@@ -469,7 +479,7 @@
                                     ]) !!}
                                     <span id="org_end_bs_error" class="text-danger"></span>
                                 </div>
-                                <div class="col">
+                                <div class="col-4">
                                     {!! Form::label('org_end_ad', 'End Date(AD)') !!}<span class="text-danger red_*">*</span>
                                     {!! Form::text('org_end_ad[]', null, [
                                         'class' => 'form-control',

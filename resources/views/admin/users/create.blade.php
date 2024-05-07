@@ -45,7 +45,7 @@
                             @enderror
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="role">Role<span class="text-danger">*</span> </label>
                                 <select name="role_id" class="form-select" id='roleid'>
                                     <option selected disabled>Select your role</option>

@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href={{route('dashboard')}}>
+        <a class="nav-link" href={{ route('dashboard') }}>
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -27,26 +27,39 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('user.index') }}" onclick="handleLinkClick(event)">
-            <i class="fa-solid fa-user"></i>
-            <span>User</span>
-        </a>
-        <a class="nav-link" href="{{ route('department.index') }}" onclick="handleLinkClick(event)">
-            <i class="fa-solid fa-building"></i>
-            <span>Department</span>
-        </a>
+    @if (Auth::check() && Auth::user()->role_id == 1)
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.index') }}" onclick="handleLinkClick(event)">
+                <i class="fa-solid fa-user"></i>
+                <span>User</span>
+            </a>
+            <a class="nav-link" href="{{ route('department.index') }}" onclick="handleLinkClick(event)">
+                <i class="fa-solid fa-building"></i>
+                <span>Department</span>
+            </a>
 
-        <a class="nav-link" href="{{ route('doctor.index') }}" onclick="handleLinkClick(event)">
-            <i class="fa-solid fa-user-doctor"></i>
-            <span>Doctor</span>
-        </a>
-        <a class="nav-link" href="{{ route('schedule.index') }}" onclick="handleLinkClick(event)">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span>Schedule</span>
-        </a>
-
-        {{-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <a class="nav-link" href="{{ route('doctor.index') }}" onclick="handleLinkClick(event)">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span>Doctor</span>
+            </a>
+            <a class="nav-link" href="{{ route('schedule.index') }}" onclick="handleLinkClick(event)">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Schedule</span>
+            </a>
+    @endif
+    </li>
+    @if (Auth::check() && Auth::user()->role_id == 2)
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('doctor_profile') }}" onclick="handleLinkClick(event)">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <a class="nav-link" href="{{ route('schedule.index') }}" onclick="handleLinkClick(event)">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Schedule</span>
+            </a>
+    @endif
+    {{-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
                 <a class="collapse-item" href="buttons.html"></a>

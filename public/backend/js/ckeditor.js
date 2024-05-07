@@ -1,5 +1,4 @@
 
-
 ClassicEditor
     .create(document.querySelector('#editor'), {
         data: document.querySelector('#editor').value // Initialize CKEditor with textarea's value
@@ -14,4 +13,5 @@ ClassicEditor
 document.querySelector('form').addEventListener('submit', function() {
     document.querySelector('#editor').value = CKEDITOR.instances.editor.getData();
 });
+
 

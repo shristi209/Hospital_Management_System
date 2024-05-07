@@ -1,0 +1,6 @@
+@extends('admin.layouts.index')
+@section('title', 'Schedule')
+@section('title_link', route('schedule.index'))
+@section('action', 'Add')
+@section('content')
+    @include('admin.breadcrumb')

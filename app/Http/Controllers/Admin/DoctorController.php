@@ -45,6 +45,7 @@ class DoctorController extends Controller
 
     public function store(DoctorValidationRequest $request)
     {
+        // dd($request);
         try {
             DB::beginTransaction();
 
@@ -79,6 +80,7 @@ class DoctorController extends Controller
                         'org_end_ad' => $request->org_end_ad[$key],
                         'description' => $request->description[$key],
                     ]);
+
                 }
                 DB::commit();
                 return redirect()->route('doctor.index');

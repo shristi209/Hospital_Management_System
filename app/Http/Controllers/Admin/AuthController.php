@@ -20,7 +20,6 @@ class AuthController extends Controller
     public function loginUser(LoginValidationRequest $request)
     {
         $credential = $request->validated();
-
         if(Auth::attempt($credential)){
             return redirect('dashboard');
         }
@@ -29,7 +28,7 @@ class AuthController extends Controller
             return redirect('login');
         }
     }
-    
+
     public function logoutUser()
     {
         Auth::logout();
