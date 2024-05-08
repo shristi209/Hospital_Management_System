@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('checkroleadmin')->group(function (){
     Route::get('/doctor_profile', [DoctorProfileController::class, 'getProfile'])->name('doctor_profile');
+    Route::get('/edit_profile', [DoctorProfileController::class, 'edit'])->name('edit_profile');
     Route::resource('/doctorschedule', DoctorScheduleController::class);
 
     });

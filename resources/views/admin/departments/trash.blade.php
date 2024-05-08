@@ -16,20 +16,21 @@
                         <form action="{{ route('trashid', $department->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="btn btn-sm btn-primary mr-3" data-toggle="tooltip" data-placement="top" title="Restore"><i
-                                    class="fa-solid fa-trash-arrow-up "></i></button>
+                            <button type="submit" class="btn btn-sm btn-primary mr-3" data-toggle="tooltip"
+                                data-placement="top" title="Restore"><i class="fa-solid fa-trash-arrow-up "></i></button>
                         </form>
                         <form action="{{ route('trashdelete', $department->id) }}" method="POST">
                             @csrf
                             @method('Delete')
-                            <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"
+                            <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top"
+                                title="Delete"
                                 onclick="return confirm('Are you sure you want to delete this department?')"><i
                                     class="fa-solid fa-trash"></i></button>
                         </form>
-
                     </div>
                 </div>
             </div>
+        </div>
     @endforeach
-    </div>
+
 @endsection

@@ -20,10 +20,6 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
-    protected $doctor;
-    protected $doctorEducation;
-    protected $doctorExperience;
-
     public function __construct(Doctor $doctor, DoctorEducation $doctorEducation, DoctorExperience $doctorExperience, User $user)
     {
         $this->doctor = $doctor;
@@ -101,7 +97,6 @@ class DoctorController extends Controller
         $experiences =  $this->doctorExperience->where('doctor_id', $id)->get();
         return view('admin.doctors.show', compact('doctor', 'educations', 'experiences'));
     }
-
 
     public function edit($id)
     {

@@ -1,14 +1,9 @@
 @extends('admin.layouts.index')
 @section('title', 'Schedule')
 @section('content')
-    @include('admin.breadcrumb')
+@section('add_button', route('schedule.create'))
 
-    <div class="d-flex justify-content-end mb-3 align-items-center">
-        <a href="{{ route('schedule.create') }}" class="btn btn-sm btn-primary mr-2">
-            <i class="fa-solid fa-plus"></i> Add
-        </a>
-        {{-- <a href="" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Trash</a> --}}
-    </div>
+    @include('admin.breadcrumb')
 
     <div class="card">
         <div class="card-body">

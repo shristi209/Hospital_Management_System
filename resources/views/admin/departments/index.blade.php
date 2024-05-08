@@ -2,15 +2,10 @@
 @section('title', 'Department')
 @section('title_link', route('department.index'))
 @section('content')
+@section('add_button', route('department.create'))
+@section('trash_button', route('departmenttrash'))
+@include('admin.breadcrumb')
 
-    @include('admin.breadcrumb')
-
-    <div class="d-flex justify-content-end mb-3 align-items-center">
-        <a href="{{ route('department.create') }}" class="btn btn-sm btn-primary mr-2">
-            <i class="fa-solid fa-plus"></i> Add
-        </a>
-        <a href="{{ route('departmenttrash') }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Trash</a>
-    </div>
     <div class="card">
         <div class="card-body">
             <div class="row">

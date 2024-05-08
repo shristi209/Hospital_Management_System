@@ -1,31 +1,31 @@
 @extends('admin.layouts.index')
-@section('title', 'Doctor')
-@section('title_link', route('doctor.index'))
-@section('action', 'View')
+@section('title', 'Profile')
 @section('content')
     @include('admin.breadcrumb')
+
 
 <div class="container emp-profile">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    {{-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/> --}}
-                    {{-- <div class="file btn btn-lg btn-primary">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                    <div class="file btn btn-lg btn-primary">
                         Change Photo
                         <input type="file" name="file"/>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
                             <h5>
-                                {{$doctor->first_name}} {{$doctor->middle_name}} {{$doctor->last_name}}                            </h5>
+                                {{$user->username}}
+                            </h5>
                             <h7>Id:
                                {{$doctor->id}}
                             </h7><br>
                             <h7>Licence No:
-                                {{$doctor->licence_no}}
+                               {{$doctor->licence_no}}
                             </h7>
                             {{-- <p class="proile-rating">RANKINGS : <span>8/10</span></p> --}}
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -38,12 +38,15 @@
                     </ul>
                 </div>
             </div>
-
+            <div class="col-md-2">
+                <a href="{{ route('edit_profile') }}" class="btn btn-sm btn-primary">Edit</a>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work">
                     <p><i class="fa-solid fa-mobile"></i> {{$doctor->phone_num}}<br>
+                    <i class="fa-solid fa-envelope"></i> {{$user->email}}</p>
                     <p><i class="fa-regular fa-address-book"></i> Permanent Address<br>Province: {{$doctor->province->english_name}}<br>Dictrict: {{$doctor->district->eng_district_name}}<br> Municipality: {{$doctor->municipality->nep_municipality_name}}<br> Country: {{$doctor->country->country_name}}</p>
                     {{-- <p><i class="fa-regular fa-address-book"></i> Temporary Address<br>Province: {{$doctor->temp_country_id->name}}<br>Dictrict: {{$doctor->district->eng_district_name}}<br> Municipality: {{$doctor->municipality->nep_municipality_name}}<br> Country: {{$doctor->country->country_name}}</p> --}}
                 </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Country extends Model
 {
     use SoftDeletes;
-    protected $fillable=['name','code', 'deleted_at'];
+    protected $fillable=['country_name','code', 'deleted_at'];
 
     public function doctor()
     {

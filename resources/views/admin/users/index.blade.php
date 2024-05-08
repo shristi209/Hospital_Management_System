@@ -1,14 +1,9 @@
 @extends('admin.layouts.index')
 @section('title', 'User')
 @section('content')
+@section('add_button', route('user.create'))
+@section('trash_button', route('usertrash'))
 @include('admin.breadcrumb')
-
-    <div class="d-flex justify-content-end mb-3 align-items-center">
-        <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary mr-2" id="create-user">
-            <i class="fa-solid fa-plus"></i> Add
-        </a>
-        <a href="{{ route('usertrash') }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Trash</a>
-    </div>
 
     <div class="card">
         <div class="card-body">
@@ -39,7 +34,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger mr-1"
                                                 onclick="return confirm('Are you sure you want to delete this user?')" data-toggle="tooltip" data-placement="top"
-                                                title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                                title="Delete"><i class="fa-solid fa-trash "></i></button>
                                         </form>
                                     </td>
                                 </tr>

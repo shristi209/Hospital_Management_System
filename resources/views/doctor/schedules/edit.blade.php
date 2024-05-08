@@ -60,8 +60,8 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between mt-5 mb-3">
-                    <a href="{{ route('doctorschedule.index') }}" class="btn btn-danger">Cancel</a>
-                    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                    <a href="{{ route('doctorschedule.index') }}" class="btn btn-sm btn-danger">Cancel</a>
+                    {!! Form::submit('Submit', ['class' => 'btn btn-sm btn-primary']) !!}
                 </div>
                 {!! Form::close() !!}
             </div>

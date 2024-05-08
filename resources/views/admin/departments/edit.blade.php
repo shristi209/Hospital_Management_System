@@ -37,8 +37,8 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('department.index', $department->id) }}"
-                                class="btn btn-danger ml-3">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                                class="btn btn-sm btn-danger ml-3">Cancel</a>
+                            <button type="submit" class="btn btn-sm btn-primary">Update</button>
                         </div>
                     </form>
                 </div>

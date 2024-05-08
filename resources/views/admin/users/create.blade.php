@@ -57,9 +57,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between mt-3 mb-3">
-                            <a href="{{ route('user.index') }}" class="btn btn-danger">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="d-flex justify-content-between mt-5 mb-3">
+                            <a href="{{ route('user.index') }}" class="btn btn-sm btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
 
                         </div>
                     </form>
