@@ -389,8 +389,6 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
-
 
                     <div id="educationContainer">
 
@@ -431,7 +429,7 @@
                             ]) !!}
                         </div>
                     </div>
-
+                </div>
 
                 </div>
                 {{-- Doctors Experiences --}}
@@ -447,7 +445,6 @@
                                         {!! Form::label('organization_name', 'Organization Name') !!}<span class="text-danger">*</span>
                                         {!! Form::text('organization_name[]', $experience->organization_name, [
                                             'class' => 'form-control',
-                                            'name' => 'organization_name[]',
                                             'placeholder' => 'Organization Name',
                                         ]) !!}
                                         <span class="text-danger">
@@ -522,43 +519,45 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div id="experienceContainer">
-                            {{-- cloned experience --}}
-                        </div>
-                        <div class="card-header d-flex justify-content-center">
-                            {!! Form::button('<i class="fa-solid fa-plus"></i>', [
-                                'type' => 'button',
-                                'id' => 'experiencebtn',
-                                'class' => 'btn btn-sm btn-primary mr-1',
-                                'data-toggle' => 'tooltip',
-                                ' data-placement' => 'top',
-                                'title' => 'Add',
-                            ]) !!}
 
+                    <div id="experienceContainer">
+                        {{-- cloned experience --}}
+                    </div>
+                </div>
+                    <div class="card-header d-flex justify-content-center">
+                        {!! Form::button('<i class="fa-solid fa-plus"></i>', [
+                            'type' => 'button',
+                            'id' => 'experiencebtn',
+                            'class' => 'btn btn-sm btn-primary mr-1',
+                            'data-toggle' => 'tooltip',
+                            ' data-placement' => 'top',
+                            'title' => 'Add',
+                        ]) !!}
+
+                    </div>
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                            {!! Form::button('Previous', [
+                                'type' => 'button',
+                                'id' => 'prevPage4',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
                         </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                {!! Form::button('Previous', [
-                                    'type' => 'button',
-                                    'id' => 'prevPage4',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                            <div class="col-auto">
-                                {!! Form::button('Submit', [
-                                    'type' => 'submit',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
+                        <div class="col-auto">
+                            {!! Form::button('Submit', [
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-            {!! Form::close() !!}
         </div>
+
+
+
+        {!! Form::close() !!}
+    </div>
     </div>
 
 

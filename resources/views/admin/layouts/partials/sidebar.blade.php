@@ -50,7 +50,7 @@
     </li>
     @if (Auth::check() && Auth::user()->role_id == 2)
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('doctor_profile') }}" onclick="handleLinkClick(event)">
+            <a class="nav-link" href="{{ route('doctorprofile') }}" onclick="handleLinkClick(event)">
                 <i class="fa-solid fa-user"></i>
                 <span>Profile</span>
             </a>

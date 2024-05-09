@@ -46,23 +46,30 @@ Route::middleware('auth')->group(function () {
         Route::delete('/doctortrashdelete/{id}', [TrashDoctorController::class, 'delete'])->name('trashdeletedoctor');
 
         Route::resource('/user', UserController::class);
-        Route::resource('/doctor', DoctorController::class);
 
-        Route::get('/fetchdistrict/{provinceId}', [AddressController::class, 'fetchDistrict'])->name('fetchdistrict');
-        Route::get('/fetchmunicipality/{districtId}', [AddressController::class, 'fetchMunicipality'])->name('fetchmunicipality');
-
-        Route::get('/addfetchdistrict/{provinceId}', [AddressController::class, 'addfetchDistrict'])->name('addfetchdistrict');
-        Route::get('/addfetchmunicipality/{districtId}', [AddressController::class, 'addfetchMunicipality'])->name('addfetchmunicipality');
         Route::resource('/schedule', ScheduleController::class);
-
     });
 
     Route::middleware('checkroleadmin')->group(function (){
-    Route::get('/doctor_profile', [DoctorProfileController::class, 'getProfile'])->name('doctor_profile');
-    Route::get('/edit_profile', [DoctorProfileController::class, 'edit'])->name('edit_profile');
+    Route::get('/doctorprofile', [DoctorProfileController::class, 'getProfile'])->name('doctorprofile');
+    Route::get('/editprofile', [DoctorProfileController::class, 'edit'])->name('editprofile');
+    Route::get('/editeducation', [DoctorProfileController::class, 'editEducation'])->name('editeducation');
+    Route::get('/editexperience', [DoctorProfileController::class, 'editExperience'])->name('editexperience');
+    Route::put('/updateprofile/{doctorId}', [DoctorProfileController::class, 'update'])->name('updateprofile');
+    Route::put('/updateeducation/{doctorId}', [DoctorProfileController::class, 'updateEducation'])->name('updateeducation');
+    Route::put('/updatexperience/{doctorId}', [DoctorProfileController::class, 'updatExperience'])->name('updatexperience');
     Route::resource('/doctorschedule', DoctorScheduleController::class);
-
     });
+
+    Route::get('/fetchdistrict/{provinceId}', [AddressController::class, 'fetchDistrict'])->name('fetchdistrict');
+    Route::get('/fetchmunicipality/{districtId}', [AddressController::class, 'fetchMunicipality'])->name('fetchmunicipality');
+
+    Route::get('/addfetchdistrict/{provinceId}', [AddressController::class, 'addfetchDistrict'])->name('addfetchdistrict');
+    Route::get('/addfetchmunicipality/{districtId}', [AddressController::class, 'addfetchMunicipality'])->name('addfetchmunicipality');
+
+
+    Route::resource('/doctor', DoctorController::class);
+
 });
 
 

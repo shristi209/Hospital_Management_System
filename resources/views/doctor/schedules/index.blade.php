@@ -19,9 +19,10 @@
                             </tr>
                         </thead>
                          <tbody>
+
                             @foreach ($schedules as $schedule)
                             @foreach ($schedule->getTimeIntervals() as $interval)
-                                <tr>
+                            <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $interval['schedule_date'] }}</td>
                                         <td>{{ $interval['start_time'] }}</td>

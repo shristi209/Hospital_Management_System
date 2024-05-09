@@ -5,9 +5,9 @@ document.getElementById('addressbtn').addEventListener('click', function () {
 
         addressCounter++;
         $("#addressbtn").hide();
-        
+
         var addressDiv = document.createElement("div");
-        addressDiv.className = "card-header d-flex justify-content-between";
+        addressDiv.className = "card-header d-flex mt-5 justify-content-between";
 
         var addressTitle = document.createElement("h5");
         addressTitle.textContent = "Temporary Address";

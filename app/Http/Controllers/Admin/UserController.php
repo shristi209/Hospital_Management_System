@@ -28,7 +28,7 @@ class UserController extends Controller
         $user=$request->validated();
         $user['password']= Hash::make($user['password']);
         User::create($user);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('message', 'Successfully Added!!!!');
     }
 
     public function show( $id)
@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $user=User::findOrFail($id);
         $user->update($request->validated());
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('message', 'Successfully Updated!!!!');;
     }
 
     public function destroy( $id)

@@ -141,7 +141,7 @@ class DoctorController extends Controller
             return redirect()->route('doctor.index');
         }catch(\Exception $e){
             DB::rollback();
-            dd($e->getMessage());
+            // dd($e->getMessage());
             return redirect()->back();
         }
 

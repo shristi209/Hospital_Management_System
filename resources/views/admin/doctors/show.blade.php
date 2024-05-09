@@ -18,9 +18,9 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="profile-head">
-                            <h5>
-                                {{$doctor->first_name}} {{$doctor->middle_name}} {{$doctor->last_name}}                            </h5>
+
+
+                {{$doctor->first_name}} {{$doctor->middle_name}} {{$doctor->last_name}}                            </h5>
                             <h7>Id:
                                {{$doctor->id}}
                             </h7><br>

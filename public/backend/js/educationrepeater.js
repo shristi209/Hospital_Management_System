@@ -8,10 +8,10 @@ function addEducationSection() {
     educationCounter++;
 
     var educationDiv = document.createElement("div");
-    educationDiv.className = "custom-div mt-3 mb-3 d-flex justify-content-end";
+    educationDiv.className = "custom-div mt-5 mb-3 d-flex justify-content-end";
 
-    var educationTitle = document.createElement("h4");
-    educationTitle.textContent = "";
+    var educationTitle = document.createElement("h5");
+    educationTitle.textContent = "Add Education Details";
     educationDiv.appendChild(educationTitle);
 
     var removeBtn = document.createElement("button");
