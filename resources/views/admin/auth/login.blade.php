@@ -23,8 +23,10 @@
         <input type="password" id="form2Example2" name="password" class="form-control" />
         @error('password')<span class="text-danger">{{ $message }}</span>@enderror
       </div>
-      <span class="btn">
-        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Login</button></div>
+      <span class="btn d-flex justify-content-between align-items-center">
+        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary mb-4">Login</button>
+        <a href="{{route('forgotpassword')}}" data-mdb-button-init data-mdb-ripple-init >Forgot Password</a></div>
+
     </form>
     </span>
 </div>

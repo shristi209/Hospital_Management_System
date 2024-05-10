@@ -19,6 +19,7 @@ class AuthController extends Controller
 
     public function loginUser(LoginValidationRequest $request)
     {
+        // dd($request);
         $credential = $request->validated();
         if(Auth::attempt($credential)){
             return redirect('dashboard');

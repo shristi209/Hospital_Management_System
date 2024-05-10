@@ -101,24 +101,25 @@ class DoctorProfileController extends Controller
         $experiences=$doctor->experience;
         return view('doctor.profile.editexperience', compact('doctorId','experiences'));
     }
-    public function updatExperience(Request $request, $id)
+    public function updatExperience(DoctorExperienceRequest $request, $id)
     {
-        dd($request);
+        // dd($request);
         $data=$request->validated();
         $user = Auth::user();
         $doctorId=$user->doctor_id;
 
-        foreach($request->organizaion_name as $key=>$value){
-            $this->doctorExperience->updateOrCreate([
-                'doctor_id'=>$doctorId,
-                'organization_name' => $request->organization_name[$key]],
-                ['org_start_bs' => $request->org_start_bs[$key],
-                'org_start_ad' => $request->org_start_ad[$key],
-                'org_end_bs' => $request->org_end_bs[$key],
-                'org_end_ad' => $request->org_end_ad[$key],
-                'description' => $request->description[$key],
-            ]);
-        }
+        // $this->doctorExperience->where([
+        //     'doctor_id' => $doctorId,
+        //     'organization_name' => $request->organization_name
+        // ])->update([
+        //     'org_start_bs' => $request->org_start_bs,
+        //     'org_start_ad' => $request->org_start_ad,
+        //     'org_end_bs' => $request->org_end_bs,
+        //     'org_end_ad' => $request->org_end_ad,
+        //     'description' => $request->description,
+        // ]);
+
         return redirect()->route('doctorprofile');
+
     }
 }

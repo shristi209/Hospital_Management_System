@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\TrashUserController;
@@ -17,6 +18,11 @@ use App\Http\Controllers\Doctor\DoctorScheduleController;
 
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\CheckRoleAdmin;
+
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\AppointmentController;
+
+Route::get('/medicare', [DashboardController::class, 'index']);
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin-login');
@@ -68,9 +74,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/addfetchmunicipality/{districtId}', [AddressController::class, 'addfetchMunicipality'])->name('addfetchmunicipality');
 
 
-    Route::resource('/doctor', DoctorController::class);
 
 });
+Route::resource('/doctor', DoctorController::class);
+
+Route::get('/appointment', [DashboardController::class, 'appointment'])->name('appointment');
+
+Route::get('/fetchdoctor/{dept_id}', [AppointmentController::class, 'fetchDoctor'])->name('fetchdoctor');
+Route::get('/fetchschedule/{schedule_id}', [AppointmentController::class, 'fetchSchedule'])->name('fetchschedule');
+Route::get('/appointmentform', [AppointmentController::class, 'formShow'])->name('appointmentform');
+
+
+Route::get('/forgotpassword', [ForgotPasswordController::class, 'forgotPassword'])->name('forgotpassword');
+Route::post('/forgotpassword', [ForgotPasswordController::class, 'storePassword'])->name('storepassword');
+Route::get('/resetpassword/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('resetpassword');
 
 
 

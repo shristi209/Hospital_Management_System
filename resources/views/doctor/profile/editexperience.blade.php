@@ -121,16 +121,15 @@
                             <div class="form-row mb-3">
                                 <div class="col ">
                                     {!! Form::label('organization_name', 'Organization Name') !!}<span class="text-danger red_*">*</span>
-                                    {!! Form::text('organization_name[]', null, [
+                                    {!! Form::text('', null, [
                                         'class' => 'form-control',
-                                        'name' => 'organization_name[]',
                                         'placeholder' => 'Organization Name',
                                     ]) !!}
                                     <span id="organization_name_error" class="text-danger"></span>
                                 </div>
                                 <div class="col">
                                     {!! Form::label('org_start_bs', 'Start Date(BS)') !!}<span class="text-danger red_*">*</span>
-                                    {!! Form::text('org_start_bs[]', null, [
+                                    {!! Form::text('', null, [
                                         'class' => 'form-control',
                                         'id' => 'org_start_bs',
                                         'placeholder' => 'Select start date',
@@ -139,7 +138,7 @@
                                 </div>
                                 <div class="col">
                                     {!! Form::label('org_start_ad', 'Start Date(AD)') !!}<span class="text-danger red_*">*</span>
-                                    {!! Form::text('org_start_ad[]', null, [
+                                    {!! Form::text('', null, [
                                         'class' => 'form-control',
                                         'id' => 'org_start_ad',
                                         'placeholder' => 'English date',
@@ -150,7 +149,7 @@
                             <div class="form-row mb-3">
                                 <div class="col-4">
                                     {!! Form::label('org_end_bs', 'End Date(BS)') !!}<span class="text-danger red_*">*</span>
-                                    {!! Form::text('org_end_bs[]', null, [
+                                    {!! Form::text('', null, [
                                         'class' => 'form-control',
                                         'id' => 'org_end_bs',
                                         'placeholder' => 'Select end date',
@@ -159,7 +158,7 @@
                                 </div>
                                 <div class="col-4">
                                     {!! Form::label('org_end_ad', 'End Date(AD)') !!}<span class="text-danger red_*">*</span>
-                                    {!! Form::text('org_end_ad[]', null, [
+                                    {!! Form::text('', null, [
                                         'class' => 'form-control',
                                         'id' => 'org_end_ad',
                                         'placeholder' => 'English date',
@@ -170,7 +169,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     {!! Form::label('description', ' Description') !!}<span class="text-danger red_*">*</span>
-                                    {!! Form::textarea('description[]', null, ['class' => 'form-control', 'id' => 'editor']) !!}
+                                    {!! Form::textarea('', null, ['class' => 'form-control', 'id' => 'editor']) !!}
                                     <span id="description_error" class="text-danger"></span>
                                 </div>
                             </div>

@@ -9,4 +9,9 @@ class Department extends Model
     use SoftDeletes;
     protected $table='departments';
     protected $fillable=['department_name','description','department_code', 'deleted_at'];
+
+    public function doctor()
+    {
+        return $this->hasMany(Doctor::class,'department_id', 'id');
+    }
 }
