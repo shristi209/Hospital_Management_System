@@ -2,12 +2,14 @@ var addressCounter = 0;
 
 document.getElementById('addressbtn').addEventListener('click', function () {
     if (addressCounter === 0) {
-
         addressCounter++;
+
+//hiding + button when clicked
         $("#addressbtn").hide();
 
+//created and cloned title and button for the cloned field
         var addressDiv = document.createElement("div");
-        addressDiv.className = "card-header d-flex mt-5 justify-content-between";
+        addressDiv.className = "card-header d-flex mt-3 justify-content-between";
 
         var addressTitle = document.createElement("h5");
         addressTitle.textContent = "Temporary Address";
@@ -17,16 +19,19 @@ document.getElementById('addressbtn').addEventListener('click', function () {
         add_removeBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
         add_removeBtn.setAttribute("type", "button");
         add_removeBtn.setAttribute("class", "btn btn-sm btn-danger ml-auto exp-remove-btn");
-        add_removeBtn.setAttribute("data-toggle", "tooltip");
-        add_removeBtn.setAttribute("data-placement", "top");
-        add_removeBtn.setAttribute("title", "Delete");
 
         addressDiv.appendChild(add_removeBtn);
         document.getElementById("addressContainer").appendChild(addressDiv);
 
+//parent div clonning process
         var addressTemplate = document.getElementById('addressAdd');
         var clonedAddress = addressTemplate.cloneNode(true);
 
+//removing previous parent's header
+        var permanentAddressHeader = clonedAddress.querySelector('.rem');
+        permanentAddressHeader.parentNode.removeChild(permanentAddressHeader);
+
+//generating unique id for all the cloned field
         var countryId = clonedAddress.querySelector('#country_id');
         var newCountryId = 'temp_'+ countryId.id ;
         countryId.id = newCountryId;
@@ -68,13 +73,16 @@ document.getElementById('addressbtn').addEventListener('click', function () {
         street.id = 'temp_street';
         street.setAttribute('name', 'temp_street');
 
+//cloned after all unique id and name
         document.getElementById("addressContainer").appendChild(clonedAddress);
+
+//empty value of the previousfield
         var clonedInputs = clonedAddress.querySelectorAll('input, select, textarea');
         clonedInputs.forEach(function(input) {
             input.value = '';
         });
     }
-
+//for all unique id
     $('#' + newProvinceId).change(function () {
         var idProvince = this.value;
         console.log(idProvince);

@@ -25,7 +25,7 @@
                             @foreach ($doctors as $doctor)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $doctor->department_id }}</td>
+                                    <td>{{ $doctor->department->department_name }}</td>
                                     <td>{{ $doctor->first_name }}
                                         {{ $doctor->middle_name }}
                                         {{ $doctor->last_name }}</td>
@@ -34,7 +34,7 @@
                                     <td>{{ $doctor->phone_num }}</td>
                                     <td class="d-flex">
                                         <a href="{{ route('doctor.show', $doctor->id) }}"
-                                            class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top"
+                                            class="btn btn-sm btn-success mr-1" data-toggle="tooltip" data-placement="top"
                                             title="View"><i class="fa-solid fa-eye"></i></a>
                                         <a href="{{ route('doctor.edit', $doctor->id) }}"
                                             class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top"

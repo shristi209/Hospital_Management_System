@@ -7,8 +7,9 @@ document.getElementById('educationbtn').addEventListener('click', function() {
 function addEducationSection() {
     educationCounter++;
 
+//created and cloned the title and button for the cloned element
     var educationDiv = document.createElement("div");
-    educationDiv.className = "custom-div mt-5 mb-3 d-flex justify-content-end";
+    educationDiv.className = "card-header custom-div mt-3 mb-3 d-flex justify-content-between";
 
     var educationTitle = document.createElement("h5");
     educationTitle.textContent = "Add Education Details";
@@ -18,17 +19,18 @@ function addEducationSection() {
     removeBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     removeBtn.setAttribute("type", "button");
     removeBtn.setAttribute("class", "btn btn-sm btn-danger ml-auto remove-btn");
-    removeBtn.setAttribute("data-toggle", "tooltip");
-    removeBtn.setAttribute("data-placement", "top");
-    removeBtn.setAttribute("title", "Delete");
 
+//clonning in process
     educationDiv.appendChild(removeBtn);
-
     document.getElementById("educationContainer").appendChild(educationDiv);
-
     var educationTemplate = document.getElementById("educationAdd");
     var clonedElement = educationTemplate.cloneNode(true);
 
+//removing parent's title
+    var educationHeader = clonedElement.querySelector('.rem');
+    educationHeader.parentNode.removeChild(educationHeader);
+
+//generating unique id's
     var graduationIdbs = clonedElement.querySelector('#graduation_year_start_bs');
     var newGraduationId = graduationIdbs.id + educationCounter;
     graduationIdbs.id = newGraduationId;
@@ -45,6 +47,7 @@ function addEducationSection() {
         input.value = '';
     });
 
+//initializing datepicker for all the newly generated id
     $('#' + newGraduationId).nepaliDatePicker({
         onChange: function() {
             var nepali = $('#' + newGraduationId).val();
@@ -55,6 +58,8 @@ function addEducationSection() {
             $('#' + newGraduationIdad).val(english);
         }
     });
+    
+//remove button
     var educationContainer=document.getElementById("educationContainer")
     removeBtn.onclick = function(){
         educationCounter--;

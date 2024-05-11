@@ -191,11 +191,11 @@
 
                 {{-- Doctor Address --}}
                 <div id="page2" style="display:none">
-                    <div class="card-header">
-                        <h5 class="card-title">Permanent Address</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="addressAdd">
+                    <div id="addressAdd">
+                        <div class="card-header rem">
+                            <h5 class="card-title">Permanent Address</h5>
+                        </div>
+                        <div class="card-body">
                             <div class="form-row mb-3">
                                 <div class="col ">
                                     {!! Form::label('country', 'Country', ['class' => 'form-label']) !!}<span class="text-danger">*</span>
@@ -203,7 +203,6 @@
                                         'class' => 'form-control form-select',
                                         'id' => 'country_id',
                                         'placeholder' => 'Select Country',
-
                                     ]) !!}
                                     <span id="country_id_error" class="address-error text-danger"></span>
                                     <span class="text-danger">
@@ -272,7 +271,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="card-header d-flex justify-content-center">
+                            <div class="d-flex justify-content-center">
                                 {!! Form::button('<i class="fa-solid fa-plus"></i>', [
                                     'type' => 'button',
                                     'id' => 'addressbtn',
@@ -283,38 +282,38 @@
                                 ]) !!}
                             </div>
                         </div>
-                        <div id="addressContainer">
-                            {{-- --cloned address --}}
-                        </div>
-
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-auto">
-                                {!! Form::button('Previous', [
-                                    'type' => 'button',
-                                    'id' => 'prevPage2',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                            <div class="col-auto">
-                                {!! Form::button('Next', [
-                                    'type' => 'button',
-                                    'id' => 'nextPage2',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                        </div>
-
+                    </div>
+                    <div id="addressContainer">
+                        {{-- --cloned address --}}
                     </div>
 
+                    <div class="row align-items-center justify-content-between m-3">
+                        <div class="col-auto">
+                            {!! Form::button('Previous', [
+                                'type' => 'button',
+                                'id' => 'prevPage2',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
+                        </div>
+                        <div class="col-auto">
+                            {!! Form::button('Next', [
+                                'type' => 'button',
+                                'id' => 'nextPage2',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
+                        </div>
+                    </div>
 
                 </div>
+
+
                 {{-- Doctors education --}}
                 <div id="page3" style="display: none">
-                    <div class="card-header d-flex justify-content-between">
-                        <h5 class="card-title">Education</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="educationAdd">
+                    <div id="educationAdd">
+                        <div class="card-header d-flex justify-content-between rem">
+                            <h5 class="card-title">Education</h5>
+                        </div>
+                        <div class="card-body">
                             <div class="form-row mb-3">
                                 <div class="col">
                                     {!! Form::label('education_level', 'Level') !!}<span class="text-danger red_*">*</span>
@@ -390,54 +389,54 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div id="educationContainer">
 
-                        <div id="educationContainer">
+                        <!-- cloned js -->
 
-                            <!-- cloned js -->
-
-                        </div>
-                        <div class="card-header d-flex justify-content-center">
-                            {!! Form::button('<i class="fa-solid fa-plus"></i>', [
-                                'type' => 'button',
-                                'id' => 'educationbtn',
-                                'class' => 'btn btn-sm btn-primary mr-1',
-                                'data-toggle' => 'tooltip',
-                                'data-placement' => 'top',
-                                'title' => 'Add',
-                            ]) !!}
-                            {{-- <div class="removeBtn">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        {!! Form::button('<i class="fa-solid fa-plus"></i>', [
+                            'type' => 'button',
+                            'id' => 'educationbtn',
+                            'class' => 'btn btn-sm btn-primary mr-1',
+                            'data-toggle' => 'tooltip',
+                            'data-placement' => 'top',
+                            'title' => 'Add',
+                        ]) !!}
+                        {{-- <div class="removeBtn">
 
                             </div> --}}
 
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                {!! Form::button('Previous', [
-                                    'type' => 'button',
-                                    'id' => 'prevPage3',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                            <div class="col-auto">
-                                {!! Form::button('Next', [
-                                    'type' => 'button',
-                                    'id' => 'nextPage3',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                        </div>
-
-
                     </div>
+                    <div class="row justify-content-between m-3">
+                        <div class="col-auto">
+                            {!! Form::button('Previous', [
+                                'type' => 'button',
+                                'id' => 'prevPage3',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
+                        </div>
+                        <div class="col-auto">
+                            {!! Form::button('Next', [
+                                'type' => 'button',
+                                'id' => 'nextPage3',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
+                        </div>
+                    </div>
+
+
                 </div>
 
                 {{-- Doctors Experiences --}}
                 <div id="page4" style="display: none">
-                    <div class="card-header">
-                        <h5 class="card-title">Experience</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="experienceAdd">
+                    <div id="experienceAdd">
+
+                        <div class="card-header rem">
+                            <h5 class="card-title">Experience</h5>
+                        </div>
+                        <div class="card-body">
                             <div class="form-row mb-3">
                                 <div class="col ">
                                     {!! Form::label('organization_name', 'Organization Name') !!}<span class="text-danger red_*">*</span>
@@ -496,92 +495,93 @@
                             </div>
 
                         </div>
-                        <div id="experienceContainer">
-                            {{-- cloned experience --}}
-                        </div>
-                        <div class="card-header d-flex justify-content-center">
-                            {!! Form::button('<i class="fa-solid fa-plus"></i>', [
+                    </div>
+                    <div id="experienceContainer">
+                        {{-- cloned experience --}}
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        {!! Form::button('<i class="fa-solid fa-plus"></i>', [
+                            'type' => 'button',
+                            'id' => 'experiencebtn',
+                            'name' => 'action',
+                            'class' => 'btn btn-sm btn-primary mr-1',
+                            'data-toggle' => 'tooltip',
+                            'data-placement' => 'top',
+                            'title' => 'Add',
+                        ]) !!}
+                    </div>
+                    <div class="row justify-content-between m-3">
+                        <div class="col-auto">
+                            {!! Form::button('Previous', [
                                 'type' => 'button',
-                                'id' => 'experiencebtn',
+                                'id' => 'prevPage4',
                                 'name' => 'action',
-                                'class' => 'btn btn-sm btn-primary mr-1',
-                                'data-toggle' => 'tooltip',
-                                'data-placement' => 'top',
-                                'title' => 'Add',
+                                'value' => 'previous',
+                                'class' => 'btn btn-primary',
                             ]) !!}
                         </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                {!! Form::button('Previous', [
-                                    'type' => 'button',
-                                    'id' => 'prevPage4',
-                                    'name' => 'action',
-                                    'value' => 'previous',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                            <div class="col-auto">
-                                {!! Form::button('Next', [
-                                    'type' => 'button',
-                                    'id' => 'nextPage4',
-                                    'name' => 'action',
-                                    'value' => 'next',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-
+                        <div class="col-auto">
+                            {!! Form::button('Next', [
+                                'type' => 'button',
+                                'id' => 'nextPage4',
+                                'name' => 'action',
+                                'value' => 'next',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
                         </div>
+
                     </div>
                 </div>
+            </div>
 
-                <div id="page5" style="display: none">
-                    <div class="card-header">
-                        <h5 class="card-title">Account Information</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                {!! Form::label('inputEmail4', 'Email') !!}<span class="text-danger">*</span>
-                                {!! Form::email('email', null, ['class' => 'form-control', 'id' => 'inputEmail4']) !!}
-                                @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                {!! Form::label('password', 'Password') !!}<span class="text-danger">*</span>
-                                {!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
-                                @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-6">
-                                {!! Form::label('password_confirmation', 'Confirm Password') !!}<span class="text-danger">*</span>
-                                {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation']) !!}
-                            </div>
+            <div id="page5" style="display: none">
+                <div class="card-header">
+                    <h5 class="card-title">Account Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {!! Form::label('inputEmail4', 'Email') !!}<span class="text-danger">*</span>
+                            {!! Form::email('email', null, ['class' => 'form-control', 'id' => 'inputEmail4']) !!}
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                {!! Form::button('Previous', [
-                                    'type' => 'button',
-                                    'id' => 'prevPage5',
-                                    'name' => 'action',
-                                    'value' => 'previous',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
-                            <div class="col-auto">
-                                {!! Form::button('Submit', [
-                                    'type' => 'submit',
-                                    'id' => 'submit',
-                                    'class' => 'btn btn-primary',
-                                ]) !!}
-                            </div>
+
+                        <div class="form-group col-md-6">
+                            {!! Form::label('password', 'Password') !!}<span class="text-danger">*</span>
+                            {!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
+                            @error('password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            {!! Form::label('password_confirmation', 'Confirm Password') !!}<span class="text-danger">*</span>
+                            {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation']) !!}
+                        </div>
+                    </div>
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                            {!! Form::button('Previous', [
+                                'type' => 'button',
+                                'id' => 'prevPage5',
+                                'name' => 'action',
+                                'value' => 'previous',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
+                        </div>
+                        <div class="col-auto">
+                            {!! Form::button('Submit', [
+                                'type' => 'submit',
+                                'id' => 'submit',
+                                'class' => 'btn btn-primary',
+                            ]) !!}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     {!! Form::close() !!}

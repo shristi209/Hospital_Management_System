@@ -24,7 +24,7 @@
                             @foreach ($doctors as $doctor)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $doctor->department_id }}</td>
+                                <td>{{ $doctor->department->department_name }}</td>
                                     <td>{{ $doctor->first_name}}
                                     {{ $doctor->middle_name}}
                                     {{ $doctor->last_name}}</td>

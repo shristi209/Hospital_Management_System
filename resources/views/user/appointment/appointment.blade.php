@@ -3,7 +3,6 @@
     @inject('department_helper', 'App\Helpers\DepartmentHelper')
 
     <main>
-
         <section class="donate-section">
             <div class="section-overlay"></div>
             <div class="container">

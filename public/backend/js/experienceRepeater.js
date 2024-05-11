@@ -7,9 +7,9 @@ document.getElementById('experiencebtn').addEventListener('click', function () {
 function addExperienceSection() {
     experienceCounter++;
 
-    // adding remove button
+//created and cloned the title and button for the cloned element
     var experienceDiv = document.createElement("div");
-    experienceDiv.className = "custom-div mt-5 mb-3 d-flex justify-content-end";
+    experienceDiv.className = "custom-div card-header mt-3 mb-3 d-flex justify-content-between";
 
     var experienceTitle = document.createElement("h5");
     experienceTitle.textContent = "Add Experience Details";
@@ -19,17 +19,19 @@ function addExperienceSection() {
     exp_removeBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     exp_removeBtn.setAttribute("type", "button");
     exp_removeBtn.setAttribute("class", "btn btn-sm btn-danger ml-auto exp-remove-btn");
-    exp_removeBtn.setAttribute("data-toggle", "tooltip");
-    exp_removeBtn.setAttribute("data-placement", "top");
-    exp_removeBtn.setAttribute("title", "Delete");
 
     experienceDiv.appendChild(exp_removeBtn);
     document.getElementById("experienceContainer").appendChild(experienceDiv);
 
-    //cloned div
+//cloned div
     var experienceTemplate = document.getElementById("experienceAdd");
     var clonedExperience = experienceTemplate.cloneNode(true);
 
+//removing parent's title
+    var experienceHeader = clonedExperience.querySelector('.rem');
+    experienceHeader.parentNode.removeChild(experienceHeader);
+
+//generating unique id's
     var orgStartId = clonedExperience.querySelector('#org_start_bs');
     var newOrgStartId = orgStartId.id + [experienceCounter];
     orgStartId.id = newOrgStartId;
@@ -62,6 +64,7 @@ function addExperienceSection() {
         input.value = '';
     });
 
+//initializing datepicker for all the newly generated id
     $('#' + newOrgStartId).nepaliDatePicker({
         onChange: function () {
             var nepali = $('#' + newOrgStartId).val();
@@ -83,6 +86,8 @@ function addExperienceSection() {
             $('#' + newOrgEndIda).val(english);
         }
     });
+
+//remove button
     var experienceContainer = document.getElementById("experienceContainer")
     exp_removeBtn.onclick = function () {
         experienceCounter--;

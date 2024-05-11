@@ -60,9 +60,24 @@ class DoctorProfileController extends Controller
     {
         $data=$request->validated();
         $doctor=$this->doctor->findOrFail($id);
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            if ($doctor->photo) {
+                $previousImagePath = public_path($doctor->photo);
+                if (file_exists($previousImagePath)) {
+                    unlink($previousImagePath);
+                }
+            }
+
+            $file->move(public_path('backend/img/doctors'), $fileName);
+            $data['photo'] = '/backend/img/doctors'.'/'.$fileName;
+        }
+
         $doctor -> update($data);
         return redirect()->route('doctorprofile');
     }
+
 
     public function editEducation()
     {

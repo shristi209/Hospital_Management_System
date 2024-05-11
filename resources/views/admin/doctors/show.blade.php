@@ -7,23 +7,24 @@
 
 <div class="container emp-profile">
     <form method="post">
+        <div class="card">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    {{-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/> --}}
-                    {{-- <div class="file btn btn-lg btn-primary">
+                    <img src="{{ asset($doctor->photo) }}" alt=""/>
+                    <div class="file btn btn-lg btn-primary">
                         Change Photo
                         <input type="file" name="file"/>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
 
 
-                {{$doctor->first_name}} {{$doctor->middle_name}} {{$doctor->last_name}}                            </h5>
-                            <h7>Id:
+            <h4>{{$doctor->first_name}} {{$doctor->middle_name}} {{$doctor->last_name}}    </h4>                        </h5>
+                            {{-- <h7>Id:
                                {{$doctor->id}}
-                            </h7><br>
+                            </h7><br> --}}
                             <h7>Licence No:
                                 {{$doctor->licence_no}}
                             </h7>
@@ -120,6 +121,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </form>
 </div>
 @endsection

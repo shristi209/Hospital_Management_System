@@ -20,17 +20,19 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
-    public function __construct(Doctor $doctor, DoctorEducation $doctorEducation, DoctorExperience $doctorExperience, User $user)
+    public function __construct(Doctor $doctor, DoctorEducation $doctorEducation, DoctorExperience $doctorExperience, User $user, District $district, Municipality $municipality)
     {
         $this->doctor = $doctor;
         $this->doctorEducation = $doctorEducation;
         $this->doctorExperience = $doctorExperience;
         $this->user=$user;
+        $this->district=$district;
+        $this->municipality=$municipality;
     }
 
     public function index()
     {
-        $doctors=$this->doctor->all();
+        $doctors = $this->doctor->orderBy('created_at', 'desc')->get();
         return view('admin.doctors.index', compact('doctors'));
     }
 
@@ -44,8 +46,16 @@ class DoctorController extends Controller
         // dd($request);
         try {
             DB::beginTransaction();
-
             $data = $request->validated();
+
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $fileName = time().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('backend/img/doctors'), $fileName);
+            } else {
+                return back()->with('fail_message', 'Please upload a profile picture!!!');
+            }
+            $data['photo'] = '/backend/img/doctors'.'/'.$fileName;
 
             $doctor = $this->doctor->create($data);
             $role_id=2;
@@ -57,7 +67,7 @@ class DoctorController extends Controller
                 'doctor_id'=>$doctor->id,
             ]);
                     // dd($request);
-
+            if ($request->has('institute_name')) {
                 foreach ($request->institute_name as $key => $value) {
                     $this->doctorEducation->create([
                         'doctor_id' => $doctor->id,
@@ -68,6 +78,8 @@ class DoctorController extends Controller
                         'education_level'=>$request->education_level[$key],
                     ]);
                 }
+            }
+            if ($request->has('organization_name')) {
                 foreach ($request->organization_name as $key => $value) {
                     $this->doctorExperience->create([
                         'doctor_id' => $doctor->id,
@@ -80,13 +92,14 @@ class DoctorController extends Controller
                     ]);
 
                 }
-                DB::commit();
-                return redirect()->route('doctor.index');
+            }
+            DB::commit();
+            return redirect()->route('doctor.index')->with('message', 'Successfully Created!!!');
         }
         catch(\Exception $e){
             DB::rollback();
             dd($e->getMessage());
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Something went wrong!!!');
         }
     }
 
@@ -101,8 +114,8 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor=$this->doctor->findOrFail($id);
-        $districts=District::all();
-        $municipalities=Municipality::all();
+        $districts=$this->district->all();
+        $municipalities=$this->municipality->all();
 
         $educations = $this->doctorEducation->where('doctor_id', $id)->get();
         $experiences =  $this->doctorExperience->where('doctor_id', $id)->get();
@@ -115,34 +128,53 @@ class DoctorController extends Controller
             DB::beginTransaction();
             $data=$request->validated();
             $doctor=$this->doctor->findOrFail($id);
+
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $fileName = time().'.'.$file->getClientOriginalExtension();
+                if ($doctor->photo) {
+                    $previousImagePath = public_path($doctor->photo);
+                    if (file_exists($previousImagePath)) {
+                        unlink($previousImagePath);
+                    }
+                }
+
+                $file->move(public_path('backend/img/doctors'), $fileName);
+                $data['photo'] = '/backend/img/doctors'.'/'.$fileName;
+            }
+
             $doctor -> update($data);
 
-            foreach ($request->institute_name as $key => $value) {
-                $this->doctorEducation->updateOrCreate([
-                    'doctor_id' => $doctor->id,
-                    'institute_name' => $request->institute_name[$key]],
-                    ['specialization' => $request->specialization[$key],
-                    'graduation_year_start_bs' => $request->graduation_year_start_bs[$key],
-                    'graduation_year_start_ad' => $request->graduation_year_start_ad[$key],
-                ]);
+            if ($request->has('institute_name')) {
+                foreach ($request->institute_name as $key => $value) {
+                    $this->doctorEducation->updateOrCreate([
+                        'doctor_id' => $doctor->id,
+                        'institute_name' => $request->institute_name[$key]],
+                        ['specialization' => $request->specialization[$key],
+                        'graduation_year_start_bs' => $request->graduation_year_start_bs[$key],
+                        'graduation_year_start_ad' => $request->graduation_year_start_ad[$key],
+                    ]);
+                }
             }
-            foreach ($request->organization_name as $key => $value) {
-                $this->doctorExperience->updateOrCreate([
-                    'doctor_id' => $doctor->id,
-                    'organization_name' => $request->organization_name[$key]],
-                    ['org_start_bs' => $request->org_start_bs[$key],
-                    'org_start_ad' => $request->org_start_ad[$key],
-                    'org_end_bs' => $request->org_end_bs[$key],
-                    'org_end_ad' => $request->org_end_ad[$key],
-                    'description' => $request->description[$key],
-                ]);
+            if ($request->has('organization_name')) {
+                foreach ($request->organization_name as $key => $value) {
+                    $this->doctorExperience->updateOrCreate([
+                        'doctor_id' => $doctor->id,
+                        'organization_name' => $request->organization_name[$key]],
+                        ['org_start_bs' => $request->org_start_bs[$key],
+                        'org_start_ad' => $request->org_start_ad[$key],
+                        'org_end_bs' => $request->org_end_bs[$key],
+                        'org_end_ad' => $request->org_end_ad[$key],
+                        'description' => $request->description[$key],
+                    ]);
+                }
             }
             DB::commit();
-            return redirect()->route('doctor.index');
+            return redirect()->route('doctor.index')->with('message', 'Successfully Updated!!!');
         }catch(\Exception $e){
             DB::rollback();
-            // dd($e->getMessage());
-            return redirect()->back();
+            dd($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong!!!');
         }
 
     }
