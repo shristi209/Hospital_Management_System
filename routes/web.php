@@ -88,6 +88,7 @@ Route::get('/appointmentform', [AppointmentController::class, 'formShow'])->name
 Route::get('/forgotpassword', [ForgotPasswordController::class, 'forgotPassword'])->name('forgotpassword');
 Route::post('/forgotpassword', [ForgotPasswordController::class, 'storePassword'])->name('storepassword');
 Route::get('/resetpassword/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('resetpassword');
+Route::post('/resetpassword', [ForgotPasswordController::class, 'resetPasswordPost'])->name('storeresetpassword');
 
 
 
