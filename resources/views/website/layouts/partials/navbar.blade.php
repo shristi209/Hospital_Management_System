@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="index.html">
             <img src="frontend/images/logo.png" class="logo img-fluid" alt="Kind Heart Charity">
             <span>
-                MediCare
+                CareSync
                 <small>Non-profit Organization</small>
             </span>
         </a>

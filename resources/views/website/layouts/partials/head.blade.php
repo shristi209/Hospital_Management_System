@@ -5,6 +5,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <meta name="base-url" content="{{ url('/') }}">
+
     <title>Kind Heart Charity - Free Bootstrap 5.2.2 CSS Template</title>
 
     <!-- CSS FILES -->

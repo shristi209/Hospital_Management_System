@@ -23,6 +23,7 @@ function addEducationSection() {
 //clonning in process
     educationDiv.appendChild(removeBtn);
     document.getElementById("educationContainer").appendChild(educationDiv);
+    
     var educationTemplate = document.getElementById("educationAdd");
     var clonedElement = educationTemplate.cloneNode(true);
 
@@ -58,7 +59,7 @@ function addEducationSection() {
             $('#' + newGraduationIdad).val(english);
         }
     });
-    
+
 //remove button
     var educationContainer=document.getElementById("educationContainer")
     removeBtn.onclick = function(){

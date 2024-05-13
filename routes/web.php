@@ -19,10 +19,11 @@ use App\Http\Controllers\Doctor\DoctorScheduleController;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\CheckRoleAdmin;
 
-use App\Http\Controllers\User\DashboardController;
-use App\Http\Controllers\User\AppointmentController;
+use App\Http\Controllers\Website\DashboardController;
+use App\Http\Controllers\Website\AppointmentController;
+use App\Http\Controllers\Website\FormAppointmentController;
 
-Route::get('/medicare', [DashboardController::class, 'index']);
+Route::get('/caresync', [DashboardController::class, 'index']);
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin-login');
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/doctortrashdelete/{id}', [TrashDoctorController::class, 'delete'])->name('trashdeletedoctor');
 
         Route::resource('/user', UserController::class);
+        Route::resource('/doctor', DoctorController::class);
 
         Route::resource('/schedule', ScheduleController::class);
     });
@@ -63,7 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/editexperience', [DoctorProfileController::class, 'editExperience'])->name('editexperience');
     Route::put('/updateprofile/{doctorId}', [DoctorProfileController::class, 'update'])->name('updateprofile');
     Route::put('/updateeducation/{doctorId}', [DoctorProfileController::class, 'updateEducation'])->name('updateeducation');
-    Route::put('/updatexperience/{doctorId}', [DoctorProfileController::class, 'updatExperience'])->name('updatexperience');
+    Route::put('/updatexperience/{doctorId}', [DoctorProfileController::class, 'updateExperience'])->name('updatexperience');
     Route::resource('/doctorschedule', DoctorScheduleController::class);
     });
 
@@ -76,14 +78,13 @@ Route::middleware('auth')->group(function () {
 
 
 });
-Route::resource('/doctor', DoctorController::class);
 
 Route::get('/appointment', [DashboardController::class, 'appointment'])->name('appointment');
 
 Route::get('/fetchdoctor/{dept_id}', [AppointmentController::class, 'fetchDoctor'])->name('fetchdoctor');
 Route::get('/fetchschedule/{schedule_id}', [AppointmentController::class, 'fetchSchedule'])->name('fetchschedule');
-Route::get('/appointmentform', [AppointmentController::class, 'formShow'])->name('appointmentform');
-
+// Route::get('/appointmentform', [AppointmentController::class, 'formShow'])->name('appointmentform');
+Route::resource('/appointmentform', FormAppointmentController::class);
 
 Route::get('/forgotpassword', [ForgotPasswordController::class, 'forgotPassword'])->name('forgotpassword');
 Route::post('/forgotpassword', [ForgotPasswordController::class, 'storePassword'])->name('storepassword');

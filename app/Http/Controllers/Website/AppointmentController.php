@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,20 +21,10 @@ class AppointmentController extends Controller
         $data = Doctor::with('schedule')->find($schedule_id);
         $schedules=$data->schedule;
         $allIntervals = [];
-        // foreach ($schedules as $value) {
-        //     $intervals = $value->getTimeIntervals();
-        //     $allIntervals = array_merge($allIntervals, $intervals);
-        // }
-        // dd($allIntervals);
         return response()->json($schedules);
-
-        // dd($schedules);
-        // return view('user.appointment.appointment', compact('schedules'))->render();
-
     }
     public function formShow(){
-        return view('user.appointment.form');
-
+        // return view('website.appointment.form');
     }
 
 }

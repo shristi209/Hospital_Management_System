@@ -116,7 +116,7 @@ class DoctorProfileController extends Controller
         $experiences=$doctor->experience;
         return view('doctor.profile.editexperience', compact('doctorId','experiences'));
     }
-    public function updatExperience(DoctorExperienceRequest $request, $id)
+    public function updateExperience(DoctorExperienceRequest $request, $id)
     {
         // dd($request);
         $data=$request->validated();
@@ -133,6 +133,17 @@ class DoctorProfileController extends Controller
         //     'org_end_ad' => $request->org_end_ad,
         //     'description' => $request->description,
         // ]);
+        foreach($request->organization_name as $key=>$value){
+            $this->doctorExperience->updateOrCreate([
+                'doctor_id'=>  $doctorId,
+                'organization_name'=> $request->organization_name[$key]],
+                ['org_start_bs' => $request->org_start_bs[$key],
+                    'org_start_ad' => $request->org_start_ad[$key],
+                    'org_end_bs' => $request->org_end_bs[$key],
+                    'org_end_ad' => $request->org_end_ad[$key],
+                    'description' => $request->description[$key],
+            ]);
+        }
 
         return redirect()->route('doctorprofile');
 

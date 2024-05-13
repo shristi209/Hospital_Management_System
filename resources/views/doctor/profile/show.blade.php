@@ -1,127 +1,166 @@
 @extends('admin.layouts.index')
-@section('title', 'Profile')
 @section('content')
-    @include('admin.breadcrumb')
-
-<div class="container emp-profile">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="{{ asset($doctor->photo) }}" alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
+            <div class="card border-0 shadow">
+                <img src="{{ asset($doctor->photo) }}" alt="...">
+                <div class="card-body p-1-9 p-xl-5">
+                    <div class="mb-4">
+                        <h3 class="h6 fw-bold mb-0">{{ $user->username }}</h3>
+                        @foreach ($educations as $education)
+                           |<span class="text-primary"> {{ $education->specialization }}</span>
+                        @endforeach |
                     </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="profile-head">
-                            <h5>
-                                {{$user->username}} <a href="{{ route('editprofile') }}" class="btn btn-outline-primary btn-sm"data-toggle="tooltip" data-placement="top" title="Edit Profile"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3"><a href="#!"><i
+                                    class="far fa-envelope display-25 me-3 text-secondary"></i>{{ $user->email }}</a>
+                        </li>
+                        <li class="mb-3"><a href="#!"><i
+                                    class="fas fa-mobile-alt display-25 me-3 text-secondary"></i>{{ $doctor->phone_num }}</a>
+                        </li>
+                        <li><a href="#!"><i
+                                    class="fas fa-map-marker-alt display-25 me-3 text-secondary"></i>{{ $doctor->province->english_name }}
+                                {{ $doctor->district->eng_district_name }}
+                                {{ $doctor->municipality->nep_municipality_name }},
+                                {{ $doctor->country->country_name }}</a></li>
+                    </ul>
+                    <ul class="social-icon-style2 ps-0">
+                        <li><a href="{{ route('editprofile') }}" class="rounded-3" data-toggle="tooltip"
+                                data-placement="top" title="Edit Profile"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </li>
 
-                            </h5>
-                            <h7 class="f-2">Licence No:
-                               {{$doctor->licence_no}}
-                            </h7>
-                            {{-- <p class="proile-rating">RANKINGS : <span>8/10</span></p> --}}
-                    <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-                        <li class="nav-item d-flex">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Education</a>
-                            <a href="{{ route('editeducation') }}" class="btn btn-sm"data-toggle="tooltip" data-placement="top" title="Edit Education"><i class="fa-regular fa-pen-to-square"></i></a>
-                        </li>
-                        <li class="nav-item d-flex justify-content-center">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Experience</a>
-                            <a href="{{ route('editexperience') }}" class="btn btn-sm"data-toggle="tooltip" data-placement="top" title="Edit Experience"><i class="fa-regular fa-pen-to-square"></i></a>
-                        </li>
                     </ul>
                 </div>
             </div>
-
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p><i class="fa-solid fa-mobile"></i> {{$doctor->phone_num}}<br>
-                    <i class="fa-solid fa-envelope"></i> {{$user->email}}</p>
-                    <p><i class="fa-regular fa-address-book"></i> Permanent Address<br>Province: {{$doctor->province->english_name}}<br>Dictrict: {{$doctor->district->eng_district_name}}<br> Municipality: {{$doctor->municipality->nep_municipality_name}}<br> Country: {{$doctor->country->country_name}}</p>
-{{-- @dd($doctor->municipality_id==municipality) --}}
+        <div class="col-lg-8">
+            <div class="ps-lg-1-6 ps-xl-5">
+                <div class="mb-5 wow fadeIn">
+                    <div class="mb-5 wow fadeIn">
+                        <div class="text-start mb-1-6 wow fadeIn">
+                            <h2 class="h4 mb-0 text-primary">#About</h2>
+                        </div>
+                        <p>Hello! I'm Dr. {{ $user->username }}, a dedicated and experienced medical professional
+                            committed to providing high-quality healthcare services. With a solid educational background
+                            and extensive practical experience, I strive to deliver the best possible care to my
+                            patients.</p>
+                        <div class="text-start d-flex justify-content-between mb-1-6 wow fadeIn">
+                            <h2 class="h4 text-primary">#Education</h2>
+                            <a href="{{ route('editeducation') }}" class="rounded-3"data-toggle="tooltip"
+                                data-placement="top" title="Edit Education"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </div>
+                        <ul>
+                            @foreach ($educations as $education)
+                                <li>
+                                    <strong>{{ $education->education_level }} in
+                                        {{ $education->specialization }}</strong> - {{ $education->institute_name }},
+                                    Graduated {{ $education->graduation_year_start_bs }}
+                                </li>
+                            @endforeach
+                        </ul>
+                        <div class="text-start d-flex justify-content-between mb-1-6 wow fadeIn">
+                            <h3 class="h4 mb-0 text-primary">#Professional Experience</h3>
+                            <a href="{{ route('editexperience') }}" class="rounded-3"data-toggle="tooltip"
+                                data-placement="top" title="Edit Experience"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </div>
+                        <ul>
+                            @foreach ($experiences as $experience)
+                                <li>
+                                    <strong>{{ $experience->organization_name }}</strong>
+                                    ({{ $experience->org_start_bs }} - {{ $experience->org_end_bs }})
+                                    <br>
+                                    {!! $experience->description !!}
+                                </li>
+                            @endforeach
+                        </ul>
 
-                    <p><i class="fa-regular fa-address-book"></i> Temporary Address<br>Country: {{$doctor_temp_province->english_name}}<br>Dictrict: {{$doctor_temp_district->eng_district_name}}<br> Municipality: {{$doctor_temp_municipality->nep_municipality_name}}<br> Country: {{$doctor_temp_country->country_name}}</p>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        @foreach($educations as $education)
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Institute Name</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p> {{$education->institute_name}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Degree</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p>{{$education->education_level}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Specialization</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p>{{$education->specialization}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Graduation Date</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p>{{$education->graduation_year_start_bs}}</p>
-                                    </div>
-                                </div>
-                                <hr>
+                        <p>Throughout my career, I have been dedicated to continuous learning and improvement, staying
+                            updated with the latest advancements in medical science and technology. My passion for
+                            patient care, combined with my expertise, enables me to make a positive impact on the lives
+                            of those I serve.</p>
 
-                        @endforeach
+                        <p>Outside of work, I enjoy spending time with my family, engaging in outdoor activities, and
+                            volunteering for community health initiatives. I believe in a holistic approach to
+                            healthcare, focusing on both physical and emotional well-being.</p>
+
+                        <p>Thank you for visiting my profile. I look forward to the opportunity to contribute to your
+                            health and well-being.</p>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        @foreach($experiences as $experience)
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Organization Name</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p>{{$experience->organization_name}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Period</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p>{{$experience->org_start_bs}}-{{$experience->org_end_bs}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Description</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        {!!$experience->description!!}
+
+
+                </div>
+                <div class="mb-5 wow fadeIn">
+                    <div class="text-start mb-1-6 wow fadeIn">
+                        <h2 class="mb-0 text-primary">#Education & Experiences</h2>
+                    </div>
+                    <div class="row mt-n4">
+                        @foreach ($educations as $education)
+                            <div class="col-sm-6 col-xl-4 mt-4">
+
+                                <div class="card text-center border-0 rounded-3">
+                                    <div class="card-body">
+                                        <i class="ti-bookmark-alt icon-box medium rounded-3 mb-4"></i>
+                                        <h3 class="h5 fw-bold mb-3">{{ $education->specialization }}</h3>
+                                        <p class="mb-0">{{ $education->education_level }} in
+                                            {{ $education->institute_name }}</p><br>
+                                        <p>{{ $education->graduation_year_start_bs }} Graduate</p>
                                     </div>
                                 </div>
-                                <hr>
+                            </div>
                         @endforeach
+
+                        @foreach ($experiences as $experience)
+                            <div class="col-sm-6 col-xl-4 mt-4">
+                                <div class="card text-center border-0 rounded-3">
+                                    <div class="card-body">
+                                        <i class="ti-medall-alt icon-box medium rounded-3 mb-4"></i>
+                                        <h3 class="h5 mb-3">{{ $experience->organization_name }}</h3>
+                                        <p class="mb-0">{!! $experience->description !!}</p>
+                                        <p>{{ $experience->org_start_bs }}-{{ $experience->org_end_bs }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
+                {{-- <div class="wow fadeIn">
+                    <div class="text-start mb-1-6 wow fadeIn">
+                        <h2 class="mb-0 text-primary">#Skills &amp; Experience</h2>
+                    </div>
+                    <p class="mb-4">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose.</p>
+                    <div class="progress-style1">
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Wind Turbines</div>
+                                <div class="col-6 text-end">70%</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3 mb-4">
+                            <div class="animated custom-bar progress-bar slideInLeft" style="width:70%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        </div>
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Solar Panels</div>
+                                <div class="col-6 text-end">90%</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3 mb-4">
+                            <div class="animated custom-bar progress-bar bg-secondary slideInLeft" style="width:90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                        </div>
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Hybrid Energy</div>
+                                <div class="col-6 text-end">80%</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3">
+                            <div class="animated custom-bar progress-bar bg-dark slideInLeft" style="width:80%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                        </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
-    </form>
-</div>
+    </div>
+    </div>
 @endsection

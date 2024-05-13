@@ -31,7 +31,7 @@
 
                                     <td class="d-flex">
                                         <a href="{{ route('schedule.show', $schedule->id) }}"
-                                            class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top"
+                                            class="btn btn-sm btn-success mr-1" data-toggle="tooltip" data-placement="top"
                                             title="View"><i class="fa-solid fa-eye"></i></a>
                                         <a href="{{ route('doctorschedule.edit', $schedule->id) }}"
                                             class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top"

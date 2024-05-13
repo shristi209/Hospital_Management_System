@@ -1,4 +1,4 @@
-@extends('user.layouts.index')
+@extends('website.layouts.index')
 @section('content')
     @inject('department_helper', 'App\Helpers\DepartmentHelper')
 
@@ -122,21 +122,14 @@
                             </div> --}}
 
                             <div id="schedulefetch" class="schedulefetch">
-                                {{-- @foreach ($schedules as $schedule)
-                                <div class="card">
-                                @foreach ($schedule->getTimeIntervals() as $interval)
-                                <div class="">
-                                </div>
-
-                                @endforeach
-                            @endforeach --}}
+                               
                         </div>
 
-                            <div class="col-lg-12 col-12">
+                            {{-- <div class="col-lg-12 col-12">
                                 <h5 class="mt-1">Personal Info</h5>
-                            </div>
+                            </div> --}}
 
-                            <div class="col-lg-6 col-12 mt-2">
+                            {{-- <div class="col-lg-6 col-12 mt-2">
                                 <input type="text" name="donation-name" id="donation-name" class="form-control"
                                     placeholder="Jack Doe" required>
                             </div>
@@ -170,7 +163,7 @@
                                 </div>
 
                                 <button type="submit" class="form-control mt-4">Submit Donation</button>
-                            </div>
+                            </div> --}}
 
                         </form>
                     </div>

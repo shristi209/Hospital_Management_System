@@ -50,7 +50,10 @@ $(document).ready(function () {
 
                         while (startTime.isBefore(endTime)) {
                             var intervalEnd = startTime.clone().add(30, 'minutes');
-                            cardHtml += '<h6 class="card-title"> <a href="user\appointment\form" class="badge badge-primary">' + startTime.format('hh:mm A') + ' - ' + intervalEnd.format('hh:mm A') + '</a></h6>';
+                            var baseUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
+                            var appointmentFormUrl = baseUrl + '/appointmentform';
+                            appointmentFormUrl += '/'+schedule.id;
+                            cardHtml += '<h6 class="card-title"><a href="' + appointmentFormUrl + '" class="badge badge-primary">' + startTime.format('hh:mm A') + ' - ' + intervalEnd.format('hh:mm A') + '</a></h6>';
                             startTime.add(30, 'minutes');
                         }
 

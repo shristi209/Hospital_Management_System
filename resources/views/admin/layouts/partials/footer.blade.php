@@ -24,7 +24,7 @@
  <script src={{asset("backend/js/experienceRepeater.js")}}></script>
 
  {{-- englishdate picker --}}
- <script src={{asset("backend/js/englishdatepicker.js")}}></script>
+ {{-- <script src={{asset("backend/js/englishdatepicker.js")}}></script> --}}
 
  <script src={{asset("backend/js/adressajax.js")}}></script>
 

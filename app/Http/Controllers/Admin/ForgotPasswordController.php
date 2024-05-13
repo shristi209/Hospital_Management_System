@@ -12,10 +12,8 @@ use Illuminate\Support\Facades\Hash;
 
 class ForgotPasswordController extends Controller
 {
-    public function __construct(User $user, DB $db, Mail $mail){
+    public function __construct(User $user){
         $this->user = $user;
-        $this->db=$db;
-        $this->mail=$mail;
     }
     public function forgotPassword()
     {
@@ -25,26 +23,26 @@ class ForgotPasswordController extends Controller
     {
         try
         {
-            $this->db->beginTransaction();
+            DB::beginTransaction();
 
             $request->validate([
                 'email'=> "required|email|exists:users",
             ]);
 
             $token = Str::random(length: 64);
-            $this->db->table('password_reset_tokens')->insert([
+            DB::table('password_reset_tokens')->insert([
                 'email'=>$request->email,
                 'token'=>$token,
             ]);
 
-            $this->mail->send("admin.auth.email", ['token' => $token], function($message) use($request){
+            Mail::send("admin.auth.email", ['token' => $token], function($message) use($request){
                 $message->to($request->email);
                 $message->subject('Reset Password');
             });
-            $this->db->commit();
+            DB::commit();
             return redirect()->route('forgotpassword')->with('message', 'Email Sent Successfully!!!');
         }catch(\Exception $e){
-            $this->db->rollback();
+            DB::rollback();
             dd($e->getMessage());
             return redirect()->back();
         }
@@ -62,7 +60,7 @@ class ForgotPasswordController extends Controller
             "password"=>"required|min:4|confirmed",
         ]);
 
-        $updatepassword=$this->db->table('password_reset_tokens')->where([
+        $updatepassword=DB::table('password_reset_tokens')->where([
             "email"=>$request->email,
             "token"=>$request->token,
             ])->first();
@@ -72,7 +70,7 @@ class ForgotPasswordController extends Controller
             }
             $this->user->where("email" , $request->email)->update(["password"=>Hash::make($request->password)]);
 
-        $this->db->table('password_reset_tokens')->where([
+        DB::table('password_reset_tokens')->where([
             'email'=>$request->email,
         ])->delete();
 
