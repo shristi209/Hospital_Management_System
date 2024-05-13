@@ -28,6 +28,7 @@
 
     <link href={{asset("backend/css/ckeditor.css") }}  rel="stylesheet" type="text/css">
     <link href={{asset("backend/css/doctorprofileshow.css") }}  rel="stylesheet" type="text/css">
+    <link href={{asset("backend/css/notification.css") }}  rel="stylesheet" type="text/css">
 
 
 </head>

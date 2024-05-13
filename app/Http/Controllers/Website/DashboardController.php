@@ -15,8 +15,5 @@ class DashboardController extends Controller
     {
         return view('website.appointment.appointment');
     }
-    public function departmentRequest(Request $request)
-    {
 
-    }
 }

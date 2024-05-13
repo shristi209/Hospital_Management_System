@@ -26,7 +26,6 @@ $(document).ready(function () {
 
     $('#doctorfetch').change(function () {
         var schedule_id = this.value;
-        console.log(schedule_id);
 
         if (schedule_id) {
             $.ajax({
@@ -37,10 +36,8 @@ $(document).ready(function () {
                     var cardBody = $('.schedulefetch');
                     cardBody.empty();
 
-                    // Construct the card HTML structure
                     var cardHtml = '<div class="card mb-3">';
 
-                    // Loop through each schedule and construct the card content
                     $.each(response, function (index, schedule) {
                         cardHtml += '<div class="card-head">' + schedule.schedule_date + '</div>';
                         cardHtml += '<div class="card-body">';
@@ -52,19 +49,27 @@ $(document).ready(function () {
                             var intervalEnd = startTime.clone().add(30, 'minutes');
                             var baseUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
                             var appointmentFormUrl = baseUrl + '/appointmentform';
-                            appointmentFormUrl += '/'+schedule.id;
-                            cardHtml += '<h6 class="card-title"><a href="' + appointmentFormUrl + '" class="badge badge-primary">' + startTime.format('hh:mm A') + ' - ' + intervalEnd.format('hh:mm A') + '</a></h6>';
+                            appointmentFormUrl += '/' + schedule.id;
+                            var intervalText = startTime.format('hh:mm A') + ' - ' + intervalEnd.format('hh:mm A');
+                            cardHtml += '<h6 class="card-title"><a href="' + appointmentFormUrl + '" class="badge badge-primary schedule-slot">' + intervalText + '</a></h6>';
                             startTime.add(30, 'minutes');
                         }
 
                         cardHtml += '</div>';
                     });
-
-                    // Close the card HTML structure
                     cardHtml += '</div>';
-
-                    // Append the constructed card HTML to the card body
                     cardBody.append(cardHtml);
+
+                    $(document).on('click', '.schedule-slot', function (event) {
+                        var selectedInterval = $(this).text();
+                        sessionStorage.setItem('selected_interval', selectedInterval);
+
+                        console.log("Selected Interval: ", selectedInterval);
+
+                        var url = $(this).attr('href');
+                        window.location.href = url;
+                        event.preventDefault();
+                    });
                 },
                 error: function () {
                     alert('Error Fetching Schedules !!!');
@@ -73,3 +78,12 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function() {
+    var selectedInterval = sessionStorage.getItem('selected_interval');
+    // console.log(selectedInterval);
+    if (selectedInterval) {
+        $('#selected_interval_patient_form').val(selectedInterval);
+    }
+});
+

@@ -10,5 +10,8 @@ class Appointment extends Model
     use SoftDeletes;
     protected $table='appointments';
     protected $fillable=['doctor_id','schedule_id', 'time_interval', 'patient_id', 'reason', 'status' ];
-
+    public function patient()
+    {
+        return $this->hasMany(Patient::class, 'patient_id', 'id');
+    }
 }

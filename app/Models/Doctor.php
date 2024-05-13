@@ -4,15 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Doctor extends Model
 {
+
+    use Notifiable;
     use SoftDeletes;
     protected $table='doctors';
     protected $fillable=['department_id','photo', 'first_name','middle_name', 'last_name', 'licence_no','country_id', 'province_id', 'district_id', 'municipality_id', 'street', 'gender', 'phone_num', 'dob_ad', 'dob_bs', 'deleted_at','temp_country_id', 'temp_province_id', 'temp_district_id', 'temp_municipality_id', 'temp_street' ];
 
     public function user(){
-        return $this->belongsTo(User::class, 'doctor_id', 'id');
+        return $this->hasOne(User::class, 'doctor_id', 'id');
     }
     public function education()
     {

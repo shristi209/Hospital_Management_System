@@ -21,13 +21,15 @@ use Illuminate\Support\Facades\Auth;
 class DoctorProfileController extends Controller
 {
 
-    public function __construct(Doctor $doctor, DoctorEducation $doctorEducation, DoctorExperience $doctorExperience, User $user, District $district, Municipality $municipality)
+    public function __construct(Doctor $doctor, DoctorEducation $doctorEducation, DoctorExperience $doctorExperience, User $user,Country $country, Province $province, District $district, Municipality $municipality)
     {
         $this->doctor = $doctor;
         $this->doctorEducation = $doctorEducation;
         $this->doctorExperience = $doctorExperience;
         $this->user=$user;
         $this->district=$district;
+        $this->province=$province;
+        $this->country=$country;
         $this->municipality=$municipality;
     }
 
@@ -36,10 +38,10 @@ class DoctorProfileController extends Controller
         $doctorId=$user->doctor_id;
         $doctor=$this->doctor->find($doctorId);
 
-        $doctor_temp_country = Country::where('id', $doctor->temp_country_id)->first();
-        $doctor_temp_province = Province::where('id', $doctor->temp_province_id)->first();
-        $doctor_temp_district = District::where('id', $doctor->temp_district_id)->first();
-        $doctor_temp_municipality = Municipality::where('id', $doctor->temp_municipality_id)->first();
+        $doctor_temp_country = $this->country->where('id', $doctor->temp_country_id)->first();
+        $doctor_temp_province = $this->province->where('id', $doctor->temp_province_id)->first();
+        $doctor_temp_district = $this->district->where('id', $doctor->temp_district_id)->first();
+        $doctor_temp_municipality = $this->municipality->where('id', $doctor->temp_municipality_id)->first();
 
         $educations = $this->doctorEducation->where('doctor_id', $doctorId)->get();
         $experiences =  $this->doctorExperience->where('doctor_id', $doctorId)->get();
@@ -123,16 +125,6 @@ class DoctorProfileController extends Controller
         $user = Auth::user();
         $doctorId=$user->doctor_id;
 
-        // $this->doctorExperience->where([
-        //     'doctor_id' => $doctorId,
-        //     'organization_name' => $request->organization_name
-        // ])->update([
-        //     'org_start_bs' => $request->org_start_bs,
-        //     'org_start_ad' => $request->org_start_ad,
-        //     'org_end_bs' => $request->org_end_bs,
-        //     'org_end_ad' => $request->org_end_ad,
-        //     'description' => $request->description,
-        // ]);
         foreach($request->organization_name as $key=>$value){
             $this->doctorExperience->updateOrCreate([
                 'doctor_id'=>  $doctorId,

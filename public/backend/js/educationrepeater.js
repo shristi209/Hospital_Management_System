@@ -23,7 +23,7 @@ function addEducationSection() {
 //clonning in process
     educationDiv.appendChild(removeBtn);
     document.getElementById("educationContainer").appendChild(educationDiv);
-    
+
     var educationTemplate = document.getElementById("educationAdd");
     var clonedElement = educationTemplate.cloneNode(true);
 
@@ -61,6 +61,9 @@ function addEducationSection() {
     });
 
 //remove button
+
+
+
     var educationContainer=document.getElementById("educationContainer")
     removeBtn.onclick = function(){
         educationCounter--;
@@ -68,4 +71,8 @@ function addEducationSection() {
         educationContainer.removeChild(educationDiv);
         educationContainer.removeChild(clonedElement);
     }
+
 }
+// $('#'+edu-remove-btn).onclick = function(){
+//     educationTemplate.remove();
+// }

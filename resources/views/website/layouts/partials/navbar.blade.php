@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light shadow-lg">
     <div class="container">
         <a class="navbar-brand" href="index.html">
-            <img src="frontend/images/logo.png" class="logo img-fluid" alt="Kind Heart Charity">
+            <img src="frontend/images/logo.png" class="logo img-fluid" alt="">
             <span>
                 CareSync
                 <small>Non-profit Organization</small>

@@ -23,7 +23,6 @@ use App\Http\Controllers\Website\DashboardController;
 use App\Http\Controllers\Website\AppointmentController;
 use App\Http\Controllers\Website\FormAppointmentController;
 
-Route::get('/caresync', [DashboardController::class, 'index']);
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin-login');
@@ -78,6 +77,9 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
+Route::get('/caresync', [DashboardController::class, 'index']);
+
 
 Route::get('/appointment', [DashboardController::class, 'appointment'])->name('appointment');
 

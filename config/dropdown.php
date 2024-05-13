@@ -13,5 +13,10 @@ return[
         'Bachelors Level' => 'Bachelors',
         'Masters Level' => 'Masters',
         'PhD' => 'PhD'
+    ],
+    'status'=>[
+        'pending'=>'pending',
+        'approved'=>'approved',
+        'cancel'=>'cancel',
     ]
 ];

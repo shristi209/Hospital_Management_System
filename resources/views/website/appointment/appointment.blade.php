@@ -29,7 +29,7 @@
                                         <h5 class="mb-3">Our Doctors</h5>
                                     </div>
                                     {!! Form::open() !!}
-                                    {!! Form::select('', [], null, [
+                                    {!! Form::select('doctor_id', [], null, [
                                         'id' => 'doctorfetch',
                                         'class' => 'form-control form-select',
                                         'placeholder' => 'Select Doctor Name',
@@ -122,8 +122,9 @@
                             </div> --}}
 
                             <div id="schedulefetch" class="schedulefetch">
-                               
+
                         </div>
+                        <input type="hidden" id="selected_interval" name="time_interval" value="">
 
                             {{-- <div class="col-lg-12 col-12">
                                 <h5 class="mt-1">Personal Info</h5>

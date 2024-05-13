@@ -48,8 +48,11 @@
                         </div>
                         <div class="col-4">
                             {!! Form::label('date_of_birth', 'Date of Birth (BS)') !!}<span class="text-danger">*</span>
-                            <input type="date" id="date_of_birth" name="dob_bs" placeholder="Select your date of birth"
-                                class="form-control" />
+                            {!! Form::date('date_of_birth', null, [
+                                'id' => 'date_of_birth',
+                                'class' => 'form-control',
+                                'placeholder' => 'Select your date of birth',
+                            ]) !!}
                             <span class="text-danger">
                                 @error('dob_bs')
                                     {{ $message }}
@@ -150,6 +153,23 @@
                                 @enderror
                             </span>
                         </div>
+                        <div class="col-4">
+                            {!! Form::label('time_interval', 'Time interval') !!}<span class="text-danger">*</span>
+                            {!! Form::text('time_interval', null, [
+                                'id' => 'selected_interval_patient_form',
+                                'class' => 'form-control',
+                                'placeholder' => 'Enter your time_interval',
+                                'readonly' => 'readonly',
+                            ]) !!}
+                            <span id="time_interval_error" class="text-danger"></span>
+                            <span class="text-danger">
+                                @error('time_interval')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </div>
+
+                        <input type="hidden" id="selected_interval_patient_form" name="schedule_id" value="{{ $schedule->id }}">
 
                         <div class="col-4">
                             {!! Form::label('medical_history', 'Medical History (PDF)') !!}<span class="text-danger">*</span>
@@ -184,5 +204,4 @@
         </div>
     </div>
 </div>
-
 @endsection

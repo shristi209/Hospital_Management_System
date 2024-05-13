@@ -23,8 +23,5 @@ class AppointmentController extends Controller
         $allIntervals = [];
         return response()->json($schedules);
     }
-    public function formShow(){
-        // return view('website.appointment.form');
-    }
 
 }

@@ -15,19 +15,28 @@
                                 <th scope="col">Date</th>
                                 <th scope="col">Start Time</th>
                                 <th scope="col">End Time</th>
+                                <th scope="col">Status</th>
                                 <th scope="col" class="col-2">Action</th>
                             </tr>
                         </thead>
                          <tbody>
-
+@php
+    $count=1;
+@endphp
                             @foreach ($schedules as $schedule)
+
                             @foreach ($schedule->getTimeIntervals() as $interval)
                             <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $count++ }}</td>
                                     <td>{{ $interval['schedule_date'] }}</td>
                                         <td>{{ $interval['start_time'] }}</td>
                                         <td>{{ $interval['end_time'] }}</td>
-                                        @endforeach
+                                        <td>{!! Form::select('gender', config('dropdown.status'), null, [
+                                            'id' => 'gender',
+                                            'class' => 'form-control form-select',
+                                            'placeholder' => 'Select Gender',
+                                        ]) !!}</td>
+                            @endforeach
 
                                     <td class="d-flex">
                                         <a href="{{ route('schedule.show', $schedule->id) }}"
@@ -46,6 +55,7 @@
                                         </form>
                                     </td>
                                 </tr>
+
                             @endforeach
                         </tbody>
                     </table>

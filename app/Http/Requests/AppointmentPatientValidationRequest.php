@@ -22,6 +22,8 @@ class AppointmentPatientValidationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'schedule_id'=>['required'],
+            'time_interval' =>['required'],
             'full_name' => ['required','string'],
             'gender' => ['required', 'string'],
             'date_of_birth' => ['required','date'],
@@ -31,8 +33,9 @@ class AppointmentPatientValidationRequest extends FormRequest
             'email' => ['required', 'email'],
             'parents_name' => ['required','string'],
             'appointment_message' => ['required','string'],
-            'medical_history' => ['required', 'file'],
-            // 'reason'=>['required', 'string'],
+            'medical_history' => ['required'],
+
+            'reason'=>['required', 'string'],
         ];
     }
 }

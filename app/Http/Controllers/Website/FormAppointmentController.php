@@ -4,65 +4,96 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use app\Http\Requests\AppointmentPatientValidationRequest;
+use App\Http\Requests\AppointmentPatientValidationRequest;
+use  App\Models\Patient;
+use  App\Models\Schedule;
+use  App\Models\Appointment;
+use  App\Models\Doctor;
+
+use App\Notifications\AppointmentBookedNotification;
+use App\Mail\AppointmentBookedMail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Message;
 
 class FormAppointmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index($id)
+    public function __construct(Patient $patient, Doctor $doctor, Schedule $schedule, Appointment $appointment){
+        $this->patient=$patient;
+        $this->schedule=$schedule;
+        $this->appointment=$appointment;
+        $this->doctor=$doctor;
+    }
+    public function index()
     {
-        dd('hello');
+        // dd('hello');
 
-        return view('website.appointment.form');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function show( $schedule_id)
+    {
+        $schedule = $this->schedule->findOrFail($schedule_id);
+        return view('website.appointment.form', compact('schedule'));
+    }
+
     public function store(AppointmentPatientValidationRequest $request)
     {
-        $data=$request->validated();
-        dd($data);
+
+        try {
+            DB::beginTransaction();
+            $data=$request->validated();
+            if ($request->hasFile('medical_history')) {
+                $file = $request->file('medical_history');
+
+                $fileName = time().'.'.$file->getClientOriginalExtension();
+                $filePath = 'frontend/medical-history/';
+                $file->move(public_path($filePath), $fileName);
+                $data['medical_history'] = $filePath . $fileName;
+            }
+            $patient=$this->patient->create($data);
+
+            $schedule =  $this->schedule->findOrFail($request->schedule_id);
+            $doctor_id =$schedule->doctor->id;
+
+
+            $data['doctor_id']=$doctor_id;
+            $data['patient_id']=$patient->id;
+            $data['status'] = 'pending';
+
+            $this->appointment->create($data);
+
+            $doctor = $this->doctor->find($doctor_id);
+
+            $doctor = $this->doctor->find($doctor_id);
+            $doctorEmail = $doctor->user->email;
+
+            $doctor->notify(new AppointmentBookedNotification($message));
+            Mail::to($doctorEmail)->send(new AppointmentBookedMail());
+
+            DB::commit();
+            return redirect('/caresync')->with('message', 'Successfully Booked!!!');
+
+        }catch (Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
+        }
+
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show( $id)
-    {
-        dd('show');
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        dd('hello');
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request,  $id)
+    public function appointment(Request $request,  $id)
     {
-        //
+        dd($request);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy( $id)
     {
         //
