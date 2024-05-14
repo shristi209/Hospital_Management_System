@@ -1,6 +1,7 @@
 <?php
 namespace App\Mail;
 
+use App\Models\Patient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,9 +14,9 @@ class AppointmentBookedMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(Patient $patient)
     {
-        //
+        $this->patient=$patient;
     }
 
     /**
@@ -26,6 +27,7 @@ class AppointmentBookedMail extends Mailable
     public function build()
     {
         return $this->subject('Appointment Booked Mail')
-                    ->view('emails.doctoremail');
+                    ->view('emails.doctoremail')
+                    ->with('patient', $this->patient);
     }
 }

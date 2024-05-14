@@ -32,10 +32,10 @@ class AppointmentPatientValidationRequest extends FormRequest
             'phone' => ['required'],
             'email' => ['required', 'email'],
             'parents_name' => ['required','string'],
-            'appointment_message' => ['required','string'],
-            'medical_history' => ['required'],
+            'appointment_message' => ['nullable','string'],
+            'medical_history' => ['nullable'],
 
-            'reason'=>['required', 'string'],
+            'reason'=>['nullable', 'string'],
         ];
     }
 }

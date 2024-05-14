@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Requests\ScheduleValidationRequest;
 use App\Models\Schedule;
+use App\Models\Doctor;
+use App\Models\Appointment;
 use Illuminate\Support\Facades\Auth;
 
 class DoctorScheduleController extends Controller
@@ -19,8 +21,10 @@ class DoctorScheduleController extends Controller
     {
         $userId = Auth::id();
         $doctorId=Auth::user()->doctor_id;
+        $doctor=Doctor::find($doctorId);
         $schedules = $this->schedule->where('doctor_id', $doctorId)->get();
-        return view('doctor.schedules.index', compact('schedules'));
+        $appointments=Appointment::where('doctor_id', $doctorId)->get();
+        return view('doctor.schedules.index', compact('schedules', 'appointments'));
     }
 
     public function create()

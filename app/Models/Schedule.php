@@ -17,6 +17,10 @@ class Schedule extends Model
     {
         return $this->belongsTo(Doctor::class, 'doctor_id','id');
     }
+    public function appointment()
+    {
+        return $this->hasMany(Appointment::class, 'schedule_id','id');
+    }
     public function getTimeIntervals()
     {
         $startTime = Carbon::parse($this->start_time);

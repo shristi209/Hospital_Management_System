@@ -4,7 +4,7 @@
     <div class="form">
         <div class="form-container">
             <div class="text-center mb-4">
-                <i class="fas fa-hospital" style="color:#007bff"> MediCare</i>
+                <i class="fas fa-hospital" style="color:#007bff"> CareSync</i>
                 <br><br><p>Please enter your email to reset your password!</p>
             </div>
 

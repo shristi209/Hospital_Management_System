@@ -37,7 +37,7 @@
                                     <td class="d-flex actionbtn">
                                         <a data-toggle="tooltip" data-placement="top" title="View"
                                             href="{{ route('department.show', $department->id) }}"
-                                            class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                            class="btn btn-sm btn-success"><i class="fa-solid fa-eye"></i></a>
                                         <a data-toggle="tooltip" data-placement="top"
                                             href="{{ route('department.edit', $department->id) }}"
                                             class="btn btn-sm btn-primary" title="Edit"><i

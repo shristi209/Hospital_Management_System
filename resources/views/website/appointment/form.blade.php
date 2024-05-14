@@ -4,7 +4,7 @@
 <div class="card m-5">
     <div class="row">
         <div class="col-lg-12">
-            {!! Form::open(['route' => 'appointmentform.store', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => 'appointmentform.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             @csrf
                 <div class="card-header">
                     <h5 class="card-title">Appointment Form</h5>
@@ -124,7 +124,7 @@
                             </span>
                         </div>
                         <div class="col-4">
-                            {!! Form::label('appointment_message', 'Appointment Message') !!}<span class="text-danger">*</span>
+                            {!! Form::label('appointment_message', 'Appointment Message') !!}
                             {!! Form::text('appointment_message', null, [
                                 'id' => 'appointment_message',
                                 'class' => 'form-control',
@@ -140,7 +140,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-4">
-                            {!! Form::label('reason', 'Reason') !!}<span class="text-danger">*</span>
+                            {!! Form::label('reason', 'Reason') !!}
                             {!! Form::text('reason', null, [
                                 'id' => 'reason',
                                 'class' => 'form-control',
@@ -154,7 +154,7 @@
                             </span>
                         </div>
                         <div class="col-4">
-                            {!! Form::label('time_interval', 'Time interval') !!}<span class="text-danger">*</span>
+                            {!! Form::label('time_interval', 'Time interval') !!}
                             {!! Form::text('time_interval', null, [
                                 'id' => 'selected_interval_patient_form',
                                 'class' => 'form-control',
@@ -172,7 +172,7 @@
                         <input type="hidden" id="selected_interval_patient_form" name="schedule_id" value="{{ $schedule->id }}">
 
                         <div class="col-4">
-                            {!! Form::label('medical_history', 'Medical History (PDF)') !!}<span class="text-danger">*</span>
+                            {!! Form::label('medical_history', 'Medical History (PDF)') !!}
                             {!! Form::file('medical_history', [
                                 'id' => 'medical_history',
                                 'class' => 'form-control-file',

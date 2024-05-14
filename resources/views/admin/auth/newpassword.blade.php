@@ -11,7 +11,7 @@
     <div class="form">
         <div class="form-container">
             <div class="text-center mb-4">
-                <i class="fas fa-hospital" style="color:#007bff"> MediCare</i>
+                <i class="fas fa-hospital" style="color:#007bff"> CareSync</i>
             </div>
             <div class="text-center mb-4">
                 <h5> Reset Your Password</h5>

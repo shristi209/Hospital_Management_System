@@ -15,7 +15,6 @@
                                 <th scope="col">Date</th>
                                 <th scope="col">Start Time</th>
                                 <th scope="col">End Time</th>
-                                <th scope="col">Status</th>
                                 <th scope="col" class="col-2">Action</th>
                             </tr>
                         </thead>
@@ -31,11 +30,7 @@
                                     <td>{{ $interval['schedule_date'] }}</td>
                                         <td>{{ $interval['start_time'] }}</td>
                                         <td>{{ $interval['end_time'] }}</td>
-                                        <td>{!! Form::select('gender', config('dropdown.status'), null, [
-                                            'id' => 'gender',
-                                            'class' => 'form-control form-select',
-                                            'placeholder' => 'Select Gender',
-                                        ]) !!}</td>
+
                             @endforeach
 
                                     <td class="d-flex">

@@ -27,7 +27,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role->name }}</td>
                                     <td class="d-flex">
-                                        <a href="{{ route('user.show', $user->id) }}" class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top" title="View"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="{{ route('user.show', $user->id) }}" class="btn btn-sm btn-success mr-1" data-toggle="tooltip" data-placement="top" title="View"><i class="fa-solid fa-eye"></i></a>
                                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                                             @csrf

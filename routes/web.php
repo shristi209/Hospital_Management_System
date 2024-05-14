@@ -22,6 +22,9 @@ use App\Http\Middleware\CheckRoleAdmin;
 use App\Http\Controllers\Website\DashboardController;
 use App\Http\Controllers\Website\AppointmentController;
 use App\Http\Controllers\Website\FormAppointmentController;
+use App\Http\Controllers\Doctor\NotificationController;
+use App\Http\Controllers\Doctor\StatusController;
+use App\Http\Controllers\Doctor\DoctorAppointmentController;
 
 
 Route::middleware('guest')->group(function () {
@@ -66,6 +69,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/updateeducation/{doctorId}', [DoctorProfileController::class, 'updateEducation'])->name('updateeducation');
     Route::put('/updatexperience/{doctorId}', [DoctorProfileController::class, 'updateExperience'])->name('updatexperience');
     Route::resource('/doctorschedule', DoctorScheduleController::class);
+    Route::resource('/doctorappointment', DoctorAppointmentController::class);
+    Route::patch('/doctorappointment/statusupdate/{id}', [DoctorAppointmentController::class,'statusUpdate'])->name('statusupdate');
+
+    Route::patch('/notifications/markallasread', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+
     });
 
     Route::get('/fetchdistrict/{provinceId}', [AddressController::class, 'fetchDistrict'])->name('fetchdistrict');
@@ -82,6 +90,7 @@ Route::get('/caresync', [DashboardController::class, 'index']);
 
 
 Route::get('/appointment', [DashboardController::class, 'appointment'])->name('appointment');
+// Route::get('/notification', [NotificationController::class, 'index'])->name('notification');
 
 Route::get('/fetchdoctor/{dept_id}', [AppointmentController::class, 'fetchDoctor'])->name('fetchdoctor');
 Route::get('/fetchschedule/{schedule_id}', [AppointmentController::class, 'fetchSchedule'])->name('fetchschedule');

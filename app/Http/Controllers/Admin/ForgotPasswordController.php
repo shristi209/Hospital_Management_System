@@ -40,6 +40,7 @@ class ForgotPasswordController extends Controller
                 $message->subject('Reset Password');
             });
             DB::commit();
+            
             return redirect()->route('forgotpassword')->with('message', 'Email Sent Successfully!!!');
         }catch(\Exception $e){
             DB::rollback();

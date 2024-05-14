@@ -58,6 +58,10 @@
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>Schedule</span>
             </a>
+            <a class="nav-link" href="{{ route('doctorappointment.index') }}" onclick="handleLinkClick(event)">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Appointment</span>
+            </a>
     @endif
     {{-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">

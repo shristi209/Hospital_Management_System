@@ -10,13 +10,12 @@ use Illuminate\Notifications\Notification;
 class AppointmentBookedNotification extends Notification
 {
     use Queueable;
-    protected $message;
     /**
      * Create a new notification instance.
      */
-    public function __construct(Message $message)
+    public function __construct()
     {
-        $this->message = $message;
+
     }
 
     /**

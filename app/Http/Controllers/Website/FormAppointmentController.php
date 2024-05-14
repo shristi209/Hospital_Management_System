@@ -14,10 +14,10 @@ use App\Notifications\AppointmentBookedNotification;
 use App\Mail\AppointmentBookedMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use App\Models\Message;
 
 class FormAppointmentController extends Controller
 {
+    protected $patient, $doctor, $schedule, $appointment;
     public function __construct(Patient $patient, Doctor $doctor, Schedule $schedule, Appointment $appointment){
         $this->patient=$patient;
         $this->schedule=$schedule;
@@ -26,7 +26,6 @@ class FormAppointmentController extends Controller
     }
     public function index()
     {
-        // dd('hello');
 
     }
 
@@ -46,11 +45,14 @@ class FormAppointmentController extends Controller
 
         try {
             DB::beginTransaction();
+
             $data=$request->validated();
-            if ($request->hasFile('medical_history')) {
+            if ($request->medical_history) {
+
                 $file = $request->file('medical_history');
 
                 $fileName = time().'.'.$file->getClientOriginalExtension();
+
                 $filePath = 'frontend/medical-history/';
                 $file->move(public_path($filePath), $fileName);
                 $data['medical_history'] = $filePath . $fileName;
@@ -72,8 +74,9 @@ class FormAppointmentController extends Controller
             $doctor = $this->doctor->find($doctor_id);
             $doctorEmail = $doctor->user->email;
 
-            $doctor->notify(new AppointmentBookedNotification($message));
-            Mail::to($doctorEmail)->send(new AppointmentBookedMail());
+            $doctor->notify(new AppointmentBookedNotification());
+
+            Mail::to($doctorEmail)->send(new AppointmentBookedMail($patient));
 
             DB::commit();
             return redirect('/caresync')->with('message', 'Successfully Booked!!!');
