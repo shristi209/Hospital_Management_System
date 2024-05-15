@@ -37,11 +37,11 @@ $(document).ready(function () {
                     var cardBody = $('.schedulefetch');
                     cardBody.empty();
                 
-                    var cardHtml = '<div class="card mb-3">';
+                    var cardHtml = '<div class="row card my-3 ">';
                 
                     $.each(response.schedule, function (index, schedule) {
-                        cardHtml += '<div class="card-head">' + schedule.schedule_date + '</div>';
-                        cardHtml += '<div class="card-body">';
+                        cardHtml += '<div class="card-head h5  mt-3 d-flex justify-content-center">' + schedule.schedule_date + '</div>';
+                        cardHtml += '<div class="card-body d-flex flex-wrap">';
                     
                         var startTime = moment(schedule.start_time, 'HH:mm:ss');
                         var endTime = moment(schedule.end_time, 'HH:mm:ss');
@@ -61,7 +61,7 @@ $(document).ready(function () {
                                 var baseUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
                                 var appointmentFormUrl = baseUrl + '/appointmentform';
                                 appointmentFormUrl += '/' + schedule.id;
-                                cardHtml += '<h6 class="card-title"><a href="' + appointmentFormUrl + '" class="badge badge-primary schedule-slot">' + intervalText + '</a></h6>';
+                                cardHtml += '<h6 class="col-4 card-title"><a href="' + appointmentFormUrl + '" class="badge badge-primary schedule-slot">' + intervalText + '</a></h6>';
                             }
                         }
                     
