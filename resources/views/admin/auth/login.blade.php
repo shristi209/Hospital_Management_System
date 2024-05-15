@@ -23,6 +23,11 @@
         <input type="password" id="form2Example2" name="password" class="form-control" />
         @error('password')<span class="text-danger">{{ $message }}</span>@enderror
       </div>
+      <div class="form-group mb-3">
+        {!! NoCaptcha::renderJs() !!}
+        {!! NoCaptcha::display() !!}
+      </div>
+
       <span class="btn d-flex justify-content-between align-items-center">
         <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary mb-4">Login</button>
         <a href="{{route('forgotpassword')}}" data-mdb-button-init data-mdb-ripple-init >Forgot Password</a></div>

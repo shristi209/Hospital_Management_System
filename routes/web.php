@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\ScheduleController;
 
 use App\Http\Controllers\Doctor\DoctorProfileController;
 use App\Http\Controllers\Doctor\DoctorScheduleController;
+use App\Http\Controllers\Doctor\NotificationController;
+use App\Http\Controllers\Doctor\StatusController;
+use App\Http\Controllers\Doctor\DoctorAppointmentController;
 
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\CheckRoleAdmin;
@@ -22,11 +25,11 @@ use App\Http\Middleware\CheckRoleAdmin;
 use App\Http\Controllers\Website\DashboardController;
 use App\Http\Controllers\Website\AppointmentController;
 use App\Http\Controllers\Website\FormAppointmentController;
-use App\Http\Controllers\Doctor\NotificationController;
-use App\Http\Controllers\Doctor\StatusController;
-use App\Http\Controllers\Doctor\DoctorAppointmentController;
 
 
+Route::get('/', function(){
+    return view('welcome');
+});
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin-login');
     Route::post('/login', [AuthController::class,'loginUser'])->name('login-user');
@@ -90,11 +93,10 @@ Route::get('/caresync', [DashboardController::class, 'index']);
 
 
 Route::get('/appointment', [DashboardController::class, 'appointment'])->name('appointment');
-// Route::get('/notification', [NotificationController::class, 'index'])->name('notification');
 
 Route::get('/fetchdoctor/{dept_id}', [AppointmentController::class, 'fetchDoctor'])->name('fetchdoctor');
 Route::get('/fetchschedule/{schedule_id}', [AppointmentController::class, 'fetchSchedule'])->name('fetchschedule');
-// Route::get('/appointmentform', [AppointmentController::class, 'formShow'])->name('appointmentform');
+
 Route::resource('/appointmentform', FormAppointmentController::class);
 
 Route::get('/forgotpassword', [ForgotPasswordController::class, 'forgotPassword'])->name('forgotpassword');
