@@ -12,18 +12,20 @@ use Illuminate\Support\Facades\Auth;
 
 class DoctorScheduleController extends Controller
 {
-    public function __construct(Schedule $schedule)
+    public function __construct(Schedule $schedule, Appointment $appointment, Doctor $doctor)
     {
         $this->schedule=$schedule;
+        $this->appointment=$appointment;
+        $this->doctor=$doctor;
     }
 
     public function index()
     {
         $userId = Auth::id();
         $doctorId=Auth::user()->doctor_id;
-        $doctor=Doctor::find($doctorId);
-        $schedules = $this->schedule->where('doctor_id', $doctorId)->get();
-        $appointments=Appointment::where('doctor_id', $doctorId)->get();
+        $doctor=$this->doctor->find($doctorId);
+        $schedules = $this->schedule->where('doctor_id', $doctorId)->orderBy('created_at', 'desc')->get();
+        $appointments=$this->appointment->where('doctor_id', $doctorId)->get();
         return view('doctor.schedules.index', compact('schedules', 'appointments'));
     }
 
