@@ -45,14 +45,15 @@ class HomeController extends Controller
             $appointments = $doctor->appointment;
             $patients = $appointments->pluck('patient')->unique();
             $patient = $patients->count();
-            $appointment = $doctor->appointment->count();
+            $approvedappointment = $doctor->appointment->where('status', 'approved')->count();
+            $canceledappointment = $doctor->appointment->where('status', 'approved')->count();
             $schedule = $doctor->schedule->count();
 
             $educations = $this->doctorEducation->where('doctor_id', $doctorId)->get();
             $experiences =  $this->doctorExperience->where('doctor_id', $doctorId)->get();
         }
 
-    return view('admin.dashboard', compact('totalDepartments', 'totalDoctors', 'totalAppointments', 'totalUsers', 'patient', 'appointment', 'schedule', 'educations', 'experiences'));
+    return view('admin.dashboard', compact('totalDepartments', 'totalDoctors', 'totalAppointments', 'totalUsers', 'patient', 'approvedappointment', 'canceledappointment',  'schedule', 'educations', 'experiences'));
     }
 
     

@@ -13,30 +13,29 @@
                             <tr>
                                 <th scope="col">S.N</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">Start Time</th>
-                                <th scope="col">End Time</th>
+                                <th scope="col" class="col-4">Intervals</th>
                                 <th scope="col" class="col-2">Action</th>
                             </tr>
                         </thead>
                          <tbody>
-@php
-    $count=1;
-@endphp
-                            @foreach ($schedules as $schedule)
+                        @php
+                            $count=1;
+                        @endphp
+                        @foreach ($schedules as $schedule)
 
-                            @foreach ($schedule->getTimeIntervals() as $interval)
+                           
                             <tr>
                                     <td>{{ $count++ }}</td>
-                                    <td>{{ $interval['schedule_date'] }}</td>
-                                        <td>{{ $interval['start_time'] }}</td>
-                                        <td>{{ $interval['end_time'] }}</td>
+                                    <td>{{ $schedule->schedule_date }}</td>
+                                        <td>
+                                        @foreach ($schedule->getTimeIntervals() as $interval)
+                                            {{ $interval['start_time'] }} - {{ $interval['end_time'] }}
+                                            <br>
+                                        @endforeach
+                                        </td>
 
-                            @endforeach
 
                                     <td class="d-flex">
-                                        <a href="{{ route('schedule.show', $schedule->id) }}"
-                                            class="btn btn-sm btn-success mr-1" data-toggle="tooltip" data-placement="top"
-                                            title="View"><i class="fa-solid fa-eye"></i></a>
                                         <a href="{{ route('doctorschedule.edit', $schedule->id) }}"
                                             class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top"
                                             title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>

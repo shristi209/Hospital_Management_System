@@ -32,7 +32,7 @@ class DoctorController extends Controller
 
     public function index()
     {
-        $doctors = $this->doctor->orderBy('created_at', 'desc')->get();
+        $doctors = $this->doctor->orderBy('created_at', 'desc')->simplePaginate(10);
         return view('admin.doctors.index', compact('doctors'));
     }
 
@@ -72,6 +72,7 @@ class DoctorController extends Controller
                     $this->doctorEducation->create([
                         'doctor_id' => $doctor->id,
                         'institute_name' => $request->institute_name[$key],
+                        'education_level'=>$request->education_level[$key],
                         'specialization' => $request->specialization[$key],
                         'graduation_year_start_bs' => $request->graduation_year_start_bs[$key],
                         'graduation_year_start_ad' => $request->graduation_year_start_ad[$key],
@@ -90,7 +91,6 @@ class DoctorController extends Controller
                         'org_end_ad' => $request->org_end_ad[$key],
                         'description' => $request->description[$key],
                     ]);
-
                 }
             }
             DB::commit();

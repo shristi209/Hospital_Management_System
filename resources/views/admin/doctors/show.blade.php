@@ -39,14 +39,14 @@
                 <div class="mb-5 wow fadeIn">
                     <div class="mb-5 wow fadeIn">
                         <div class="text-start mb-1-6 wow fadeIn">
-                            <h2 class="h4 mb-0 text-primary">#About</h2>
+                            <h2 class="h4 mb-0 text-primary">About</h2>
                         </div>
                         <p>Hello! I'm Dr. {{$doctor->first_name}} {{$doctor->middle_name}} {{$doctor->last_name}} , a dedicated and experienced medical professional
                             committed to providing high-quality healthcare services. With a solid educational background
                             and extensive practical experience, I strive to deliver the best possible care to my
-                            patients.</p>
+                            patients.</p><br>
                         <div class="text-start d-flex justify-content-between mb-1-6 wow fadeIn">
-                            <h2 class="h4 text-primary">#Education</h2>
+                            <h2 class="h4 text-primary">Education</h2>
                            
                         </div>
                         <ul>
@@ -55,11 +55,11 @@
                                     <strong>{{ $education->education_level }} in
                                         {{ $education->specialization }}</strong> - {{ $education->institute_name }},
                                     Graduated {{ $education->graduation_year_start_bs }}
-                                </li>
+                                </li><br>
                             @endforeach
                         </ul>
                         <div class="text-start d-flex justify-content-between mb-1-6 wow fadeIn">
-                            <h3 class="h4 mb-0 text-primary">#Professional Experience</h3>
+                            <h3 class="h4 mb-0 text-primary">Professional Experience</h3>
                            
                         </div>
                         <ul>

@@ -116,6 +116,8 @@
                                     </span>
                                 </div>
                             </div>
+                            <br>
+                            <hr>
                         @endforeach
                     </div>
                 </div>

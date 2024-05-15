@@ -85,7 +85,7 @@ class DoctorProfileController extends Controller
     {
         $user = Auth::user();
         $doctorId=$user->doctor_id;
-
+        // dd($this->doctorEducation->where('doctor_id',$doctorId)->get());
         $doctor=$this->doctor->with('education')->find($doctorId);
         $educations=$doctor->education;
         return view('doctor.profile.editeducation', compact('doctorId','educations'));
@@ -93,16 +93,20 @@ class DoctorProfileController extends Controller
 
     public function updateEducation(DoctorEducationRequest $request, $id)
     {
-        // dd($request);
+        dd($request);
         $data=$request->validated();
         $user = Auth::user();
         $doctorId=$user->doctor_id;
-
+  // dd($this->doctorEducation->where('doctor_id',$doctorId)->get());
         foreach($request->institute_name as $key=>$value){
             $this->doctorEducation->updateOrCreate([
                 'doctor_id'=>  $doctorId,
-                'institute_name'=> $request->institute_name[$key]],
-                ['specialization'=> $request->specialization[$key],
+                
+            ],
+            [
+                'education_level'=>$request->education_level[$key],
+                'institute_name'=> $request->institute_name[$key],
+                'specialization'=> $request->specialization[$key],
                 'graduation_year_start_bs'=> $request->graduation_year_start_bs[$key],
                 'graduation_year_start_ad'=> $request->graduation_year_start_ad[$key],
             ]);

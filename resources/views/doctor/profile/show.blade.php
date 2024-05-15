@@ -38,14 +38,14 @@
                 <div class="mb-5 wow fadeIn">
                     <div class="mb-5 wow fadeIn">
                         <div class="text-start mb-1-6 wow fadeIn">
-                            <h2 class="h4 mb-0 text-primary">#About</h2>
+                            <h2 class="h4 mb-0 text-primary">About</h2>
                         </div>
-                        <p>Hello! I'm Dr. {{ $user->username }}, a dedicated and experienced medical professional
+                        <p>I'm Dr. {{ $user->username }}, a dedicated and experienced medical professional
                             committed to providing high-quality healthcare services. With a solid educational background
                             and extensive practical experience, I strive to deliver the best possible care to my
-                            patients.</p>
+                            patients.</p><br>
                         <div class="text-start d-flex justify-content-between mb-1-6 wow fadeIn">
-                            <h2 class="h4 text-primary">#Education</h2>
+                            <h2 class="h4 text-primary">Education</h2>
                             <a href="{{ route('editeducation') }}" class="rounded-3"data-toggle="tooltip"
                                 data-placement="top" title="Edit Education"><i class="fa-regular fa-pen-to-square"></i></a>
                         </div>
@@ -55,11 +55,11 @@
                                     <strong>{{ $education->education_level }} in
                                         {{ $education->specialization }}</strong> - {{ $education->institute_name }},
                                     Graduated {{ $education->graduation_year_start_bs }}
-                                </li>
+                                </li>  <br>
                             @endforeach
                         </ul>
                         <div class="text-start d-flex justify-content-between mb-1-6 wow fadeIn">
-                            <h3 class="h4 mb-0 text-primary">#Professional Experience</h3>
+                            <h3 class="h4 mb-0 text-primary">Professional Experience</h3>
                             <a href="{{ route('editexperience') }}" class="rounded-3"data-toggle="tooltip"
                                 data-placement="top" title="Edit Experience"><i class="fa-regular fa-pen-to-square"></i></a>
                         </div>
@@ -71,20 +71,10 @@
                                     <br>
                                     {!! $experience->description !!}
                                 </li>
+                              
                             @endforeach
                         </ul>
 
-                        <p>Throughout my career, I have been dedicated to continuous learning and improvement, staying
-                            updated with the latest advancements in medical science and technology. My passion for
-                            patient care, combined with my expertise, enables me to make a positive impact on the lives
-                            of those I serve.</p>
-
-                        <p>Outside of work, I enjoy spending time with my family, engaging in outdoor activities, and
-                            volunteering for community health initiatives. I believe in a holistic approach to
-                            healthcare, focusing on both physical and emotional well-being.</p>
-
-                        <p>Thank you for visiting my profile. I look forward to the opportunity to contribute to your
-                            health and well-being.</p>
                     </div>
 
 

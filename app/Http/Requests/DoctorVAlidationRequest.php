@@ -49,6 +49,7 @@ class DoctorValidationRequest extends FormRequest
 
             'institute_name.*' => ['required'],
             'specialization.*' => ['required'],
+            'education_level.*'=>['required'],
             'graduation_year_start_bs.*' => ['required', 'date'],
             'graduation_year_start_ad.*' => ['required', 'date'],
             'education_level.*'=>['required'],

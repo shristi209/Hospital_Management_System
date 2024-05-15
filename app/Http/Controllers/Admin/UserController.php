@@ -18,7 +18,7 @@ class UserController extends Controller
     }
     public function index()
     {
-        $users=$this->user->orderBy('created_at', 'desc')->get();
+        $users=$this->user->orderBy('created_at', 'desc')->simplePaginate(10);
         return view('admin.users.index', compact('users'));
     }
 

@@ -10,14 +10,14 @@
         <div class="row">
             <div class="col-lg-12">
                 {!! Form::open([
-                    'route' => ['updatexperience', $doctorId],
+                    'route' => ['updateeducation', $doctorId],
                     'method' => 'POST',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
                 @csrf
                 @method('PUT')
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title">Education</h5>
+                    <h5 class="card-title">Education Details</h5>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -30,10 +30,11 @@
                     </div>
                 @endif
                     @foreach ($educations as $education)
+                   
                         <div class="form-row mb-3">
                             <div class="col">
                                 {!! Form::label('education_level', 'Level') !!}<span class="text-danger">*</span>
-                                {!! Form::select('education_level', config('dropdown.education_level'), $education->education_level, [
+                                {!! Form::select('education_level[]', config('dropdown.education_level'), $education->education_level, [
                                     'id' => 'education_level',
                                     'class' => 'form-select',
                                     'placeholder' => 'Select level',
@@ -96,6 +97,8 @@
                                 </span>
                             </div>
                         </div>
+                        <br>
+                    <hr>
                     @endforeach
 
                 </div>

@@ -15,7 +15,7 @@ class ScheduleController extends Controller
     }
     public function index()
     {
-        $schedules=$this->schedule->orderBy('created_at', 'desc')->get();
+        $schedules=$this->schedule->orderBy('created_at', 'desc')->simplePaginate(5);
         return view('admin.schedules.index', compact('schedules'));
     }
 
