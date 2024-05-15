@@ -15,7 +15,7 @@ class Doctor extends Model
     protected $fillable=['department_id','photo', 'first_name','middle_name', 'last_name', 'licence_no','country_id', 'province_id', 'district_id', 'municipality_id', 'street', 'gender', 'phone_num', 'dob_ad', 'dob_bs', 'deleted_at','temp_country_id', 'temp_province_id', 'temp_district_id', 'temp_municipality_id', 'temp_street' ];
 
     public function user(){
-        return $this->hasOne(User::class, 'doctor_id', 'id');
+        return $this->hasOne(User::class, 'doctor_id');
     }
     public function education()
     {
@@ -43,7 +43,7 @@ class Doctor extends Model
     }
     public function schedule()
     {
-        return $this->hasMany(Schedule::class,'doctor_id','id');
+        return $this->hasMany(Schedule::class,'doctor_id');
     }
     public function department()
     {
@@ -51,7 +51,8 @@ class Doctor extends Model
     }
     public function appointment()
     {
-        return $this->hasMany(Appointment::class, 'doctor_id', 'id');
+        return $this->hasMany(Appointment::class, 'doctor_id');
     }
+
 
 }

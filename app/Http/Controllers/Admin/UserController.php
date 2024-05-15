@@ -11,15 +11,20 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct(User $user, Role $role)
+    {
+        $this->user=$user;
+        $this->role=$role;
+    }
     public function index()
     {
-        $users=User::all();
+        $users=$this->user->orderBy('created_at', 'desc')->get();
         return view('admin.users.index', compact('users'));
     }
 
     public function create()
     {
-        $roles=Role::all();
+        $roles= $this->role->all();
         return view('admin.users.create', compact('roles'));
     }
 
@@ -27,35 +32,35 @@ class UserController extends Controller
     {
         $user=$request->validated();
         $user['password']= Hash::make($user['password']);
-        User::create($user);
+        $this->user->create($user);
         return redirect()->route('user.index')->with('message', 'Successfully Added!!!!');
     }
 
     public function show( $id)
     {
-        $user=User::findOrFail($id);
+        $user=$this->user->findOrFail($id);
         return view('admin.users.show',compact('user'));
 
     }
 
     public function edit( $id)
     {
-        $roles=Role::all();
-        $user=User::findOrFail($id);
+        $roles=$this->role->all();
+        $user=$this->user->findOrFail($id);
 
         return view('admin.users.edit', compact('user','roles'));
     }
 
     public function update(UserValidationRequest $request,  $id)
     {
-        $user=User::findOrFail($id);
+        $user=$this->user->findOrFail($id);
         $user->update($request->validated());
         return redirect()->route('user.index')->with('message', 'Successfully Updated!!!!');;
     }
 
     public function destroy( $id)
     {
-        $user=User::findOrFail($id);
+        $user=$this->user->findOrFail($id);
         $user->delete();
         return redirect()->route('user.index');
     }

@@ -1,6 +1,5 @@
 @extends('admin.layouts.index')
 @section('content')
-{{-- @section('title') --}}
 <div id="content">
 
     <!-- Topbar -->
@@ -77,7 +76,8 @@
         </div>
 
         <!-- Content Row -->
-        {{-- <div class="row">
+        @if(Auth::check() && Auth::user()->role_id==1)
+         <div class="row">
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -86,11 +86,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Earnings (Monthly)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                    Departments</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalDepartments}}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <i class="fas fa-solid fa-building fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -104,11 +104,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Earnings (Annual)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                    Doctors</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalDoctors}}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                <i class="fas fa-solid fa-user-doctor fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -121,18 +121,11 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Appointments
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="progress progress-sm mr-2">
-                                            <div class="progress-bar bg-info" role="progressbar"
-                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$totalAppointments}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -151,18 +144,135 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Pending Requests</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                    Users</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalUsers}}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                <i class="fas fa-solid fa-user fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
+        @endif
 
+        @if(Auth::check() && Auth::user()->role_id==2)
+         <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Schedules</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$schedule}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-solid fa-calendar-days fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Appointments</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$appointment}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa-solid fa-calendar-check fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Appointments
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$totalAppointments}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Patients</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$patient}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-solid fa-user fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-5 wow fadeIn">
+                    <div class="text-start mb-1-6 wow fadeIn">
+                        <h4 class="h4 mt-3 mb-0 text-gray-800">Achievements</h4>
+
+                    </div>
+                    <div class="row mt-n4">
+                        @foreach ($educations as $education)
+                            <div class="col-sm-6 col-xl-4 mt-4">
+
+                                <div class="card text-center border-0 rounded-3">
+                                    <div class="card-body">
+                                        <i class="ti-bookmark-alt icon-box medium rounded-3 mb-4"></i>
+                                        <h3 class="h5 fw-bold mb-3">{{ $education->specialization }}</h3>
+                                        <p class="mb-0">{{ $education->education_level }} in
+                                            {{ $education->institute_name }}</p><br>
+                                        <p>{{ $education->graduation_year_start_bs }} Graduate</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @foreach ($experiences as $experience)
+                            <div class="col-sm-6 col-xl-4 mt-4">
+                                <div class="card text-center border-0 rounded-3">
+                                    <div class="card-body">
+                                        <i class="ti-medall-alt icon-box medium rounded-3 mb-4"></i>
+                                        <h3 class="h5 mb-3">{{ $experience->organization_name }}</h3>
+                                        <p class="mb-0">{!! $experience->description !!}</p>
+                                        <p>{{ $experience->org_start_bs }}-{{ $experience->org_end_bs }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+        @endif
 
     </div>
     <!-- /.container-fluid -->

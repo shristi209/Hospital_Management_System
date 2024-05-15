@@ -13,19 +13,20 @@
         @endif
       @csrf
       <div data-mdb-input-init class="form-outline mb-4">
-        <label class="form-label" for="form2Example1">Email address</label>
+        <label class="form-label" for="form2Example1">Email address<span class="text-danger">*</span></label>
         <input type="email" id="form2Example1" name="email" class="form-control" value="{{ old('email') }}" />
         @error('email')<span class="text-danger">{{ $message }}</span>@enderror
       </div>
 
       <div data-mdb-input-init class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Password</label>
+        <label class="form-label" for="form2Example2">Password<span class="text-danger">*</span></label>
         <input type="password" id="form2Example2" name="password" class="form-control" />
         @error('password')<span class="text-danger">{{ $message }}</span>@enderror
       </div>
       <div class="form-group mb-3">
         {!! NoCaptcha::renderJs() !!}
         {!! NoCaptcha::display() !!}
+        @error('g-recaptcha-response')<span class="text-danger">{{ $message }}</span>@enderror
       </div>
 
       <span class="btn d-flex justify-content-between align-items-center">

@@ -6,7 +6,7 @@
 
     @include('admin.breadcrumb')
     @foreach ($departments as $department)
-        <div class="d-flex mr-3">
+        <div class="d-flex ml-3">
             <div class="card mw=100">
                 <div class="card-body">
                     <h5 class="card-title">{{ $department->department_name }} Department</h5>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     @endforeach
 
 @endsection

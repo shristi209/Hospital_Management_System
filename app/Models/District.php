@@ -17,6 +17,6 @@ class District extends Model
     }
     public function doctor()
     {
-        return $this->hasOne(DOctor::class, 'district_id', 'id');
+        return $this->hasOne(Doctor::class, 'district_id', 'id');
     }
 }

@@ -27,7 +27,7 @@
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" title="Notifications">
-                <i class="fas fa-envelope fa-fw"></i>
+                <i class="fas fa-solid fa-bell"></i>
                 <!-- Counter - Messages -->
                 @if(auth()->user()->doctor)
                     <span class="badge badge-danger badge-counter">{{ auth()->user()->doctor->unreadNotifications->count() }}</span>

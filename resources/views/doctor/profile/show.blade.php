@@ -89,41 +89,7 @@
 
 
                 </div>
-                <div class="mb-5 wow fadeIn">
-                    <div class="text-start mb-1-6 wow fadeIn">
-                        <h2 class="mb-0 text-primary">#Education & Experiences</h2>
-                    </div>
-                    <div class="row mt-n4">
-                        @foreach ($educations as $education)
-                            <div class="col-sm-6 col-xl-4 mt-4">
-
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-bookmark-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 fw-bold mb-3">{{ $education->specialization }}</h3>
-                                        <p class="mb-0">{{ $education->education_level }} in
-                                            {{ $education->institute_name }}</p><br>
-                                        <p>{{ $education->graduation_year_start_bs }} Graduate</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                        @foreach ($experiences as $experience)
-                            <div class="col-sm-6 col-xl-4 mt-4">
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-medall-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 mb-3">{{ $experience->organization_name }}</h3>
-                                        <p class="mb-0">{!! $experience->description !!}</p>
-                                        <p>{{ $experience->org_start_bs }}-{{ $experience->org_end_bs }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
+                
                 {{-- <div class="wow fadeIn">
                     <div class="text-start mb-1-6 wow fadeIn">
                         <h2 class="mb-0 text-primary">#Skills &amp; Experience</h2>

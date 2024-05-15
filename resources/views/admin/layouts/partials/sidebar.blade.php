@@ -59,7 +59,7 @@
                 <span>Schedule</span>
             </a>
             <a class="nav-link" href="{{ route('doctorappointment.index') }}" onclick="handleLinkClick(event)">
-                <i class="fa-solid fa-calendar-days"></i>
+                <i class="fa-solid fa-calendar-check"></i>
                 <span>Appointment</span>
             </a>
     @endif
