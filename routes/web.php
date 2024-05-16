@@ -12,15 +12,13 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\Admin\DoctorSearchController;
 
 use App\Http\Controllers\Doctor\DoctorProfileController;
 use App\Http\Controllers\Doctor\DoctorScheduleController;
 use App\Http\Controllers\Doctor\NotificationController;
-use App\Http\Controllers\Doctor\StatusController;
 use App\Http\Controllers\Doctor\DoctorAppointmentController;
 
-use App\Http\Middleware\CheckRole;
-use App\Http\Middleware\CheckRoleAdmin;
 
 use App\Http\Controllers\Website\DashboardController;
 use App\Http\Controllers\Website\AppointmentController;
@@ -61,6 +59,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('/doctor', DoctorController::class);
 
         Route::resource('/schedule', ScheduleController::class);
+
+        Route::get('/doctorsearch', [DoctorSearchController::class, 'departmentBasedDoctor'])->name('doctorsearch');
+
+
     });
 
     Route::middleware('checkroleadmin')->group(function (){

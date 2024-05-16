@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 
 class ForgotPasswordController extends Controller
 {
+    protected $user;
+
     public function __construct(User $user){
         $this->user = $user;
     }
@@ -40,8 +42,8 @@ class ForgotPasswordController extends Controller
                 $message->subject('Reset Password');
             });
             DB::commit();
-            
-            return redirect()->route('forgotpassword')->with('message', 'Email Sent Successfully!!!');
+
+            return redirect()->route('forgotpassword')->with('message', 'Email Sent Successfully, Check your mail!!!');
         }catch(\Exception $e){
             DB::rollback();
             dd($e->getMessage());

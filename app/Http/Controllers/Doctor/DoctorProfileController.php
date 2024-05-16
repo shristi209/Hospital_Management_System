@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\DoctorProfileRequest;
 use App\Http\Requests\DoctorEducationRequest;
 use App\Http\Requests\DoctorExperienceRequest;
@@ -20,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DoctorProfileController extends Controller
 {
+    protected $doctor, $doctorEducation, $doctorExperience, $user, $district, $municipality, $province, $country;
 
     public function __construct(Doctor $doctor, DoctorEducation $doctorEducation, DoctorExperience $doctorExperience, User $user,Country $country, Province $province, District $district, Municipality $municipality)
     {
@@ -93,7 +93,7 @@ class DoctorProfileController extends Controller
 
     public function updateEducation(DoctorEducationRequest $request, $id)
     {
-        dd($request);
+        // dd($request);
         $data=$request->validated();
         $user = Auth::user();
         $doctorId=$user->doctor_id;
@@ -101,7 +101,7 @@ class DoctorProfileController extends Controller
         foreach($request->institute_name as $key=>$value){
             $this->doctorEducation->updateOrCreate([
                 'doctor_id'=>  $doctorId,
-                
+
             ],
             [
                 'education_level'=>$request->education_level[$key],

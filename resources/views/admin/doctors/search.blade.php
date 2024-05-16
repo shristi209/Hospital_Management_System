@@ -9,11 +9,11 @@
 
     {!! Form::open(['route' => 'doctorsearch', 'method' => 'get', 'class' => 'form-inline my-2 d-flex']) !!}
         <div class="form-group col-4">
-            {!! Form::select('department_name', $department_helper->dropdown(), [], ['class' => 'form-select',  'id' => 'department', 'place holder'=>'Select department']) !!}
+            {!! Form::select('department_name', $department_helper->dropdown(), [], ['class' => 'form-select', 'id' => 'department', 'place holder'=>'Select department']) !!}
         </div>
 
         <div class="form-group col-4">
-            {!! Form::select('full_name',$doctor_helper->dropdown()  , null, ['class' => 'form-select', 'id' => 'check']) !!}
+            {!! Form::select('full_name',$doctor_helper->dropdown() , null, ['class' => 'form-select', 'id' => 'check']) !!}
         </div>
 
         <div class="form-group search-button col-4">
@@ -69,7 +69,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{$doctors->links()}}
+                    {{-- {{$doctors->links()}} --}}
                 </div>
             </div>
         </div>

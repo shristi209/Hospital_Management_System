@@ -4,6 +4,7 @@ use App\Models\Department;
 
 class DepartmentHelper
 {
+    protected $department;
     public function __construct(Department $department)
     {
         $this->department=$department;

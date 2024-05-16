@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use App\Http\Requests\UserValidationRequest;
@@ -11,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    protected $user, $role;
     public function __construct(User $user, Role $role)
     {
         $this->user=$user;

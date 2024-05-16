@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DoctorValidationRequest;
-use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\User;
-use App\Models\Country;
-use App\Models\Province;
 use App\Models\District;
 use App\Models\Municipality;
 use App\Models\DoctorEducation;
@@ -20,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
+    protected $doctor, $doctorEducation, $doctorExperience, $user, $district, $municipality;
     public function __construct(Doctor $doctor, DoctorEducation $doctorEducation, DoctorExperience $doctorExperience, User $user, District $district, Municipality $municipality)
     {
         $this->doctor = $doctor;

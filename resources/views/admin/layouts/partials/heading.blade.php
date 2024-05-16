@@ -32,7 +32,7 @@
                 @if(auth()->user()->doctor)
                     <span class="badge badge-danger badge-counter">{{ auth()->user()->doctor->unreadNotifications->count() }}</span>
                 @else
-                    <span class="badge badge-danger badge-counter">0</span> 
+                    <span class="badge badge-danger badge-counter"></span> 
                 @endif            
             </a>
 

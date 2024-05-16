@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Doctor;
-use App\Models\DoctorEducation;
-use App\Models\DoctorExperience;
-use Illuminate\view\view;
+
 
 class TrashDoctorController extends Controller
 {
+    protected $doctor;
     public function __construct(Doctor $doctor)
     {
         $this->doctor=$doctor;

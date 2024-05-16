@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\ScheduleValidationRequest;
 use App\Models\Schedule;
 
 class ScheduleController extends Controller
 {
+    protected $schedule;
+
     public function __construct(Schedule $schedule)
     {
         $this->schedule=$schedule;

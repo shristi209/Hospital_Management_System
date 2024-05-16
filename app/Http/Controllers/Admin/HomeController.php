@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Appointment;
@@ -15,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    protected $doctor, $doctorEducation, $doctorExperience, $user, $appointment, $department;
+
     public function __construct(Doctor $doctor, DoctorEducation $doctorEducation, DoctorExperience $doctorExperience, User $user,Appointment $appointment, Department $department)
     {
         $this->doctor = $doctor;
@@ -31,9 +32,10 @@ class HomeController extends Controller
         $totalDoctors =  $this->doctor->count();
         $totalAppointments = $this->appointment->count();
         $totalUsers = $this->user->count();
-        
+
         $patient = null;
-        $appointment = null;
+        $approvedappointment = null;
+        $canceledappointment = null;
         $schedule = null;
         $educations=null;
         $experiences=null;
@@ -55,6 +57,4 @@ class HomeController extends Controller
 
     return view('admin.dashboard', compact('totalDepartments', 'totalDoctors', 'totalAppointments', 'totalUsers', 'patient', 'approvedappointment', 'canceledappointment',  'schedule', 'educations', 'experiences'));
     }
-
-    
 }

@@ -14,6 +14,7 @@ use App\Notifications\AppointmentBookedNotification;
 use App\Mail\AppointmentBookedMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Exception;
 
 class FormAppointmentController extends Controller
 {
@@ -42,7 +43,7 @@ class FormAppointmentController extends Controller
 
     public function store(AppointmentPatientValidationRequest $request)
     {
-
+// dd($request);
         try {
             DB::beginTransaction();
 

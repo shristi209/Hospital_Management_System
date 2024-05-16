@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Department;
-use Illuminate\view\view;
 
 class TrashDepartmentController extends Controller
 {
+    protected $department;
+
     public function __construct(Department $department)
     {
         $this->department = $department;

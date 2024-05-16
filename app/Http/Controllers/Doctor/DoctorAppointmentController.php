@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Doctor;
-use App\Models\Patient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AppointmentStatusMail;
@@ -14,6 +13,7 @@ use App\Mail\AppointmentStatusMail;
 
 class DoctorAppointmentController extends Controller
 {
+    protected $appointment, $doctor;
     public function __construct(Appointment $appointment, Doctor $doctor)
     {
         $this->appointment=$appointment;
@@ -60,7 +60,7 @@ class DoctorAppointmentController extends Controller
     {
         $appointment=$this->appointment->find($id);
         $patient=$appointment->patient;
-        
+
         return view('doctor.appointment.show', compact('patient'));
     }
 

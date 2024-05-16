@@ -5,6 +5,7 @@ use App\Models\Doctor;
 
 class DoctorHelper
 {
+    protected $doctor;
     public function __construct(Doctor $doctor)
     {
         $this->doctor=$doctor;
