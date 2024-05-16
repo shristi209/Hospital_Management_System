@@ -4,6 +4,7 @@ use App\Models\Country;
 
 class CountryHelper
 {
+    protected $country;
     public function __construct(Country $country)
     {
         $this->country=$country;

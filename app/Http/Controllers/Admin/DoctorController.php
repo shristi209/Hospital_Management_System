@@ -30,6 +30,7 @@ class DoctorController extends Controller
 
     public function index()
     {
+        // $specializations= $this->doctorEducation->orderBy('id', 'desc')->distinct()->pluck('specialization')->toArray();
         $doctors = $this->doctor->orderBy('created_at', 'desc')->simplePaginate(10);
         return view('admin.doctors.index', compact('doctors'));
     }

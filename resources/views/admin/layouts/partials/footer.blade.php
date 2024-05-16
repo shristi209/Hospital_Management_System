@@ -23,6 +23,7 @@
  <script src={{asset("backend/js/addressRepeater.js")}}></script>
  <script src={{asset("backend/js/experienceRepeater.js")}}></script>
  <script src={{asset("backend/js/notificationpop.js")}}></script>
+ <script src={{asset("backend/js/departmentbasedspecialization.js")}}></script>
 
  {{-- englishdate picker --}}
  {{-- <script src={{asset("backend/js/englishdatepicker.js")}}></script> --}}

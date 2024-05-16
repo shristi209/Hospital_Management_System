@@ -60,9 +60,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/schedule', ScheduleController::class);
 
-        Route::get('/doctorsearch', [DoctorSearchController::class, 'departmentBasedDoctor'])->name('doctorsearch');
-
-
+        Route::get('/doctorsearch', [DoctorSearchController::class, 'searchDoctor'])->name('doctorsearch');
+        Route::get('/fetchspecialization/{id}', [DoctorSearchController::class, 'fetchDepartmentBasedSpecialization'])->name('fetchspecialization');
     });
 
     Route::middleware('checkroleadmin')->group(function (){
