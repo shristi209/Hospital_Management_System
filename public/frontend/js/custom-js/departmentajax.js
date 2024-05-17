@@ -40,7 +40,6 @@ $(document).ready(function () {
                     var cardHtml = '<div class="row card my-3 ">'+
                     '<h4 class="card-head text-center m-4">'+ 'Choose Appropriate Schedule'+'</h4>';
 
-
                     $.each(response.schedule, function (index, schedule) {
                         cardHtml += '<div class="card-head h5  mt-3 d-flex justify-content-center">' + schedule.schedule_date + '</div>';
                         cardHtml += '<div class="card-body d-flex flex-wrap">';

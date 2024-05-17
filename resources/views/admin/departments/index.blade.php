@@ -37,15 +37,15 @@
                                     <td class="d-flex actionbtn">
                                         <a data-toggle="tooltip" data-placement="top" title="View"
                                             href="{{ route('department.show', $department->id) }}"
-                                            class="btn btn-sm btn-success"><i class="fa-solid fa-eye"></i></a>
+                                            class="btn btn-sm btn-outline-success"><i class="fa-solid fa-eye"></i></a>
                                         <a data-toggle="tooltip" data-placement="top"
                                             href="{{ route('department.edit', $department->id) }}"
-                                            class="btn btn-sm btn-primary" title="Edit"><i
+                                            class="btn btn-sm btn-outline-primary" title="Edit"><i
                                                 class="fa-regular fa-pen-to-square"></i></a>
                                         <form action="{{ route('department.destroy', $department->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger"
+                                            <button type="submit" class="btn btn-sm btn-outline-danger"
                                                 onclick="return confirm('Are you sure you want to delete this department?')"
                                                 data-toggle="tooltip" data-placement="top" title="Delete"
                                                 style="margin-top:4px; margin-left:3px;"><i

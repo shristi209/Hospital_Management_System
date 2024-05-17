@@ -11,13 +11,13 @@
                 </div>
                 <div class="ml-2">
                     @hasSection('add_button')
-                        <a href="@yield('add_button', '#')" class="btn btn-sm btn-primary">
+                        <a href="@yield('add_button', '#')" class="btn btn-sm btn-outline-primary">
                             <i class="fa-solid fa-plus"></i> Add
                         </a>
                     @endif
 
                     @hasSection('trash_button')
-                        <a href="@yield('trash_button', '#')" class="btn btn-sm btn-danger">
+                        <a href="@yield('trash_button', '#')" class="btn btn-sm btn-outline-danger">
                             <i class="fa-solid fa-trash"></i> Trash
                         </a>
                     @endif

@@ -16,7 +16,7 @@
         [
             'class' => 'form-select',
             'id' => 'department_name',
-            'placeholder' => 'Select department',
+            'placeholder' => 'Search department',
         ],
     ) !!}
 </div>
@@ -25,7 +25,7 @@
     {!! Form::select('specialization', $doctor_helper->dropdown(), null, [
         'class' => 'form-select',
         'id' => 'specialization',
-        'placeholder' => 'Select name ',
+        'placeholder' => 'Search specialization ',
     ]) !!}
 </div>
 
@@ -33,17 +33,26 @@
     {!! Form::text('search', null, [
         'class' => 'form-control mr-sm-2',
         'placeholder' => 'Search',
-        'aria-label' => 'Search',
+
     ]) !!}
 
     {!! Form::button('<i class="fa-solid fa-magnifying-glass"></i>', [
         'class' => 'btn mr-1 btn-outline-primary btn-sm my-2 my-sm-0',
-        'type' => 'submit',
+        'data-toggle'=>"tooltip",
+        'aria-label' => 'Search',
+        'data-toggle'=>'tooltip',
+        'data-placement'=>'top',
+        'title'=>'Search',
+        'type'=>'submit',
     ]) !!}
 
     {!! Form::button('<i class="fa-solid fa-arrow-rotate-left"></i>', [
-        'class' => 'btn btn-sm btn-outline-primary my-2 my-sm-0',
+        'class' => 'btn btn-sm btn-outline-danger my-2 my-sm-0',
         'onclick' => 'window.location.href="'.url('/doctor').'"',
+        'aria-label' => 'Search',
+        'data-toggle'=>"tooltip",
+        'data-placement'=>"top",
+        'title'=>"Reset",
     ]) !!}
 </div>
 {!! Form::close() !!}
@@ -77,15 +86,15 @@
                                 <td>{{ $doctor->phone_num }}</td>
                                 <td class="d-flex">
                                     <a href="{{ route('doctor.show', $doctor->id) }}"
-                                        class="btn btn-sm btn-success mr-1" data-toggle="tooltip" data-placement="top"
+                                        class="btn btn-sm btn-outline-success mr-1" data-toggle="tooltip" data-placement="top"
                                         title="View"><i class="fa-solid fa-eye"></i></a>
                                     <a href="{{ route('doctor.edit', $doctor->id) }}"
-                                        class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top"
+                                        class="btn btn-sm btn-outline-primary mr-1" data-toggle="tooltip" data-placement="top"
                                         title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>
                                     <form action="{{ route('doctor.destroy', $doctor->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger mr-1"
+                                        <button type="submit" class="btn btn-sm btn-outline-danger mr-1"
                                             onclick="return confirm('Are you sure you want to delete this user?')"
                                             data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                 class="fa-solid fa-trash"></i></button>

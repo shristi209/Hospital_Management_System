@@ -201,11 +201,11 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Canceled Appointments
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pending Appointments
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$canceledappointment}}</div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$pendingappointment}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -235,45 +235,83 @@
                 </div>
             </div>
         </div>
-        <div class="mb-5 wow fadeIn">
-                    <div class="text-start mb-1-6 wow fadeIn">
-                        <h4 class="h4 mt-3 mb-0 text-gray-800">Achievements</h4>
 
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="iq-card-title">
+                           <h4> New Appointments</h4>
+                        </div>
                     </div>
-                    <div class="row mt-n4">
-                        @foreach ($educations as $education)
-                            <div class="col-sm-6 col-xl-4 mt-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                               <table class="table mb-0 table-borderless">
+                                  <thead>
+                                     <tr>
+                                        <th scope="col">Patient</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Timing</th>
+                                        <th scope="col">Contact</th>
+                                        <th scope="col">Pending</th>
+                                        <th scope="col">View</th>
+                                     </tr>
+                                  </thead>
+                                  <tbody>
+                                     @foreach($appointments as $appointment)
+                                     <tr>
+                                         <td>{{ $appointment->patient->full_name }} </td>
+                                         <td>{{$appointment->schedule->schedule_date}}</td>
+                                         <td>{{$appointment->time_interval  }}</td>
+                                         <td>{{$appointment->patient->phone}}</td>
+                                         <td>
+                                         @if($appointment->status == 'pending')
+                                         <div class="dropdown">
+                                             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="approvalDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                 Action
+                                             </button>
+                                             <div class="dropdown-menu" aria-labelledby="approvalDropdown">
+                                                 {!! Form::open(['route' => ['statusupdate', $appointment->id], 'method' => 'POST']) !!}
+                                                 @csrf
+                                                 @method('PATCH')
+                                                 {!! Form::button('Approved', ['type' => 'submit', 'class' => 'dropdown-item', 'name' => 'status', 'value' => 'approved']) !!}
+                                                 {!! Form::close() !!}
 
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-bookmark-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 fw-bold mb-3">{{ $education->specialization }}</h3>
-                                        <p class="mb-0">{{ $education->education_level }} in
-                                            {{ $education->institute_name }}</p><br>
-                                        <p>{{ $education->graduation_year_start_bs }} Graduate</p>
-                                    </div>
-                                </div>
+                                                 {!! Form::open(['route' => ['statusupdate', $appointment->id], 'method' => 'POST']) !!}
+                                                 @csrf
+                                                 @method('PATCH')
+                                                 {!! Form::button('Cancel', ['type' => 'submit', 'class' => 'dropdown-item', 'name' => 'status', 'value' => 'cancel']) !!}
+                                                 {!! Form::close() !!}
+                                             </div>
+                                         </div>
+                                         @elseif($appointment->status == 'approved')
+                                             <span class="badge bg-success">Approved</span>
+                                         @else
+                                             <span class="badge bg-danger">Cancelled</span>
+                                         @endif
+
+                                         <script>
+                                             function submitForm() {
+                                                 document.getElementById('statusForm').submit();
+                                             }
+                                         </script>
+                                        </td>
+                                        <td>
+                                     <a href="{{ route('doctorappointment.show', $appointment->id) }}"
+                                         class="btn btn-sm btn-success mr-1" data-toggle="tooltip" data-placement="top"
+                                         title="View"><i class="fa-solid fa-eye"></i></a>
+                                 </td>
+                                 </tr>
+                             @endforeach
+                                  </tbody>
+                               </table>
                             </div>
-                        @endforeach
-
-                        @foreach ($experiences as $experience)
-                            <div class="col-sm-6 col-xl-4 mt-4">
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-medall-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 mb-3">{{ $experience->organization_name }}</h3>
-                                        <p class="mb-0">{!! $experience->description !!}</p>
-                                        <p>{{ $experience->org_start_bs }}-{{ $experience->org_end_bs }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
+                         </div>
                     </div>
                 </div>
-        @endif
-
-    </div>
+            </div>
+        </div>
+       @endif
     <!-- /.container-fluid -->
 </div>
 

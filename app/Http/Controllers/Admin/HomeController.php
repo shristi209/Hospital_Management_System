@@ -35,26 +35,30 @@ class HomeController extends Controller
 
         $patient = null;
         $approvedappointment = null;
-        $canceledappointment = null;
+        $pendingappointment = null;
         $schedule = null;
         $educations=null;
         $experiences=null;
-
+        $appointments=null;
 
         if (Auth::user()->role_id == 2) {
             $doctorId = Auth::user()->doctor_id;
             $doctor = $this->doctor->find($doctorId);
-            $appointments = $doctor->appointment;
-            $patients = $appointments->pluck('patient')->unique();
+
+            $docappointments = $doctor->appointment;
+            $patients = $docappointments->pluck('patient')->unique();
+
             $patient = $patients->count();
             $approvedappointment = $doctor->appointment->where('status', 'approved')->count();
-            $canceledappointment = $doctor->appointment->where('status', 'approved')->count();
+            $pendingappointment = $doctor->appointment->where('status', 'pending')->count();
             $schedule = $doctor->schedule->count();
 
             $educations = $this->doctorEducation->where('doctor_id', $doctorId)->get();
             $experiences =  $this->doctorExperience->where('doctor_id', $doctorId)->get();
-        }
+            $appointments = $doctor->appointment->where('status', 'pending');
+            }
 
-    return view('admin.dashboard', compact('totalDepartments', 'totalDoctors', 'totalAppointments', 'totalUsers', 'patient', 'approvedappointment', 'canceledappointment',  'schedule', 'educations', 'experiences'));
+
+    return view('admin.dashboard', compact('totalDepartments', 'totalDoctors', 'totalAppointments', 'totalUsers', 'patient', 'approvedappointment', 'pendingappointment',  'schedule', 'educations', 'experiences', 'appointments'));
     }
 }

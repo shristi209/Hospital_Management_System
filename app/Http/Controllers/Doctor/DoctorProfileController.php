@@ -97,22 +97,27 @@ class DoctorProfileController extends Controller
         $data=$request->validated();
         $user = Auth::user();
         $doctorId=$user->doctor_id;
-  // dd($this->doctorEducation->where('doctor_id',$doctorId)->get());
+  dd($this->doctorEducation->where('doctor_id',$doctorId)->where('education')->get());
+
         foreach($request->institute_name as $key=>$value){
-            $this->doctorEducation->updateOrCreate([
+            // dd($data);
+           $edu= $this->doctorEducation->updateOrCreate([
                 'doctor_id'=>  $doctorId,
+                'education_level'=>$request->education_level[$key],
 
             ],
             [
-                'education_level'=>$request->education_level[$key],
                 'institute_name'=> $request->institute_name[$key],
                 'specialization'=> $request->specialization[$key],
                 'graduation_year_start_bs'=> $request->graduation_year_start_bs[$key],
                 'graduation_year_start_ad'=> $request->graduation_year_start_ad[$key],
             ]);
+
         }
         return redirect()->route('doctorprofile');
     }
+
+
     public function editExperience()
     {
         $user = Auth::user();
