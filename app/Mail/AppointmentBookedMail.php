@@ -3,14 +3,13 @@ namespace App\Mail;
 
 use App\Models\Patient;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class AppointmentBookedMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    protected $patient;
     /**
      * Create a new message instance.
      */

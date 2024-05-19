@@ -34,7 +34,7 @@
                         <h4> Personal Information</h4>
                     </div>
                     <a href="{{ route('editprofile') }}" class="rounded-3" data-toggle="tooltip" data-placement="top"
-                    title="Edit Profile"><i class="fa-solid fa-pen-to-square btn-outline-primary"></i></a>
+                    title="Edit Profile"><i class="fa-solid fa-pen-to-square"></i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -58,8 +58,10 @@
                         <h4> Education </h4>
                     </div>
                     <div>
+                        <a href="{{ route('createeducation') }}" class="rounded-3"data-toggle="tooltip" data-placement="top"
+                            title="Add Education"><i class="fa-solid fa-plus mr-2"></i></a>
                         <a href="{{ route('editeducation') }}" class="rounded-3"data-toggle="tooltip" data-placement="top"
-                            title="Edit Education"><i class="fa-solid fa-pen-to-square btn-outline-primary"></i></a>
+                            title="Edit Education"><i class="fa-solid fa-pen-to-square"></i></a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -85,8 +87,10 @@
                         <h4> Experience </h4>
                     </div>
                     <div>
+                        <a href="{{ route('createexperience') }}" data-toggle="tooltip" data-placement="top"
+                            title="Add Experience"><i class="fa-solid fa-plus mr-2"></i></a>
                         <a href="{{ route('editexperience') }}" data-toggle="tooltip" data-placement="top"
-                            title="Edit Experience"><i class="fa-solid fa-pen-to-square btn-outline-primary"></i></a>
+                            title="Edit Experience"><i class="fa-solid fa-pen-to-square"></i></a>
                     </div>
                 </div>
                 <div class="card-body">

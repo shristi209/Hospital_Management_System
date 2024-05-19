@@ -32,11 +32,12 @@ class DoctorSearchController extends Controller
 
         if ($request->input('specialization')) {
             $specialization = $request->input('specialization');
-            $query->whereHas('education',
-            function ($educations) use ($specialization)
-            {
-                $educations->where('specialization', $specialization);
-            });
+            $query->whereHas(
+                'education',
+                function ($educations) use ($specialization) {
+                    $educations->where('specialization', $specialization);
+                }
+            );
         }
 
         if ($request->input('search')) {

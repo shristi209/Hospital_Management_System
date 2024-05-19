@@ -7,11 +7,17 @@
 
     @include('admin.breadcrumb')
     @foreach ($users as $user)
-        <div class="d-flex mr-3">
-            <div class="card" style="width: 18rem;">
+        <div class="d-flex ml-3">
+            <div class="card mw=100">
                 <div class="card-body">
                     <h5 class="card-title">{{ $user->Username }} User</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">User Role: {{ $user->role->name }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">User Role:
+                        @if ($user->roles->isNotEmpty())
+                            @foreach ($user->roles as $role)
+                                <label>{{ $role->name }}</label>
+                            @endforeach
+                        @endif
+                    </h6>
                     <p class="card-text">Email:{{ $user->email }}</p>
                     <div class="d-flex justify-content-end">
                         <form action="{{ route('trashuser', $user->id) }}" method="POST">

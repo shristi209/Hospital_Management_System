@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class CheckRole
 {
@@ -18,7 +17,7 @@ class CheckRole
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if ($user && $user->role_id === 2) {
+        if ($user && $user->hasRole('doctor')) {
             return redirect()->route('dashboard');
         }
         return $next($request);

@@ -4,6 +4,7 @@ use App\Models\Province;
 
 class ProvinceHelper
 {
+    protected $province;
     public function __construct(Province $province){
         $this->province=$province;
     }

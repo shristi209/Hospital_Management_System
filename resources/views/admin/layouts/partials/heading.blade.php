@@ -11,7 +11,7 @@
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                 aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-sm btn-primary" type="button">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
             </div>
@@ -22,8 +22,6 @@
     <ul class="navbar-nav ml-auto">
 
         <!-- Nav Item - Messages -->
-
-        <div class="topbar-divider d-none d-sm-block"></div>
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" title="Notifications">
@@ -32,8 +30,8 @@
                 @if(auth()->user()->doctor)
                     <span class="badge badge-danger badge-counter">{{ auth()->user()->doctor->unreadNotifications->count() }}</span>
                 @else
-                    <span class="badge badge-danger badge-counter"></span> 
-                @endif            
+                    <span class="badge badge-danger badge-counter"></span>
+                @endif
             </a>
 
             <!-- Dropdown - Messages -->
@@ -70,6 +68,8 @@
             </div>
         </li>
 
+        <div class="topbar-divider d-none d-sm-block"></div>
+
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -78,8 +78,13 @@
 
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                 @endif
+                
                 @if(Auth::check() && Auth::user()->role_id == 2)
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Doctor</span>
+                @endif
+
+                @if(Auth::check() && Auth::user()->role_id == 6)
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Super-Admin</span>
                 @endif
                 <img class="img-profile rounded-circle" src="{{asset('/backend/img/download.jpeg')}}" alt="logo">
             </a>

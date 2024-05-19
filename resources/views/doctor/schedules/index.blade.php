@@ -23,7 +23,7 @@
                         @endphp
                         @foreach ($schedules as $schedule)
 
-                           
+
                             <tr>
                                     <td>{{ $count++ }}</td>
                                     <td>{{ $schedule->schedule_date }}</td>
@@ -37,12 +37,12 @@
 
                                     <td class="d-flex">
                                         <a href="{{ route('doctorschedule.edit', $schedule->id) }}"
-                                            class="btn btn-sm btn-primary mr-1" data-toggle="tooltip" data-placement="top"
+                                            class="btn btn-sm btn-outline-primary mr-1" data-toggle="tooltip" data-placement="top"
                                             title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <form action="{{ route('doctorschedule.destroy', $schedule->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger mr-1"
+                                            <button type="submit" class="btn btn-sm btn-outline-danger mr-1"
                                                 onclick="return confirm('Are you sure you want to delete this user?')"
                                                 data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                     class="fa-solid fa-trash"></i></button>

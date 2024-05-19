@@ -4,6 +4,7 @@
 @section('title_link', route('user.index'))
 @section('action', 'Edit')
 @section('content')
+@inject('role_helper', 'App\Helpers\RoleHelper')
 @include('admin.breadcrumb')
     <div class="card">
         <div class="row">
@@ -32,15 +33,13 @@
                         </div>
                         <div class="form-row mb-3">
                             <div class="col-4">
-                                <label for="role">Role</label>
-                                <select name="role_id" class="form-select">
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}"
-                                            {{ $role->id == $user->role_id ? 'selected' : '' }}>
-                                            {{ $role->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                {!! Form::label('role_id', 'Role') !!}<span class="text-danger">*</span>
+                                {!! Form::select('role_id[]', $role_helper->dropdown(), $user->roles->pluck('name', 'name')->all() , [
+                                    'id' => 'role_id',
+                                    'class' => 'js-example-basic-multiple form-control form-select',
+                                    'placeholder' => 'Select Role',
+                                    'multiple'=>"multiple",
+                                ]) !!}
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">

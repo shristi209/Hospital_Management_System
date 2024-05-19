@@ -12,10 +12,11 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href={{ route('dashboard') }}>
+    <li class="nav-item {{ Request::routeIs('dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
     <!-- Divider -->
@@ -27,42 +28,70 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    @if (Auth::check() && Auth::user()->role_id == 1)
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.index') }}" onclick="handleLinkClick(event)">
+    @if (Auth::check() && Auth::user()->hasAnyRole(['super-admin', 'admin']))
+        <li class="nav-item {{ Request::routeIs('user*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('user.index') }}">
                 <i class="fa-solid fa-user"></i>
                 <span>User</span>
             </a>
-            <a class="nav-link" href="{{ route('department.index') }}" onclick="handleLinkClick(event)">
+        </li>
+        <li class="nav-item {{ Request::is('department*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('department.index') }}">
                 <i class="fa-solid fa-building"></i>
                 <span>Department</span>
             </a>
-
-            <a class="nav-link" href="{{ route('doctor.index') }}" onclick="handleLinkClick(event)">
+        </li>
+        <li class="nav-item {{ Request::routeIs('doctor*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('doctor.index') }}">
                 <i class="fa-solid fa-user-doctor"></i>
                 <span>Doctor</span>
             </a>
-            <a class="nav-link" href="{{ route('schedule.index') }}" onclick="handleLinkClick(event)">
+        </li>
+        <li class="nav-item {{ Request::routeIs('schedule*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('schedule.index') }}">
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>Schedule</span>
             </a>
+        </li>
     @endif
-    </li>
-    @if (Auth::check() && Auth::user()->role_id == 2)
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('doctorprofile') }}" onclick="handleLinkClick(event)">
+    @if (Auth::check() && Auth::user()->hasRole('super-admin'))
+        <li class="nav-item {{ Request::routeIs('role*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('role.index') }}">
+                <i class="fa-solid fa-user-lock"></i>
+                <span>Roles & Permissions</span>
+            </a>
+        </li>
+    @endif
+
+    @if (Auth::check() && Auth::user()->hasRole('doctor'))
+        <li class="nav-item {{ Request::routeIs('doctorprofile*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('doctorprofile') }}">
                 <i class="fa-solid fa-user"></i>
                 <span>Profile</span>
             </a>
-            <a class="nav-link" href="{{ route('doctorschedule.index') }}" onclick="handleLinkClick(event)">
+        </li>
+        <li class="nav-item {{ Request::routeIs('doctorschedule*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('doctorschedule.index') }}">
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>Schedule</span>
             </a>
-            <a class="nav-link" href="{{ route('doctorappointment.index') }}" onclick="handleLinkClick(event)">
+        </li>
+
+        <li class="nav-item {{ Request::routeIs('doctorappointment*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('doctorappointment.index') }}">
                 <i class="fa-solid fa-calendar-check"></i>
                 <span>Appointment</span>
             </a>
+        </li>
     @endif
+
+    <hr class="sidebar-divider">
+    <li class="nav-item ">
+        <a class="nav-link" href="" data-toggle="modal" data-target="#logoutModal">
+            <i class="fa-solid fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </li>
     {{-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
@@ -70,7 +99,7 @@
                 <a class="collapse-item" href="cards.html">Cards</a>
             </div>
         </div> --}}
-    </li>
+    {{-- </li> --}}
 
     <!-- Nav Item - Utilities Collapse Menu -->
     {{-- <li class="nav-item">

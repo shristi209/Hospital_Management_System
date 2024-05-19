@@ -6,38 +6,42 @@
     @include('admin.breadcrumb')
 
     {{-- Doctors education --}}
-    <style>
-        div#page4>div#experienceAdd {
-            display: none;
-        }
-    </style>
-    <div class="card">
-        <div class="row">
-            <div class="col-lg-12">
-                {!! Form::open([
-                    'route' => ['updatexperience', $doctorId],
-                    'method' => 'POST',
-                    'enctype' => 'multipart/form-data',
-                ]) !!}
-                @csrf
-                @method('PUT')
-                {{-- Doctors Experiences --}}
-                <div class="card-header">
-                    <h5 class="card-title">Experience</h5>
-
-                </div>
-                <div class="card-body">
-                    <div id="page4">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        @foreach ($experiences as $experience)
+    @foreach ($experiences as $experience)
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    {!! Form::open([
+                        'route' => ['updatexperience', $doctorId],
+                        'method' => 'POST',
+                        'enctype' => 'multipart/form-data',
+                    ]) !!}
+                    @csrf
+                    @method('PUT')
+                    {{-- Doctors Experiences --}}
+                    <div class="card-header d-flex justify-content-between">
+                        <h5 class="card-title">Edit Experience</h5>
+                        <div>
+                            {!! Form::button('<i class="fa-solid fa-trash"></i>', [
+                                'type' => 'button',
+                                'name' => 'action',
+                                'class' => 'btn btn-sm btn-outline-danger',
+                                'data-toggle' => 'tooltip',
+                                'data-placement' => 'top',
+                                'title' => 'Remove',
+                            ]) !!}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="page4">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="form-row mb-3">
                                 <div class="col ">
                                     {!! Form::label('organization_name', 'Organization Name') !!}<span class="text-danger">*</span>
@@ -118,134 +122,46 @@
                             </div>
                             <br>
                             <hr>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div id="experienceAdd">
-
-                    <div class="card-header d-flex justify-content-between rem">
-                        <h5 class="card-title">Experience</h5>
-                        <div class="remove-button">
-                            {!! Form::button('<i class="fa-solid fa-trash"></i>', [
-                                'type' => 'button',
-                                // 'id' => 'experiencebtn',
-                                'name' => 'action',
-                                'class' => 'btn btn-sm btn-danger mr-1 exp-remove-btn',
-                                'data-toggle' => 'tooltip',
-                                'data-placement' => 'top',
-                                'title' => 'Remove',
-                            ]) !!}
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-row mb-3">
-                            <div class="col ">
-                                {!! Form::label('organization_name', 'Organization Name') !!}<span class="text-danger red_*">*</span>
-                                {!! Form::text('organization_name[]', null, [
-                                    'class' => 'form-control',
-                                    'name' => 'organization_name[]',
-                                    'placeholder' => 'Organization Name',
-                                ]) !!}
-                                <span id="organization_name_error" class="text-danger"></span>
-                            </div>
-                            <div class="col">
-                                {!! Form::label('org_start_bs', 'Start Date(BS)') !!}<span class="text-danger red_*">*</span>
-                                {!! Form::text('org_start_bs[]', null, [
-                                    'class' => 'form-control',
-                                    'id' => 'org_start_bs',
-                                    'placeholder' => 'Select start date',
-                                ]) !!}
-                                <span id="org_start_bs_error" class="text-danger"></span>
-                            </div>
-                            <div class="col">
-                                {!! Form::label('org_start_ad', 'Start Date(AD)') !!}<span class="text-danger red_*">*</span>
-                                {!! Form::text('org_start_ad[]', null, [
-                                    'class' => 'form-control',
-                                    'id' => 'org_start_ad',
-                                    'placeholder' => 'English date',
-                                ]) !!}
-                                <span id="org_start_ad_error" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="form-row mb-3">
-                            <div class="col-4">
-                                {!! Form::label('org_end_bs', 'End Date(BS)') !!}<span class="text-danger red_*">*</span>
-                                {!! Form::text('org_end_bs[]', null, [
-                                    'class' => 'form-control',
-                                    'id' => 'org_end_bs',
-                                    'placeholder' => 'Select end date',
-                                ]) !!}
-                                <span id="org_end_bs_error" class="text-danger"></span>
-                            </div>
-                            <div class="col-4">
-                                {!! Form::label('org_end_ad', 'End Date(AD)') !!}<span class="text-danger red_*">*</span>
-                                {!! Form::text('org_end_ad[]', null, [
-                                    'class' => 'form-control',
-                                    'id' => 'org_end_ad',
-                                    'placeholder' => 'English date',
-                                ]) !!}
-                                <span id="org_end_ad_error" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="form-row mb-3">
-                            <div class="col">
-                                {!! Form::label('description', ' Description') !!}<span class="text-danger red_*">*</span>
-                                {!! Form::textarea('description[]', null, ['class' => 'form-control', 'id' => 'editor']) !!}
-                                <span id="description_error" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div id="experienceContainer">
-                    {{-- cloned experience --}}
-                </div>
-                <div class="card-header d-flex justify-content-center">
-                    {!! Form::button('<i class="fa-solid fa-plus"></i>', [
-                        'type' => 'button',
-                        'id' => 'experiencebtn',
-                        'name' => 'action',
-                        'class' => 'btn btn-sm btn-primary mr-1',
-                        'data-toggle' => 'tooltip',
-                        'data-placement' => 'top',
-                        'title' => 'Add',
-                    ]) !!}
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-auto">
-                        {!! Form::button('Submit', [
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary',
-                        ]) !!}
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<script>
-    window.onload = function() {
-    var mainInput = document.getElementById("org_start_bs");
-    mainInput.nepaliDatePicker();
-};
-    function dateconversion(){
-    var nepali = $('#org_start_bs').val();
-            var english = NepaliFunctions.BS2AD(nepali);
-            $('#org_start_ad').val(english);
-}
-setInterval(() => {
-    dateconversion();
-}, 1000);
 
-$('#org_end_bs').nepaliDatePicker({
-    onChange:function(){
-        var nepali=$('#org_end_bs').val();
-        console.log(nepali);
+    @endforeach
 
-        var english=NepaliFunctions.BS2AD(nepali);
-        console.log(english);
-        $('#org_end_ad').val(english);
-    }
-})
-</script>
-@endsection
+
+    <div class="row justify-content-end mb-3">
+        <div class="col-auto">
+            {!! Form::button('Submit', [
+                'type' => 'submit',
+                'class' => 'btn btn-primary',
+            ]) !!}
+
+            <script>
+                window.onload = function() {
+                    var mainInput = document.getElementById("org_start_bs");
+                    mainInput.nepaliDatePicker();
+                };
+
+                function dateconversion() {
+                    var nepali = $('#org_start_bs').val();
+                    var english = NepaliFunctions.BS2AD(nepali);
+                    $('#org_start_ad').val(english);
+                }
+                setInterval(() => {
+                    dateconversion();
+                }, 1000);
+
+                $('#org_end_bs').nepaliDatePicker({
+                    onChange: function() {
+                        var nepali = $('#org_end_bs').val();
+                        console.log(nepali);
+
+                        var english = NepaliFunctions.BS2AD(nepali);
+                        console.log(english);
+                        $('#org_end_ad').val(english);
+                    }
+                })
+            </script>
+        @endsection

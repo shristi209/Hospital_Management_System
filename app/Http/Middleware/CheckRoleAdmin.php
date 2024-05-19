@@ -18,7 +18,8 @@ class CheckRoleAdmin
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if ($user && $user->role_id === 1) {
+        if ($user && $user->hasRole('admin'))
+        {
             return redirect()->route('dashboard');
         }
         return $next($request);

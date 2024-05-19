@@ -2,9 +2,13 @@
 @section('title', 'Department')
 @section('title_link', route('department.index'))
 @section('content')
-@section('add_button', route('department.create'))
-@section('trash_button', route('departmenttrash'))
-@include('admin.breadcrumb')
+    @can('create department')
+        @section('add_button', route('department.create'))
+    @endcan
+    @can('department trash')
+        @section('trash_button', route('departmenttrash'))
+    @endcan
+    @include('admin.breadcrumb')
 
     <div class="card">
         <div class="card-body">
@@ -35,22 +39,29 @@
                                     <td>{{ $department->department_code }}</td>
                                     <td>{!! Str::limit($department->description, 30) !!}</td>
                                     <td class="d-flex actionbtn">
-                                        <a data-toggle="tooltip" data-placement="top" title="View"
-                                            href="{{ route('department.show', $department->id) }}"
-                                            class="btn btn-sm btn-outline-success"><i class="fa-solid fa-eye"></i></a>
-                                        <a data-toggle="tooltip" data-placement="top"
-                                            href="{{ route('department.edit', $department->id) }}"
-                                            class="btn btn-sm btn-outline-primary" title="Edit"><i
-                                                class="fa-regular fa-pen-to-square"></i></a>
-                                        <form action="{{ route('department.destroy', $department->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                onclick="return confirm('Are you sure you want to delete this department?')"
-                                                data-toggle="tooltip" data-placement="top" title="Delete"
-                                                style="margin-top:4px; margin-left:3px;"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </form>
+
+                                        @can('view department')
+                                            <a data-toggle="tooltip" data-placement="top" title="View"
+                                                href="{{ route('department.show', $department->id) }}"
+                                                class="btn btn-sm btn-outline-success"><i class="fa-solid fa-eye"></i></a>
+                                        @endcan
+                                        @can('edit department')
+                                            <a data-toggle="tooltip" data-placement="top"
+                                                href="{{ route('department.edit', $department->id) }}"
+                                                class="btn btn-sm btn-outline-primary" title="Edit"><i
+                                                    class="fa-regular fa-pen-to-square"></i></a>
+                                        @endcan
+                                        @can('delete department')
+                                            <form action="{{ route('department.destroy', $department->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                    onclick="return confirm('Are you sure you want to delete this department?')"
+                                                    data-toggle="tooltip" data-placement="top" title="Delete"
+                                                    style="margin-top:4px; margin-left:3px;"><i
+                                                        class="fa-solid fa-trash"></i></button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

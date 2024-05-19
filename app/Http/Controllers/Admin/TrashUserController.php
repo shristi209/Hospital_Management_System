@@ -8,21 +8,29 @@ use App\Models\User;
 
 class TrashUserController extends Controller
 {
-    public function index(){
-        $users=User::onlyTrashed()->get();
+    protected $user;
+    public function __construct(User $user)
+    {
+        $this->user=$user;
+        $this->middleware('Permission:user trash', ['only'=> ['restoreuser', 'deleteuser']]);
+    }
+
+    public function index()
+    {
+        $users=$this->user->onlyTrashed()->get();
         return view('admin.users.trash', compact('users'));
     }
 
     public function restoreuser($id)
     {
-        $user=User::where('id', $id);
+        $user=$this->user->where('id', $id);
             $user->restore();
             return redirect()->route('user.index');
 
     }
     public function deleteuser($id)
     {
-        User::where('id', $id)->forceDelete();
+        $this->user->where('id', $id)->forceDelete();
         return redirect()->route('usertrash');
     }
 }

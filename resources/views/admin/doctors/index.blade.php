@@ -1,7 +1,9 @@
 @extends('admin.layouts.index')
 @section('title', 'Doctor')
 @section('content')
+@can('create doctor')
 @section('add_button', route('doctor.create'))
+@endcan
 @section('trash_button', route('doctortrash'))
 @include('admin.breadcrumb')
 @inject('department_helper', 'App\Helpers\DepartmentHelper')
@@ -85,12 +87,17 @@
                                 <td>{{ $doctor->licence_no }}</td>
                                 <td>{{ $doctor->phone_num }}</td>
                                 <td class="d-flex">
+                                    @can('view doctor')
                                     <a href="{{ route('doctor.show', $doctor->id) }}"
                                         class="btn btn-sm btn-outline-success mr-1" data-toggle="tooltip" data-placement="top"
                                         title="View"><i class="fa-solid fa-eye"></i></a>
+                                    @endcan
+                                    @can('edit doctor')
                                     <a href="{{ route('doctor.edit', $doctor->id) }}"
                                         class="btn btn-sm btn-outline-primary mr-1" data-toggle="tooltip" data-placement="top"
                                         title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    @endcan
+                                    @can('delete doctor')
                                     <form action="{{ route('doctor.destroy', $doctor->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -99,6 +106,7 @@
                                             data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                 class="fa-solid fa-trash"></i></button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

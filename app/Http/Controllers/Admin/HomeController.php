@@ -41,7 +41,7 @@ class HomeController extends Controller
         $experiences=null;
         $appointments=null;
 
-        if (Auth::user()->role_id == 2) {
+        if (Auth::user()->hasRole('doctor')) {
             $doctorId = Auth::user()->doctor_id;
             $doctor = $this->doctor->find($doctorId);
 

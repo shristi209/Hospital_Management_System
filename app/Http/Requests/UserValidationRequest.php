@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 
 class UserValidationRequest extends FormRequest
@@ -29,7 +28,7 @@ class UserValidationRequest extends FormRequest
 
             'password'=>  Request()->method == 'POST' ? 'required|string|min:4|confirmed' : 'nullable',
             'email'=> Request()->method == 'POST' ? 'required|string|unique:users' : 'nullable',
-            'role_id'=>['required', 'integer'],
+            'role_id.*' => 'required',
         ];
 
     }

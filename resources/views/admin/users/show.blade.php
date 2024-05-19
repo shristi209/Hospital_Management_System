@@ -11,7 +11,7 @@
 
                     <h4> Details of {{ $user->username }} </h4><hr>
                     <p>Email: {{ $user->email }}</p>
-                    <p>Role:{{ $user->role->name }}</p>
+                    {{-- <p>Role:{{ $user->role->name }}</p> --}}
                 </div>
             </div>
         </div>

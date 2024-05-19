@@ -15,6 +15,11 @@ class UserController extends Controller
     {
         $this->user=$user;
         $this->role=$role;
+        $this->middleware('Permission:create user', ['only' => ['create', 'store']]);
+        $this->middleware('Permission:edit user', ['only' => ['edit', 'update']]);
+        $this->middleware('Permission:view user',['only' => ['show']]);
+        $this->middleware('Permission:delete user',['only' => ['destroy']]);
+
     }
     public function index()
     {
@@ -24,16 +29,26 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles= $this->role->all();
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create');
     }
 
     public function store(UserValidationRequest $request)
     {
-        $user=$request->validated();
-        $user['password']= Hash::make($user['password']);
-        $this->user->create($user);
-        return redirect()->route('user.index')->with('message', 'Successfully Added!!!!');
+        // dd($request);
+        $validatedData = $request->validated();
+        // dd($validatedData);
+        $userData = [
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+        ];
+        $user = $this->user->create($userData);
+
+            // dd($validatedData['role_id']);
+        $user->syncRoles($validatedData['role_id']);
+        // dd($user->syncRoles($validatedData['role_id']));
+
+        return redirect()->route('user.index')->with('message', 'Successfully reated user with role!!!!');
     }
 
     public function show( $id)
@@ -45,16 +60,26 @@ class UserController extends Controller
 
     public function edit( $id)
     {
-        $roles=$this->role->all();
+        // return $id;
         $user=$this->user->findOrFail($id);
 
-        return view('admin.users.edit', compact('user','roles'));
+        return view('admin.users.edit', compact('user'));
     }
 
     public function update(UserValidationRequest $request,  $id)
     {
-        $user=$this->user->findOrFail($id);
-        $user->update($request->validated());
+        $validatedData=$request->validated();
+
+        $userData=$this->user->findOrFail($id);
+
+        $user=[
+            'username'=>$validatedData['username'],
+            'email'=>$validatedData['email'],
+        ];
+
+        $userData->update($user);
+        $userData->syncRoles($validatedData['role_id']);
+
         return redirect()->route('user.index')->with('message', 'Successfully Updated!!!!');;
     }
 
