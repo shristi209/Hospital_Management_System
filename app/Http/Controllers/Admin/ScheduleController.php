@@ -12,11 +12,11 @@ class ScheduleController extends Controller
 
     public function __construct(Schedule $schedule)
     {
-        $this->schedule=$schedule;
+        $this->schedule = $schedule;
     }
     public function index()
     {
-        $schedules=$this->schedule->orderBy('created_at', 'desc')->simplePaginate(5);
+        $schedules = $this->schedule->orderBy('created_at', 'desc')->simplePaginate(5);
         return view('admin.schedules.index', compact('schedules'));
     }
 
@@ -27,31 +27,42 @@ class ScheduleController extends Controller
 
     public function store(ScheduleValidationRequest $request)
     {
-        $data=$request->validated();
-        $this->schedule->create($data);
+        $data = $request->validated();
+
+        foreach ($data['day'] as $day) {
+            $this->schedule::create([
+                'doctor_id' => $data['doctor_id'],
+                'start_time' => $data['start_time'],
+                'end_time' => $data['end_time'],
+                'day' => $day,
+                'quota' => $data['quota'],
+            ]);
+        }
+
+
         return redirect()->route('schedule.index');
     }
 
     public function show($id)
     {
-
     }
 
-    public function edit( $id)
+    public function edit($id)
     {
-        $schedule=$this->schedule->findOrFail($id);
+        $schedule = $this->schedule->findOrFail($id);
         return view('admin.schedules.edit', compact('schedule'));
     }
 
     public function update(ScheduleValidationRequest $request,  $id)
     {
+        // dd($request);
         $data = $request->validated();
         $schedule = $this->schedule->findOrFail($id);
         $schedule->update($data);
         return redirect()->route('schedule.index');
     }
 
-    public function destroy( $id)
+    public function destroy($id)
     {
         $schedule = $this->schedule->findOrFail($id);
         $schedule->delete();

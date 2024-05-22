@@ -72,7 +72,7 @@ class FormAppointmentController extends Controller
 
             $doctor = $this->doctor->find($doctor_id);
 
-            $doctor = $this->doctor->find($doctor_id);
+            // $doctor = $this->doctor->find($doctor_id);
             $doctorEmail = $doctor->user->email;
 
             $doctor->notify(new AppointmentBookedNotification());

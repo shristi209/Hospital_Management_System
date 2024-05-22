@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Doctor;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Schedule;
+use App\Models\User;
 use App\Models\Doctor;
+use App\Models\Schedule;
 use App\Models\Appointment;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\AvailabilityNotificationToDoctor;
 
 class DoctorScheduleController extends Controller
 {
@@ -77,6 +79,25 @@ class DoctorScheduleController extends Controller
         $schedule->update($data);
 
         return redirect()->route('doctorschedule.index');
+    }
+
+    public function statusUpdate(Request $request, $id)
+    {
+        $schedule = Schedule::findOrFail($id);
+
+        $superadmins = User::whereHas('roles', function ($query) {
+            $query->where('name', 'super-admin');
+        })->get();
+
+        // dd($superadmins);
+        $schedule->status = $request->has('status') ? $request->input('status') : 0;
+        $schedule->save();
+
+        foreach ($superadmins as $superadmin) {
+            // dd($superadmin);
+            $superadmin->notify(new AvailabilityNotificationToDoctor());
+        }
+        return redirect()->back()->with('message', 'Status updated successfully');
     }
 
     public function destroy( $id)

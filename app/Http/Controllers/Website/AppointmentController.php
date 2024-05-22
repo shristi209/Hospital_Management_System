@@ -2,38 +2,68 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Doctor;
 use App\Models\Appointment;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class AppointmentController extends Controller
 {
-    protected $doctor;
-    public function __construct(Doctor $doctor)
+    protected $doctor, $appointment;
+    public function __construct(Doctor $doctor, Appointment $appointment )
     {
         $this->doctor=$doctor;
+        $this->appointment=$appointment;
     }
 
-    public function fetchDoctor(Request $request, $id)
+    public function fetchDoctor($id)
     {
         $data=$this->doctor->where('department_id', $id)->get();
         return response()->json($data);
     }
 
-    public function fetchSchedule(Request $request, $schedule_id)
+    public function fetchSchedule($doctor_id)
     {
-        $data = $this->doctor->with('schedule')->find($schedule_id);
+        $data = $this->doctor->with(['schedule' => function($query) {
+            $query->where('status', 'available');
+        }])->find($doctor_id);
+
         $schedules=$data->schedule;
 
-        $doctorId=Auth::user()->doctor_id;
-        $appointments=Appointment::where('doctor_id',$doctorId)->get();
+            $currentDate = Carbon::now('Asia/Kathmandu');
+            $currentTime=$currentDate->format('H:i A');
+            $currentDay = $currentDate->format('l');
 
-        return response()->json([
-            'schedule' => $schedules,
-            'appointments' => $appointments,
-        ]);
+            $days=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            $currentDayIndex=array_search($currentDay, $days);
+            $saturdayIndex=array_search('Saturday', $days);
+            $upcommingSchedules=[];
+            // dd($this->appointment->where('doctor_id', $doctor_id)->get());
+
+        foreach($schedules as $schedule)
+        {
+            $scheduleDayIndex=array_search($schedule->day, $days);
+            $startTime=$schedule->start_time;
+
+            $appointmentCount = count($schedule->appointment);
+
+            if ($appointmentCount == $schedule->quota) {
+                continue;
+            }
+
+            if($scheduleDayIndex<=$saturdayIndex && $scheduleDayIndex>=$currentDayIndex )
+            {
+                // dd($schedule->quota);
+               if( $scheduleDayIndex>=$currentDayIndex && $startTime<=$currentTime )
+               {
+                continue;
+               }
+            $upcommingSchedules[]=$schedule;
+
+            }
+
+        }
+    return $upcommingSchedules;
     }
-
 }

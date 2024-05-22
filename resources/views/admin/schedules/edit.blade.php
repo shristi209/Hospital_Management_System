@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    {!! Form::open(['route' =>[ 'schedule.update', $schedule->id], 'method' => 'POST']) !!}
+                    {!! Form::open(['route' => ['schedule.update', $schedule->id], 'method' => 'POST']) !!}
                     @csrf
                     @method('PUT')
                     <div class="form-row mb-3">
@@ -36,7 +36,7 @@
                             @enderror
                         </div>
 
-                        <div class="col">
+                        {{-- <div class="col">
                             {!! Form::label('schedule_date', 'Schedule Date') !!}<span class="text-danger">*</span>
                             {!! Form::date('schedule_date', $schedule->schedule_date, [
                                 'class' => 'form-control',
@@ -46,7 +46,7 @@
                             @error('schedule_date')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
@@ -72,15 +72,37 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="form-row mb-3">
+
+                        <div class="col-6">
+                            {!! Form::label('day', 'Schedule days') !!}<span class="text-danger">*</span>
+                                {!! Form::select('day', config('dropdown.day'), $schedule->day, [
+                                    'class' => 'form-control form-select',
+                                ]) !!}
+                                @error('doctor_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                        </div>
+                        <div class="col-6">
+                            {!! Form::label('quota', 'Total quotas') !!}<span class="text-danger">*</span>
+                            {!! Form::text('quota', $schedule->quota, [
+                                'id' => 'quota',
+                                'class' => ' form-control',
+                            ]) !!}
+                            @error('doctor_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-5 mb-3">
+                        <a href="{{ route('schedule.index') }}" class="btn btn-danger">Cancel</a>
+                        {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
                 </div>
-                <div class="d-flex justify-content-between mt-5 mb-3">
-                    <a href="{{ route('schedule.index') }}" class="btn btn-danger">Cancel</a>
-                    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
-                </div>
-                {!! Form::close() !!}
             </div>
         </div>
-    </div>
 
 
-@endsection
+    @endsection
