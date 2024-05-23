@@ -19,6 +19,6 @@ class Municipality extends Model
         return $this->belongsTo(MunicipalityType::class, 'municipality_type_id', 'id');
     }
     public function doctor(){
-        return $this->hasOne(Doctor::clas, 'municipality_id', 'id');
+        return $this->hasOne(Doctor::class, 'municipality_id', 'id');
     }
 }
