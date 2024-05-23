@@ -120,12 +120,17 @@ class DoctorProfileController extends Controller
         public function updateEducation(DoctorEducationRequest $request, $doctorId)
     {
         $data = $request->all();
-
-        if (isset($data['education_id'])) {
-            foreach ($data['education_id'] as $index => $educationId) {
-                if (isset($data['delete_education'][$index]) && $data['delete_education'][$index] == 1) {
+// dd($data);
+        if (isset($data['education_id']))
+        {
+            foreach ($data['education_id'] as $index => $educationId)
+            {
+                if (isset($data['delete_education'][$index]) && $data['delete_education'][$index] == 1)
+                {
                     $this->doctorEducation->where('id', $educationId)->delete();
-                } else {
+                }
+                else
+                {
                     $education = $this->doctorEducation->find($educationId);
                     $education->education_level = $data['education_level'][$index];
                     $education->institute_name = $data['institute_name'][$index];
@@ -137,9 +142,12 @@ class DoctorProfileController extends Controller
             }
         }
 
-        if (isset($data['delete_education']) && in_array(1, $data['delete_education'])) {
+        if (isset($data['delete_education']) && in_array(1, $data['delete_education']))
+        {
             return redirect()->route('editeducation')->with('success', 'Education details updated successfully.');
-        } else {
+        }
+        else
+        {
             return redirect()->route('doctorprofile')->with('success', 'Education details updated successfully.');
         }
     }
