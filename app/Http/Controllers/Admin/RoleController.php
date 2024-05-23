@@ -14,9 +14,9 @@ class RoleController extends Controller
     {
         $this->role=$role;
         $this->permission=$permission;
-        // $this->middleware('Permission:create role', ['only'=>['create', 'store']]);
-        // $this->middleware('Permission:view role', ['only'=>['index']]);
-        // $this->middleware('Permission:edit role', ['only'=>['edit', 'update']]);
+        $this->middleware('permission:create role', ['only'=>['create', 'store']]);
+        $this->middleware('permission:view role', ['only'=>['index']]);
+        $this->middleware('permission:edit role', ['only'=>['edit', 'update']]);
     }
     public function index()
     {

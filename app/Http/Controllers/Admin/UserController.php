@@ -15,10 +15,10 @@ class UserController extends Controller
     {
         $this->user=$user;
         $this->role=$role;
-        $this->middleware('Permission:create user', ['only' => ['create', 'store']]);
-        $this->middleware('Permission:edit user', ['only' => ['edit', 'update']]);
-        $this->middleware('Permission:view user',['only' => ['show']]);
-        $this->middleware('Permission:delete user',['only' => ['destroy']]);
+        $this->middleware('permission:create user', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:view user',['only' => ['show']]);
+        $this->middleware('permission:delete user',['only' => ['destroy']]);
 
     }
     public function index()

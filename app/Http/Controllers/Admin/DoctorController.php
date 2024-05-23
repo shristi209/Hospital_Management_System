@@ -26,10 +26,10 @@ class DoctorController extends Controller
         $this->user = $user;
         $this->district = $district;
         $this->municipality = $municipality;
-        $this->middleware('Permission:edit doctor', ['only' => ['edit', 'update']]);
-        $this->middleware('Permission:create doctor', ['only' => ['create', 'store']]);
-        $this->middleware('Permission:view doctor', ['only' => ['show']]);
-        $this->middleware('Permission:delete doctor', ['only' => ['destroy']]);
+        $this->middleware('permission:edit doctor', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:create doctor', ['only' => ['create', 'store']]);
+        $this->middleware('permission:view doctor', ['only' => ['show']]);
+        $this->middleware('permission:delete doctor', ['only' => ['destroy']]);
     }
 
     public function index()
