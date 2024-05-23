@@ -7,7 +7,7 @@
     @endcan
 
     @can('user trash')
-    @section('trash_button', route('usertrash'))
+        @section('trash_button', route('usertrash'))
     @endcan
     @include('admin.breadcrumb')
 

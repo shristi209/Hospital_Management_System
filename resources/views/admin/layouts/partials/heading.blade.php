@@ -65,6 +65,24 @@
 
                 {{-- <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a> --}}
             @endif
+            @if (auth()->user()->hasRole('super-admin'))
+            @foreach (auth()->user()->unreadNotifications as $notification)
+                @if ($notification->read_at === null)
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" src="" alt="...">
+                            <div class="status-indicator bg-success"></div>
+                        </div>
+                        <div class="font-weight-bold">
+                            <div class="text-truncate">{{ $notification->data['message'] }}</div>
+                            <div class="small text-gray-500">{{ $notification->data['type'] }} · {{ $notification->created_at->diffForHumans() }}</div>
+                        </div>
+                    </a>
+                    @endif
+                @endforeach
+
+                {{-- <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a> --}}
+            @endif
             </div>
         </li>
 
@@ -78,7 +96,7 @@
 
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                 @endif
-                
+
                 @if(Auth::check() && Auth::user()->role_id == 2)
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Doctor</span>
                 @endif

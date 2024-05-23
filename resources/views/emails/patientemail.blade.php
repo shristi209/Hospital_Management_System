@@ -7,7 +7,7 @@
                 <h1>Status of your appointment</h1>
                 <p>Hello Patient,</p>
                 <p>Your appointment with CareSync is {{$appointment->status}}</p>
-                <p>Please come according to your scheduled time: {{$appointment->time_interval}}</p>
+                {{-- <p>Please come according to your scheduled time: {{$appointment->time_interval}}</p> --}}
                 <p>Thank you.</p>
             </div>
         </div>

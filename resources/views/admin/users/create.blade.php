@@ -64,12 +64,6 @@
                                     'placeholder' => 'Select Role',
                                     'multiple'=>"multiple",
                                 ]) !!}
-                                {{-- <label for="role">Role<span class="text-danger">*</span></label><br> --}}
-                                {{-- <select name="role_id[]" class="js-example-basic-multiple form-control" id='roleid' multiple="multiple" placeholder="Select role">
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select> --}}
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-5 mb-3">

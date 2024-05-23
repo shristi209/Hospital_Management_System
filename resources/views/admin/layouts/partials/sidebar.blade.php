@@ -53,6 +53,12 @@
                 <span>Schedule</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::routeIs('page*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('page.index') }}">
+                <i class="fa-regular fa-file"></i>
+                <span>Page</span>
+            </a>
+        </li>
     @endif
     @if (Auth::check() && Auth::user()->hasRole('super-admin'))
         <li class="nav-item {{ Request::routeIs('role*') ? 'active' : '' }}">

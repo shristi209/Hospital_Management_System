@@ -76,7 +76,7 @@
             </div>
 
             <!-- Content Row -->
-            @if (Auth::check() && Auth::user()->hasRole(['super-admin', 'admin']))
+            @if (Auth::check() && Auth::user()->hasRole(['super-admin']))
                 <div class="row">
 
                     <!-- Earnings (Monthly) Card Example -->
