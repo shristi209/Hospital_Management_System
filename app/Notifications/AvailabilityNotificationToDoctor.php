@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AppointmentBookedNotification extends Notification
+class AvailabilityNotificationToDoctor extends Notification
 {
     use Queueable;
     /**
@@ -32,16 +32,16 @@ class AppointmentBookedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('New Appointment Booked')
-                    ->line('A new appointment has been booked.')
-                    ->line('Please check your schedule.');
+                    ->subject('New Unavailable Message')
+                    ->line('doctor will be unavailable.')
+                    ->line('Please check schedule.');
     }
 
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => 'A new appointment has been booked.',
-            'type' => 'appointment_booked',
+            'message' => 'New Unavailable Message.',
+            'type' => 'availability',
         ];
     }
 }
