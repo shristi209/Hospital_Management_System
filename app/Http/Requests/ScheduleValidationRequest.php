@@ -21,12 +21,23 @@ class ScheduleValidationRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'doctor_id' => ['required', 'exists:doctors,id'],
-            'schedule_date' => ['required', 'date'],
-            'start_time' => ['required'],
-            'end_time' => ['required', 'after:start_time'],
-        ];
+
+            $rules = [
+                'doctor_id' => ['required', 'exists:doctors,id'],
+                'schedule_date' => ['nullable', 'date'],
+                'start_time' => ['required'],
+                'end_time' => ['required', 'after:start_time'],
+                'quota' => 'required',
+            ];
+
+            if ($this->isMethod('POST')) {
+                $rules['day.*'] = 'required';
+            } elseif ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
+                $rules['day'] = 'required';
+            }
+
+            return $rules;
+
 
     }
 }
