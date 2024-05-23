@@ -12,7 +12,7 @@ class TrashDepartmentController extends Controller
     public function __construct(Department $department)
     {
         $this->department = $department;
-        $this->middleware('Permission:department trash', ['only'=> ['restore', 'delete']]);
+        $this->middleware('permission:department trash', ['only'=> ['restore', 'delete']]);
 
     }
 

@@ -12,7 +12,7 @@ class TrashUserController extends Controller
     public function __construct(User $user)
     {
         $this->user=$user;
-        $this->middleware('Permission:user trash', ['only'=> ['restoreuser', 'deleteuser']]);
+        $this->middleware('permission:user trash', ['only'=> ['restoreuser', 'deleteuser']]);
     }
 
     public function index()
