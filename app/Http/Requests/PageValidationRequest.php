@@ -26,8 +26,8 @@ class PageValidationRequest extends FormRequest
             'title.ne' => ['required', 'string'],
             'content.en' => ['required', 'string'],
             'content.ne' => ['required', 'string'],
-            'image' => ['nullable', 'image'],
-            // 'slug' => ['nullable', 'string'],
+            'image' => ['nullable'],
+            'slug' => Request()->method=='PUT'? 'required | string' : 'nullable',
         ];
     }
 }

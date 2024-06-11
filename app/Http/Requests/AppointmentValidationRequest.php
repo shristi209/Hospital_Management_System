@@ -25,7 +25,7 @@ class AppointmentValidationRequest extends FormRequest
             'doctor_id' => ['required','integer'],
             'schedule_id' => ['required', 'integer'],
             'patient_id' => ['required','integer'],
-            'reason' => ['required','string'],
+            'reason' => ['nullable','string'],
             'status' => ['required', 'string'],
         ];
     }

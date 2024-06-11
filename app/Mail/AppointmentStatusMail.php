@@ -2,22 +2,21 @@
 
 namespace App\Mail;
 
+use App\Models\Patient;
+use App\Models\Schedule;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Appointment;
 
 class AppointmentStatusMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    protected $appointment;
-    public function __construct(Appointment $appointment)
+    protected $schedule, $patient;
+    public function __construct(Schedule $schedule, Patient $patient)
     {
-        $this->appointment=$appointment;
+        $this->schedule = $schedule;
+        $this->patient = $patient;
     }
 
     /**
@@ -27,8 +26,9 @@ class AppointmentStatusMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Appointment Booked Mail')
-                    ->view('emails.patientemail')
-                    ->with('appointment', $this->appointment);
+        return $this->subject('Appointment With CareSync')
+            ->view('emails.patientemail')
+            ->with('schedule', $this->schedule)
+            ->with('patient', $this->patient);
     }
 }

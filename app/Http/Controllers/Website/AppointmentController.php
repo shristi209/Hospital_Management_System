@@ -39,7 +39,6 @@ class AppointmentController extends Controller
             $currentDayIndex=array_search($currentDay, $days);
             $saturdayIndex=array_search('Saturday', $days);
             $upcommingSchedules=[];
-            // dd($this->appointment->where('doctor_id', $doctor_id)->get());
 
         foreach($schedules as $schedule)
         {
@@ -54,7 +53,6 @@ class AppointmentController extends Controller
 
             if($scheduleDayIndex<=$saturdayIndex && $scheduleDayIndex>=$currentDayIndex )
             {
-                // dd($schedule->quota);
                if( $scheduleDayIndex>=$currentDayIndex && $startTime<=$currentTime )
                {
                 continue;

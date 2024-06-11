@@ -37,7 +37,7 @@ $(document).ready(function () {
                 method: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    // console.log(response);
+                    console.log(response);
                     var municipality = $('#municipality_id');
                     municipality.empty().append('<option value="">Select Municipality</option>');
                     $.each(response, function (index, val) {

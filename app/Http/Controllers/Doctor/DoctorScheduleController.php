@@ -89,13 +89,12 @@ class DoctorScheduleController extends Controller
             $query->where('name', 'super-admin');
         })->get();
 
-        // dd($superadmins);
         $schedule->status = $request->has('status') ? $request->input('status') : 0;
         $schedule->save();
 
+        $doctor=$schedule->doctor;
         foreach ($superadmins as $superadmin) {
-            // dd($superadmin);
-            $superadmin->notify(new AvailabilityNotificationToDoctor());
+            $superadmin->notify(new AvailabilityNotificationToDoctor($doctor));
         }
         return redirect()->back()->with('message', 'Status updated successfully');
     }

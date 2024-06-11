@@ -10,9 +10,6 @@ class AppointmentBookedMail extends Mailable
 {
     use Queueable, SerializesModels;
     protected $patient;
-    /**
-     * Create a new message instance.
-     */
     public function __construct(Patient $patient)
     {
         $this->patient=$patient;

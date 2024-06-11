@@ -25,46 +25,35 @@ $(document).ready(function () {
     });
 
     $('#doctorfetch').change(function () {
-        var schedule_id = this.value;
+        var doctor_id = this.value;
+        // console.log(doctor_id);
 
-        if (schedule_id) {
+        if (doctor_id) {
             $.ajax({
-                url: "/fetchschedule" + "/" + schedule_id,
+                url: "/fetchschedule" + "/" + doctor_id,
                 method: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response);
+                    // console.log(response);
                     var cardBody = $('.schedulefetch');
                     cardBody.empty();
 
                     var cardHtml = '<div class="row card my-3 ">'+
                     '<h4 class="card-head text-center m-4">'+ 'Choose Appropriate Schedule'+'</h4>';
 
-                    $.each(response.schedule, function (index, schedule) {
-                        cardHtml += '<div class="card-head h5  mt-3 d-flex justify-content-center">' + schedule.schedule_date + '</div>';
-                        cardHtml += '<div class="card-body d-flex flex-wrap">';
+                    $.each(response, function (_, schedule) {
+                        // console.log(schedule);
+                        cardHtml += '<div class="card-body d-flex">';
 
                         var startTime = moment(schedule.start_time, 'HH:mm:ss');
                         var endTime = moment(schedule.end_time, 'HH:mm:ss');
 
-                        var bookedIntervals = [];
+                            var intervalText = startTime.format('hh:mm A') + ' - ' + endTime.format('hh:mm A');
 
-                        $.each(response.appointments, function (i, appointment) {
-                            if (appointment.status !== 'cancel') {
-                                bookedIntervals.push(appointment.time_interval);
-                            }
-                        });
-
-                        while (startTime.isBefore(endTime)) {
-                            var intervalText = startTime.format('hh:mm A') + ' - ' + startTime.add(30, 'minutes').format('hh:mm A');
-
-                            if (!bookedIntervals.includes(intervalText)) {
                                 var baseUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
                                 var appointmentFormUrl = baseUrl + '/appointmentform';
                                 appointmentFormUrl += '/' + schedule.id;
-                                cardHtml += '<h6 class="col-4 card-title"><a href="' + appointmentFormUrl + '" class="badge badge-primary schedule-slot">' + intervalText + '</a></h6>';
-                            }
-                        }
+                                cardHtml += '<h6 class="col-4 card-title"><a href="' + appointmentFormUrl + '" class="badge badge-primary schedule-slot ">' +schedule.day + ', '+ intervalText + '</a></h6>';
 
                         cardHtml += '</div>';
                     });
@@ -74,6 +63,7 @@ $(document).ready(function () {
 
                     $(document).on('click', '.schedule-slot', function (event) {
                         var selectedInterval = $(this).text();
+                        console.log(selectedInterval);
                         sessionStorage.setItem('selected_interval', selectedInterval);
                     });
                 },

@@ -24,6 +24,7 @@
  <script src={{asset("backend/js/experienceRepeater.js")}}></script>
  <script src={{asset("backend/js/notificationpop.js")}}></script>
  <script src={{asset("backend/js/departmentbasedspecialization.js")}}></script>
+ <script src={{asset("backend/js/togglemodeltype.js")}}></script>
 
  {{-- englishdate picker --}}
  {{-- <script src={{asset("backend/js/englishdatepicker.js")}}></script> --}}

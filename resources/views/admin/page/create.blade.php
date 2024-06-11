@@ -22,7 +22,7 @@
                     @csrf
                     <div class="form-row mb-3">
                         <div class="col">
-                            {!! Form::label('title', 'Title(eng)') !!}<span class="text-danger">*</span>
+                            {!! Form::label('title', 'Title[en]') !!}<span class="text-danger">*</span>
                             {!! Form::text('title[en]', null, [
                                 'class' => 'form-control',
                                 'id' => 'title',
@@ -33,7 +33,7 @@
                             @enderror
                         </div>
                         <div class="col">
-                            {!! Form::label('title', 'Title(nep)') !!}<span class="text-danger">*</span>
+                            {!! Form::label('title', 'Title[ne]') !!}<span class="text-danger">*</span>
                             {!! Form::text('title[ne]', null, [
                                 'class' => 'form-control',
                                 'id' => 'title',
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
-                            {!! Form::label('content', 'Content(eng)') !!}<span class="text-danger">*</span>
+                            {!! Form::label('content', 'Content[en]') !!}<span class="text-danger">*</span>
                             {!! Form::textarea('content[en]', null, [
                                 'class' => 'form-control',
                                 'id' => 'content',
@@ -72,7 +72,7 @@
                         {{-- {!! Form::hidden('slug', null, ['id' => 'slug']) !!} --}}
 
                         <div class="col">
-                            {!! Form::label('content', 'Content(nep)') !!}<span class="text-danger">*</span>
+                            {!! Form::label('content', 'Content[ne]') !!}<span class="text-danger">*</span>
                             {!! Form::textarea('content[ne]', null, [
                                 'class' => 'form-control',
                                 'id' => 'content',

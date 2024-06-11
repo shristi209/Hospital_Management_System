@@ -39,7 +39,8 @@ class DoctorAppointmentController extends Controller
             'status' => $request->status,
         ]);
 
-        Mail::to($patientEmail)->send(new AppointmentStatusMail($appointment));
+        // dd($appointment);
+        // Mail::to($patientEmail)->send(new AppointmentStatusMail($appointment));
 
         return redirect()->back();
 

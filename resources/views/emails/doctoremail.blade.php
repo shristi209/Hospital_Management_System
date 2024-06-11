@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
-                <h1 class="text-center">New Appointment Booked</h1>
+                <h1 class="text-center mt-3" >New Appointment Booked</h1>
                 <p>Hello Doctor,</p>
                 <p>A new appointment has been booked. Here are the details:</p>
                 <ul class="list-unstyled">

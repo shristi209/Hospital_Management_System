@@ -25,11 +25,15 @@
                 <div data-mdb-input-init class="form-outline mb-4">
                     <label class="form-label" for="form2Example2">Password<span class="text-danger">*</span></label>
                     <input type="password" id="form2Example2" name="password" class="form-control" />
+                    <br><input type="checkbox" onclick="myFunction()"> Show Password
+
                     @error('password')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group mb-3">
+                    <label class="form-label" for="form2Example2">Verify that you are not robot<span class="text-danger">*</span></label>
+
                     {!! NoCaptcha::renderJs() !!}
                     {!! NoCaptcha::display() !!}
                     @error('g-recaptcha-response')
@@ -48,3 +52,13 @@
         </span>
     </div>
 </body>
+<script>
+    function myFunction() {
+  var x = document.getElementById("form2Example2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>

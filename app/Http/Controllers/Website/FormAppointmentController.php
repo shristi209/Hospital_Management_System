@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Requests\AppointmentPatientValidationRequest;
+use Exception;
+use  App\Models\Doctor;
 use  App\Models\Patient;
 use  App\Models\Schedule;
 use  App\Models\Appointment;
-use  App\Models\Doctor;
-
-use App\Notifications\AppointmentBookedNotification;
-use App\Mail\AppointmentBookedMail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use App\Mail\AppointmentBookedMail;
+use App\Mail\AppointmentStatusMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use Exception;
+use App\Notifications\AppointmentBookedNotification;
+use App\Http\Requests\AppointmentPatientValidationRequest;
 
 class FormAppointmentController extends Controller
 {
@@ -43,7 +44,6 @@ class FormAppointmentController extends Controller
 
     public function store(AppointmentPatientValidationRequest $request)
     {
-// dd($request);
         try {
             DB::beginTransaction();
 
@@ -61,21 +61,22 @@ class FormAppointmentController extends Controller
             $patient=$this->patient->create($data);
 
             $schedule =  $this->schedule->findOrFail($request->schedule_id);
+
+
             $doctor_id =$schedule->doctor->id;
-
-
             $data['doctor_id']=$doctor_id;
             $data['patient_id']=$patient->id;
             $data['status'] = 'pending';
 
             $this->appointment->create($data);
+            $patientEmail=$patient->email;
 
             $doctor = $this->doctor->find($doctor_id);
-
-            // $doctor = $this->doctor->find($doctor_id);
             $doctorEmail = $doctor->user->email;
 
-            $doctor->notify(new AppointmentBookedNotification());
+            Mail::to($patientEmail)->send(new AppointmentStatusMail($schedule, $patient));
+
+            $doctor->notify(new AppointmentBookedNotification($patient));
 
             Mail::to($doctorEmail)->send(new AppointmentBookedMail($patient));
 

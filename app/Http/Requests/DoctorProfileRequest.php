@@ -47,20 +47,6 @@ class DoctorProfileRequest extends FormRequest
             'temp_municipality_id' => ['nullable', 'string'],
             'temp_street' => ['nullable', 'string'],
 
-            // 'institute_name.*' => ['required'],
-            // 'specialization.*' => ['required'],
-            // 'graduation_year_start_bs.*' => ['required', 'date'],
-            // 'graduation_year_start_ad.*' => ['required', 'date'],
-            // 'education_level.*'=>['required'],
-
-            // 'organization_name.*' => ['required'],
-            // 'org_start_bs.*' => ['required', 'date'],
-            // 'org_start_ad.*' => ['required', 'date'],
-            // 'org_end_bs.*' => ['required', 'date'],
-            // 'org_end_ad.*' => ['required', 'date'],
-            // 'description.*' => ['nullable'],
-
-
         ];
     }
 }

@@ -2,18 +2,18 @@
 
 namespace App\Notifications;
 
+use App\Models\Doctor;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class AvailabilityNotificationToDoctor extends Notification
 {
     use Queueable;
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct()
+
+    protected $doctor;
+    public function __construct(Doctor $doctor)
     {
+        $this->doctor=$doctor;
 
     }
 
@@ -25,23 +25,19 @@ class AvailabilityNotificationToDoctor extends Notification
     public function via(object $notifiable): array
     {
         // dd($notifiable);
-        return ['mail','database'];
+        return ['database'];
     }
 
-
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-                    ->subject('New Unavailable Message')
-                    ->line('doctor will be unavailable.')
-                    ->line('Please check schedule.');
-    }
 
     public function toArray(object $notifiable): array
     {
+        $unavailableDay = $this->doctor->schedule->where('status', 'unavailable')->first()->day ?? 'Unknown';
+
         return [
-            'message' => 'New Unavailable Message.',
-            'type' => 'availability',
+            'message' => 'Doctor ' . $this->doctor->first_name  . ' is unavailable on ' . $unavailableDay . '.',
+            'type' => 'unavailability',
+            'doctor_id' => $this->doctor->id,
+
         ];
     }
 }

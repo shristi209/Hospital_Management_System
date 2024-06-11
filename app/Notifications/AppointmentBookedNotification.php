@@ -2,19 +2,18 @@
 
 namespace App\Notifications;
 
+use App\Models\Patient;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class AppointmentBookedNotification extends Notification
 {
     use Queueable;
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct()
-    {
 
+    public $patient;
+    public function __construct(Patient $patient)
+    {
+        $this->patient=$patient;
     }
 
     /**
@@ -24,24 +23,17 @@ class AppointmentBookedNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        // dd($notifiable);
-        return ['mail','database'];
+        return ['database'];
     }
 
-
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-                    ->subject('New Appointment Booked')
-                    ->line('A new appointment has been booked.')
-                    ->line('Please check your schedule.');
-    }
 
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => 'A new appointment has been booked.',
+            'message' => 'A new appointment has been booked by ' . $this->patient->full_name . '.',
             'type' => 'appointment_booked',
+            'patient_id' => $this->patient->id,
+            'patient_name' => $this->patient->full_name,
         ];
     }
 }

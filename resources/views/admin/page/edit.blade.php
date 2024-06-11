@@ -7,10 +7,20 @@
 
     <div class="card">
         <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12">
-                    {!! Form::open(['route' => 'page.store', 'method' => 'POST', 'files' => true]) !!}
+                    {!! Form::open(['route' => ['page.update', $page->id], 'method' => 'POST']) !!}
                     @csrf
+                    @method('PUT')
                     <div class="form-row mb-3">
                         <div class="col">
                             {!! Form::label('title[en]', 'Title(eng)') !!}<span class="text-danger">*</span>
@@ -25,7 +35,7 @@
                         </div>
                         <div class="col">
                             {!! Form::label('title', 'Title(nep)') !!}<span class="text-danger">*</span>
-                            {!! Form::text('title[]', $page->title['ne'], [
+                            {!! Form::text('title[ne]', $page->title['ne'], [
                                 'class' => 'form-control',
                                 'id' => 'title',
                                 'placeholder' => 'Enter title',
@@ -46,11 +56,21 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="col-6">
+                            {!! Form::label('slug', 'Slug') !!}<span class="text-danger">*</span>
+                            {!! Form::text('slug', $page->slug, [
+                                'class' => 'form-control',
+                                'id' => 'slug',
+                            ]) !!}
+                            @error('slug')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
                             {!! Form::label('content', 'Content(eng)') !!}<span class="text-danger">*</span>
-                            {!! Form::textarea('content[]', $page->content['en'], [
+                            {!! Form::textarea('content[en]', $page->content['en'], [
                                 'class' => 'form-control',
                                 'id' => 'content',
                                 'placeholder' => 'Enter content',
@@ -60,11 +80,9 @@
                             @enderror
                         </div>
 
-                        {!! Form::hidden('slug', null, ['id' => 'slug']) !!}
-
                         <div class="col">
                             {!! Form::label('content', 'Content(nep)') !!}<span class="text-danger">*</span>
-                            {!! Form::textarea('content[]', $page->title['ne'], [
+                            {!! Form::textarea('content[ne]', $page->title['ne'], [
                                 'class' => 'form-control',
                                 'id' => 'content',
                                 'placeholder' => 'Enter content',

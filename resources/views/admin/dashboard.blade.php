@@ -1,5 +1,6 @@
 @extends('admin.layouts.index')
 @section('content')
+    @inject('department_helper', 'App\Helpers\DepartmentHelper')
     <div id="content">
 
         <!-- Topbar -->
@@ -76,7 +77,7 @@
             </div>
 
             <!-- Content Row -->
-            @if (Auth::check() && Auth::user()->hasRole(['super-admin']))
+            @if (Auth::check() && Auth::user()->hasRole(['super-admin', 'admin']))
                 <div class="row">
 
                     <!-- Earnings (Monthly) Card Example -->
@@ -331,6 +332,105 @@
                 </div>
         </div>
         @endif
+        {!! Form::open(['url' => '/graph', 'method' => 'POST']) !!}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card shadow mt-3 d-flex">
+                    <div class="card-header mb-4 d-flex justify-content-between" style="min-height:76px">
+                        <div class="iq-card-title col-4">
+                            <h5> Doctor Based Patients</h5>
+                        </div>
+                        <div class="d-flex col-8" style="flex:auto">
+                            <div class="col">
+                                {!! Form::label('department_id', 'Department') !!}
+                                {!! Form::select('department_id', $department_helper->dropdown(), null, [
+                                    'required',
+                                    'placeholder' => 'Select by department',
+                                ]) !!}
+                            </div>
+                            <div class="col">
+                                {!! Form::label('start_date', 'From') !!}
+                                {!! Form::date('start_date', null, [
+                                    'required',
+                                ]) !!}
+                            </div>
+                            <div class="col">
+                                {!! Form::label('end_date', 'To') !!}
+                                {!! Form::date('end_date', null, ['class' => '', 'required']) !!}
+                            </div>
+                            <div class="d-flex justify-content-center align-items-end">
+                                {!! Form::submit('Send', ['class' => 'btn btn-outline-primary btn-sm']) !!}
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+
+                    <canvas id="myChart" class=""></canvas>
+
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            const ctx = document.getElementById('myChart');
+            const doctor_names = @json(session('doctor_name' ?? []));
+            const patient_count = @json(session('patient_count' ?? []));
+
+            console.log(doctor_names);
+            console.log(patient_count);
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: doctor_names,
+                    datasets: [{
+                        label: 'Number of Patient visited by doctor',
+                        data: patient_count,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+
+                            title: {
+                                display: true,
+                                text: 'Number of Patient',
+                                padding: {
+                                    top: 10,
+                                    bottom: 30
+                                },
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Doctor Names',
+                                padding: {
+                                    top: 10,
+                                    bottom: 30
+                                },
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+            });
+        </script>
+        <p></p>
         {{-- <div class="d-flex">
             <div class="col-xl-8 col-lg-7">
                 <div class="card shadow">

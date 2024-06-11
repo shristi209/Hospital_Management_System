@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\{
     AuthController,
     HomeController,
     PageController,
+    MenuController,
     RoleController,
     UserController,
     DoctorController,
@@ -15,7 +16,8 @@ use App\Http\Controllers\Admin\{
     TrashDoctorController,
     DoctorSearchController,
     ForgotPasswordController,
-    TrashDepartmentController
+    TrashDepartmentController,
+
 };
 use App\Http\Controllers\Website\{
     DashboardController,
@@ -29,11 +31,13 @@ use App\Http\Controllers\Doctor\{
     DoctorAppointmentController
 };
 
+
 // Public Routes
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::post('/graph', [HomeController::class, 'graphShow']);
 
 // Guest Routes
 Route::middleware('guest')->group(function () {
@@ -45,13 +49,14 @@ Route::middleware('guest')->group(function () {
 Route::get('/logout', [AuthController::class, 'logoutUser'])->name('logout-user');
 
 // Super Admin Routes
-Route::group(['middleware' => ['role:super-admin']], function () {
+Route::group(['middleware' => ['role:super-admin|admin']], function () {
+
     Route::resource('/role', RoleController::class);
     Route::resource('/department', DepartmentController::class);
 
     Route::prefix('trash')->group(function () {
         Route::get('/user', [TrashUserController::class, 'index'])->name('usertrash');
-        Route::get('/department', [TrashDepartmentController::class, 'index'])->name('departmenttrash');
+        Route::get('/trash/department', [TrashDepartmentController::class, 'index'])->name('departmenttrash');
         Route::get('/doctor', [TrashDoctorController::class, 'index'])->name('doctortrash');
 
         Route::put('/department/{id}/restore', [TrashDepartmentController::class, 'restore'])->name('trashid');
@@ -62,15 +67,20 @@ Route::group(['middleware' => ['role:super-admin']], function () {
 
         Route::put('/doctor/{id}/restore', [TrashDoctorController::class, 'restore'])->name('trashdoctor');
         Route::delete('/doctor/{id}/delete', [TrashDoctorController::class, 'delete'])->name('trashdeletedoctor');
+
     });
 
     Route::resource('/user', UserController::class);
     Route::resource('/doctor', DoctorController::class);
     Route::resource('/schedule', ScheduleController::class);
     Route::resource('/page', PageController::class);
+    Route::resource('menu', MenuController::class);
+    Route::get('menu/senddata', [MenuController::class, 'sendMenu'])->name('menu.sendMenu');
 
     Route::get('/doctorsearch', [DoctorSearchController::class, 'searchDoctor'])->name('doctorsearch');
     Route::get('/fetchspecialization/{id}', [DoctorSearchController::class, 'fetchDepartmentBasedSpecialization'])->name('fetchspecialization');
+
+
 });
 
 // Doctor Routes
@@ -93,17 +103,17 @@ Route::group(['middleware' => ['role:doctor']], function () {
 
     Route::patch('/doctorappointment/statusupdate/{id}', [DoctorAppointmentController::class, 'statusUpdate'])->name('statusupdate');
     Route::patch('/doctorschedule/statusupdate/{id}', [DoctorScheduleController::class, 'statusUpdate'])->name('availabilitycheck');
-    Route::patch('/notifications/markallasread', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
 
-    Route::get('/fetchdistrict/{provinceId}', [AddressController::class, 'fetchDistrict'])->name('fetchdistrict');
-    Route::get('/fetchmunicipality/{districtId}', [AddressController::class, 'fetchMunicipality'])->name('fetchmunicipality');
-    Route::get('/addfetchdistrict/{provinceId}', [AddressController::class, 'addfetchDistrict'])->name('addfetchdistrict');
-    Route::get('/addfetchmunicipality/{districtId}', [AddressController::class, 'addfetchMunicipality'])->name('addfetchmunicipality');
+
 });
 
 // General Routes
-Route::get('/caresync', [DashboardController::class, 'index']);
+Route::get('/caresync', [DashboardController::class, 'index'])->name('caresync');
 Route::get('/appointment', [DashboardController::class, 'appointment'])->name('appointment');
+Route::get('/change/language/{lang}', [DashboardController::class, 'changeLang']);
+Route::post('/feedback', [DashboardController::class, 'feedbacks']);
+
+// Route::get('/appointment', [DashboardController::class, 'appointment'])->name('appointment');
 Route::get('/fetchdoctor/{dept_id}', [AppointmentController::class, 'fetchDoctor'])->name('fetchdoctor');
 Route::get('/fetchschedule/{schedule_id}', [AppointmentController::class, 'fetchSchedule'])->name('fetchschedule');
 Route::resource('/appointmentform', FormAppointmentController::class);
@@ -113,3 +123,13 @@ Route::get('/forgotpassword', [ForgotPasswordController::class, 'forgotPassword'
 Route::post('/forgotpassword', [ForgotPasswordController::class, 'storePassword'])->name('storepassword');
 Route::get('/resetpassword/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('resetpassword');
 Route::post('/resetpassword', [ForgotPasswordController::class, 'resetPasswordPost'])->name('storeresetpassword');
+
+Route::patch('/notifications/markallasread', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+
+
+Route::get('/fetchdistrict/{provinceId}', [AddressController::class, 'fetchDistrict'])->name('fetchdistrict');
+Route::get('/fetchmunicipality/{districtId}', [AddressController::class, 'fetchMunicipality'])->name('fetchmunicipality');
+Route::get('/addfetchdistrict/{provinceId}', [AddressController::class, 'addfetchDistrict'])->name('addfetchdistrict');
+Route::get('/addfetchmunicipality/{districtId}', [AddressController::class, 'addfetchMunicipality'])->name('addfetchmunicipality');
+
+

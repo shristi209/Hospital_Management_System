@@ -4,6 +4,7 @@ use App\Models\Municipality;
 
 class MunicipalityHelper
 {
+    protected $municipality;
     public function __construct(Municipality $municipality){
         $this->municipality=$municipality;
     }

@@ -10,8 +10,14 @@ class NotificationController extends Controller
 
     public function markAllAsRead()
     {
-        $user= Auth::user()->doctor->unreadNotifications->markAsRead();
+        if (Auth::user()->hasRole('super-admin')) {
+            Auth::user()->unreadNotifications->markAsRead();
+        }
+        if(Auth::user()->doctor)
+        {
+            Auth::user()->doctor->unreadNotifications->markAsRead();
+        }
         return back()->with('message', 'All notifications marked as read');
-
     }
+
 }

@@ -59,6 +59,12 @@
                 <span>Page</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::routeIs('menu*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('menu.index') }}">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </a>
+        </li>
     @endif
     @if (Auth::check() && Auth::user()->hasRole('super-admin'))
         <li class="nav-item {{ Request::routeIs('role*') ? 'active' : '' }}">

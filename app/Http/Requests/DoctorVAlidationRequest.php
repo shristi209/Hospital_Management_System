@@ -35,10 +35,10 @@ class DoctorValidationRequest extends FormRequest
 
             'phone_num' => ['required', 'min:10'],
 
-            'country_id' => ['required', 'string'],
-            'province_id' => ['required', 'string'],
-            'district_id' => ['required', 'string'],
-            'municipality_id' => ['required', 'string'],
+            'country_id' => ['required', 'integer'],
+            'province_id' => ['required', 'integer'],
+            'district_id' => ['required', 'integer'],
+            'municipality_id' => ['required', 'integer'],
             'street' => ['required', 'string'],
 
             'temp_country_id' => ['nullable', 'string'],
@@ -47,8 +47,8 @@ class DoctorValidationRequest extends FormRequest
             'temp_municipality_id' => ['nullable', 'string'],
             'temp_street' => ['nullable', 'string'],
 
-            'institute_name.*' => ['required'],
-            'specialization.*' => ['required'],
+            'institute_name.*' => ['required', 'string'],
+            'specialization.*' => ['required', 'string'],
             'education_level.*'=>['required'],
             'graduation_year_start_bs.*' => ['required', 'date'],
             'graduation_year_start_ad.*' => ['required', 'date'],

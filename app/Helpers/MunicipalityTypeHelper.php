@@ -4,6 +4,7 @@ use App\Models\MunicipalityType;
 
 class MunicipalityTypeHelper
 {
+    protected $municipalitytype;
     public function __construct(MunicipalityType $municipalitytype){
         $this->municipalitytype=$municipalitytype;
     }

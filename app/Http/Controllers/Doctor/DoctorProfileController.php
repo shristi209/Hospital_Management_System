@@ -55,8 +55,8 @@ class DoctorProfileController extends Controller
         $user = Auth::user();
         $doctorId = $user->doctor_id;
         $doctor = $this->doctor->find($doctorId);
-        $districts = $this->district->all();
-        $municipalities = $this->municipality->all();
+        $districts = $this->district->where('province_id', $doctor->province->id)->get();
+        $municipalities = $this->municipality->where('district_id',$doctor->district->id)->get();
         return view('doctor.profile.edit', compact('doctorId', 'doctor', 'districts', 'municipalities'));
     }
 
@@ -120,7 +120,6 @@ class DoctorProfileController extends Controller
         public function updateEducation(DoctorEducationRequest $request, $doctorId)
     {
         $data = $request->all();
-// dd($data);
         if (isset($data['education_id']))
         {
             foreach ($data['education_id'] as $index => $educationId)

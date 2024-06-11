@@ -45,7 +45,6 @@ class DoctorController extends Controller
 
     public function store(DoctorValidationRequest $request)
     {
-        // dd($request);
         try {
             DB::beginTransaction();
             $data = $request->validated();
@@ -68,7 +67,7 @@ class DoctorController extends Controller
                 'role_id' => $role_id,
                 'doctor_id' => $doctor->id,
             ]);
-            // dd($request);
+
             if ($request->has('institute_name')) {
                 foreach ($request->institute_name as $key => $value) {
                     $this->doctorEducation->create([
@@ -82,6 +81,7 @@ class DoctorController extends Controller
                     ]);
                 }
             }
+
             if ($request->has('organization_name')) {
                 foreach ($request->organization_name as $key => $value) {
                     $this->doctorExperience->create([
@@ -115,8 +115,8 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = $this->doctor->findOrFail($id);
-        $districts = $this->district->all();
-        $municipalities = $this->municipality->all();
+        $districts = $this->district->where('province_id', $doctor->province->id)->get();
+        $municipalities = $this->municipality->where('district_id', $doctor->district->id)->get();
 
         $educations = $this->doctorEducation->where('doctor_id', $id)->get();
         $experiences =  $this->doctorExperience->where('doctor_id', $id)->get();

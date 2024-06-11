@@ -196,6 +196,12 @@ return [
         App\Providers\RouteServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        App\Providers\LocaleServiceProvider::class,
+
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
+
+
     ],
 
     /*
@@ -213,6 +219,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         'Debugbar' => Barruvdh\Debugbar\Facades\Debugbar::class,
+
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ])->toArray(),
 
